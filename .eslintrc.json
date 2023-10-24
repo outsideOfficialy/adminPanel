@@ -1,3 +1,49 @@
 {
-  "extends": "next/core-web-vitals"
+  "env": {
+    "browser": true,
+    "es2021": true
+  },
+  "extends": "airbnb-base",
+  "overrides": [],
+  "parserOptions": {
+    "ecmaVersion": "latest"
+  },
+  "plugins": [
+    "jest"
+  ],
+  "rules": {
+    "linebreak-style": [
+      "error",
+      "unix"
+    ],
+    "no-console": "off",
+    "no-alert": "off",
+    "no-multiple-empty-lines": [
+      "error",
+      {
+        "max": 4,
+        "maxEOF": 1
+      }
+    ],
+    "indent": [
+      "error",
+      2,
+      {
+        "SwitchCase": 1
+      }
+    ],
+    "strict": [
+      "off",
+      "global"
+    ],
+    "newline-before-return": "error",
+    "max-len": [
+      "error",
+      {
+        "code": 130,
+        "tabWidth": 2,
+        "ignoreUrls": true
+      }
+    ]
+  }
 }
