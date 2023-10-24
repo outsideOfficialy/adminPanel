@@ -10,6 +10,7 @@ const config: Config = {
     extend: {
       fontFamily: {
         "montserrat": ["Montserrat", "sans"],
+        "delagothic": ["Dela Gothic One", "sans"]
       },
       colors: {
         "main-color": "#EC642B",
