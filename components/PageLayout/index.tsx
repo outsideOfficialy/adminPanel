@@ -1,10 +1,12 @@
+import FormLayout from "../FormLayout";
 
 interface PageLayoutProps {
   children?: React.ReactNode[] | React.ReactNode;
+  title: string;
 }
 
-const PageLayout: React.FC<PageLayoutProps> = ({ children }) => {
-  return <div className="w-screen min-h-screen bg-black flex justify-end text-white">
+const PageLayout: React.FC<PageLayoutProps> = ({ children, title }) => {
+  return <div className="w-screen min-h-screen bg-black flex justify-end text-white font-montserrat">
     {/* here will be menu button calling */}
     <button className="menu material-symbols-outlined absolute left-[40px] top-[40px]">menu</button>
 
@@ -15,7 +17,10 @@ const PageLayout: React.FC<PageLayoutProps> = ({ children }) => {
         <div className="material-symbols-outlined  shield-person">shield_person</div>
       </div>
       <div>
-        {children ? children : null}
+        <h2 className="text-[48px] font-medium">{title}</h2>
+        <FormLayout>
+          {children ? children : null}
+        </FormLayout>
       </div>
     </div>
   </div>
