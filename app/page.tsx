@@ -1,9 +1,11 @@
 import Image from "next/image"
+import TestComponent from "@/components/testComponent"
+import PageLayout from "@/components/PageLayout"
 
 export default function Home() {
   return (
-    <>
-      <div className="font-delagothic">Hello world!</div>
-    </>
+    <PageLayout>
+      
+    </PageLayout>
   )
 }
