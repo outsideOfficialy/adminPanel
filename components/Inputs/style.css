@@ -20,7 +20,6 @@ input[type="text"] {
   background-color: var(--black);
   border-radius: 5px;
   border: 1px solid var(--white);
-  color: var(--white);
   padding: 10px 15px;
   max-width: 450px;
   width: 100%;
@@ -47,4 +46,9 @@ input[type="text"]:focus {
   box-shadow: none;
   outline: none;
   transition: 0.3s;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  width: 100%;
 }
