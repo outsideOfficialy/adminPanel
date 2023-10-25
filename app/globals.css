@@ -3,8 +3,8 @@
 @tailwind utilities;
 
 @font-face {
-  font-family: 'Dela Gothic One';
-  src: url('../src/fonts/DelaGothicOne-Regular.ttf');
+  font-family: "Dela Gothic One";
+  src: url("../src/fonts/DelaGothicOne-Regular.ttf");
   font-weight: 400;
 }
 
@@ -17,10 +17,10 @@
 
 .material-symbols-outlined.shield-person {
   font-size: 54px;
-  font-variation-settings: 'FILL' 0, 'wght' 500, 'GRAD' 0, 'opsz' 56;
+  font-variation-settings: "FILL" 0, "wght" 500, "GRAD" 0, "opsz" 56;
 }
 
 .material-symbols-outlined.menu {
   font-size: 32px;
-  font-variation-settings: 'FILL' 0, 'wght' 500, 'GRAD' 0, 'opsz' 56;
+  font-variation-settings: "FILL" 0, "wght" 500, "GRAD" 0, "opsz" 56;
 }
