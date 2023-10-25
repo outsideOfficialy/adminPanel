@@ -4,7 +4,7 @@ interface PageLayoutProps {
 }
 
 const PageLayout: React.FC<PageLayoutProps> = ({ children }) => {
-  return <div className="w-screen min-h-screen bg-black flex justify-end">
+  return <div className="w-screen min-h-screen bg-black flex justify-end text-white">
     {/* here will be menu button calling */}
     <button className="menu material-symbols-outlined absolute left-[40px] top-[40px]">menu</button>
 
