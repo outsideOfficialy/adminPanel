@@ -1,6 +1,5 @@
 import PageLayout from "@/components/PageLayout";
-import { InputTypeText } from "@/components/Inputs";
-import { SearchInput } from "@/components/Inputs";
+import { InputTypeText, SearchInput } from "@/components/Inputs";
 
 export default function Home() {
   return (
