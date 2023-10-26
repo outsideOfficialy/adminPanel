@@ -1,3 +1,5 @@
+"use client"
+
 import PageLayout from "@/components/PageLayout";
 import { InputTypeText, SearchInput } from "@/components/Inputs";
 
