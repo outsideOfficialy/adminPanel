@@ -18,6 +18,7 @@ const PageLayout: React.FC<PageLayoutProps> = ({ children, title }) => {
           <p className="font-delagothic text-[54px] mr-[25px]">OUTSIDE</p>
           <div className="material-symbols-outlined  shield-person">shield_person</div>
         </div>
+        <h2 className="text-[48px] font-medium">{title}</h2>
         <FormLayout>
           {children ? children : null}
         </FormLayout>
@@ -25,4 +26,5 @@ const PageLayout: React.FC<PageLayoutProps> = ({ children, title }) => {
     </div>
   );
 };
+
 export default PageLayout;
