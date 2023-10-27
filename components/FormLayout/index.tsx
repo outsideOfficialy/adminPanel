@@ -3,12 +3,10 @@ interface FormLayoutProps {
 }
 
 const FormLayout: React.FC<FormLayoutProps> = ({ children }) => {
-  return <form>
-    <div>
-      {children ? children : null}
-    </div>
-    <div className="flex justify-between w-max">
-      <button type="submit" className="mr-[30px]">Send</button>
+  return <form className="flex flex-col gap-[45px] max-w-[550px]">
+    {children ? children : null}
+    <div className="flex w-max gap-[30px]">
+      <button type="submit">Send</button>
       <button>Send later</button>
     </div>
   </form>
