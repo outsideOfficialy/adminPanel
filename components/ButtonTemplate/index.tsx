@@ -4,7 +4,7 @@ interface ButtonTemplateProps {
   type?: "button" | "submit" | "reset";
   children: React.ReactNode | React.ReactNode[];
   onClick?: (e: React.FormEvent) => void;
-  className: string;
+  className?: string;
 }
 
 //! -----------------------------------------
@@ -15,7 +15,11 @@ const ButtonTemplate: React.FC<ButtonTemplateProps> = ({
   onClick,
   className
 }) => {
-  return <button className={className} type={type} onClick={onClick ? onClick : undefined}>
+  return <button className={clsx(
+    "transition duration-300 rounded-[5px] w-full min-h-[60px]",
+    "text-center shadow-[0px_0px_10px_0px_rgba(239,147,53,0.25)] hover:shadow-[rgba(239,147,53)]",
+    className
+  )} type={type} onClick={onClick ? onClick : undefined}>
     {children}
   </button>
 };
@@ -23,13 +27,11 @@ const ButtonTemplate: React.FC<ButtonTemplateProps> = ({
 export const ButtonPrimary: React.FC<ButtonTemplateProps> = ({
   children,
   className,
-  onClick
+  onClick,
+  type
 }) => {
-  return <ButtonTemplate onClick={onClick} className={clsx(
-    "w-full max-w-[180px] rounded-[5px] text-[20px] font-medium min-h-[60px] text-center transition duration-300",
-    "shadow-[0px_0px_10px_0px_rgba(239,147,53,0.25)] hover:shadow-[rgba(239,147,53)]",
-    className ? className : ""
-  )}>
+  return <ButtonTemplate type={type} onClick={onClick} className={clsx("text-[20px] max-w-[180px] font-medium",
+  className ? className : "")}>
     {children}
   </ButtonTemplate>
 }
