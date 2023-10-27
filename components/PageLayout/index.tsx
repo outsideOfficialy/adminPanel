@@ -1,4 +1,5 @@
 import FormLayout from "../FormLayout";
+import Menu from "../Menu";
 interface PageLayoutProps {
   children?: React.ReactNode[] | React.ReactNode;
   title: string;
@@ -8,9 +9,9 @@ const PageLayout: React.FC<PageLayoutProps> = ({ children, title }) => {
   return (
     <div className="w-screen min-h-screen bg-black flex justify-end text-white font-montserrat">
       {/* here will be menu button calling */}
-      {/* <button className="menu material-symbols-outlined absolute left-[40px] top-[40px]">
-        menu
-      </button> */}
+      <div className="absolute left-[40px] top-[40px]">
+        <Menu list={['Add music', 'News', 'Add merch', 'Add or edit member info']} />
+      </div>
 
       {/* this option may change, i will edit method of centering during the adaptation */}
       <div className="w-[calc(100%-250px)] px-[15px] min-w-[360px] pt-[20px] flex flex-col gap-[50px]">
