@@ -1,7 +1,11 @@
 import React from "react";
+import Link from "next/link";
 
 interface MenuProps {
-  list: string[];
+  list: {
+    "link": string;
+    "textContent": string;
+  }[];
 }
 
 const Menu: React.FC<MenuProps> = ({ list }) => {
@@ -29,11 +33,11 @@ const Menu: React.FC<MenuProps> = ({ list }) => {
             {list.map((item, index) => (
               <li
                 className="white transition duration-300 ease-in-out hover:text-main-primary-color"
-                key={item + index}
+                key={item.textContent + index}
               >
-                <button className="text-left" onClick={handleMenuOpen}>
-                  {item}
-                </button>
+                <Link href={item.link} className="text-left" onClick={handleMenuOpen}>
+                  {item.textContent}
+                </Link>
               </li>
             ))}
           </ul>
