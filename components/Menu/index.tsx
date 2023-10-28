@@ -11,16 +11,6 @@ const Menu: React.FC<MenuProps> = ({ list }) => {
     setMenuOpen(!isMenuOpen);
   };
 
-  // Закрыть меню при клике на фон
-  const handleBackdropClick = () => {
-    setMenuOpen(false);
-  };
-
-  // Закрываем меню при клике на ссылку
-  const handleLinkClick = () => {
-    handleMenuOpen();
-  };
-
   return (
     <div className="relative">
       <button
@@ -41,7 +31,7 @@ const Menu: React.FC<MenuProps> = ({ list }) => {
                 className="white transition duration-300 ease-in-out hover:text-main-primary-color"
                 key={item + index}
               >
-                <button className="text-left" onClick={handleLinkClick}>
+                <button className="text-left" onClick={handleMenuOpen}>
                   {item}
                 </button>
               </li>
@@ -59,7 +49,7 @@ const Menu: React.FC<MenuProps> = ({ list }) => {
         className={`${
           isMenuOpen ? "block" : "hidden"
         } fixed top-0 left-0 w-full h-full bg-black bg-opacity-80 z-[7]`}
-        onClick={handleBackdropClick}
+        onClick={handleMenuOpen}
       ></div>
     </div>
   );
