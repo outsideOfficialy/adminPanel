@@ -10,7 +10,10 @@ const PageLayout: React.FC<PageLayoutProps> = ({ children, title }) => {
     <div className="w-screen min-h-screen bg-black flex justify-end text-white font-montserrat">
       {/* here will be menu button calling */}
       <div className="absolute left-[40px] top-[40px]">
-        <Menu list={["Add music", "News", "Add merch", "Add or edit member info"]} />
+        <Menu list={[{ textContent: "Add music", link: "/add-music" },
+        { textContent: "News", link: "/news" },
+        { textContent: "Add merch", link: "/add-merch" },
+        { textContent: "Add or edit member info", link: "/member-edit" }]} />
       </div>
 
       {/* this option may change, i will edit method of centering during the adaptation */}
