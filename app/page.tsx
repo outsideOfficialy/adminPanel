@@ -9,7 +9,6 @@ export default function Home() {
     <PageLayout title="Add music">
       <SearchInput onSearch={() => {}} placeholder="Search" label="Member Fullname" name="For" />
       <InputTypeText placeholder="Name" label="Member Nickname*" name="For" />
-      <Link href={"/news"}>Move to news</Link>
     </PageLayout>
   );
 }
