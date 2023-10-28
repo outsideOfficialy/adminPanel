@@ -1,8 +1,12 @@
+"use client"
 import React from "react";
+import PageLayout from "@/components/PageLayout";
 
 const News = () => {
   return (
-    <div>News</div>
+    <PageLayout title="News">
+      Hello world
+    </PageLayout>
   )
 }
 
