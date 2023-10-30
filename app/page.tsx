@@ -8,7 +8,6 @@ export default function Home() {
     <PageLayout title="Add music">
       <CustomInput name="Music_type" label="Album" checked={true} />
       <CustomInput name="Music_type" label="Single" checked={false} />
-
       <SearchInput onSearch={() => {}} placeholder="Search" label="Member Fullname" name="search" />
       <InputTypeText placeholder="Name" label="Member Nickname*" name="nickname" />
       <TextArea placeholder="About member..." label="About member*" name="aboutMember" />
