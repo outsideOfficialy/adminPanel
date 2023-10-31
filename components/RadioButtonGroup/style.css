@@ -1,6 +1,7 @@
 .radiobutton-input {
   visibility: hidden;
   width: 0;
+  position: absolute;
 }
 
 .radiobutton-label {
