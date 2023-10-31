@@ -1,11 +1,22 @@
 "use client"
 import React from "react";
 import PageLayout from "@/components/PageLayout";
+import Dropdown from "@/components/Dropdown";
 
 const News = () => {
   return (
     <PageLayout title="News">
-      Hello world
+      <Dropdown inputsName="music[]" headerText="Links" links={[
+        {
+          platformLink: "some-link-to-platform",
+          platformName: "Spotify",
+          platformIcon: "asd"
+        },
+        {
+          platformLink: "some-link-to-platform",
+          platformName: "Spotify",
+          platformIcon: "asd"
+        }]} />
     </PageLayout>
   )
 }
