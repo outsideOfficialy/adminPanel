@@ -1,0 +1,48 @@
+.radiobutton-input {
+  visibility: hidden;
+  width: 0;
+}
+
+.radiobutton-label {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 15px;
+  cursor: pointer;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 0.5px;
+}
+
+.custom-radiobutton {
+  height: 24px;
+  width: 24px;
+  border-radius: 50%;
+  cursor: pointer;
+  background-color: #1e1e1e;
+  display: inline-block;
+  border: 2px solid #ed772f;
+}
+.radiobutton-input:checked + .custom-radiobutton {
+  border: 2px solid #ed772f;
+  background-color: #ed772f;
+  position: relative;
+}
+
+.radiobutton-input:checked + .custom-radiobutton::after {
+  top: 50%;
+  left: 50%;
+  position: absolute;
+  content: "check";
+  font-family: "Material Symbols Outlined";
+  font-size: 22px;
+  transform: translate(-50%, -50%);
+}
+
+.radiobutton-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

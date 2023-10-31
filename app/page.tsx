@@ -1,37 +1,15 @@
-import React, { useState } from "react";
+"use client";
+
+import React from "react";
 import PageLayout from "@/components/PageLayout";
 import { InputTypeText, SearchInput, TextArea } from "@/components/Inputs";
-import { RadioBtn } from "@/components/MusicTypeSelect"; // Import RadioBtn using named import
+import { RadioButton } from "@/components/RadioButtonGroup";
 
 export default function Home() {
-  const [type, setType] = useState("Album");
-
-  const handleChange = (event) => {
-    setType(event.target.value);
-  };
-
-  const isChecked = (value) => type === value;
-
   return (
     <PageLayout title="Add music">
-      <div className="flex flex-col gap-[15px]">
-        <RadioBtn
-          id="Single"
-          name="musicType"
-          value="Single"
-          label="Single"
-          onChange={handleChange}
-          checked={isChecked("Single")}
-        />
-        <RadioBtn
-          id="Album"
-          name="musicType"
-          value="Album"
-          label="Album"
-          onChange={handleChange}
-          checked={isChecked("Album")}
-        />
-      </div>
+      <RadioButton id="Single" label="Single" name="musicType" value="Single" />
+      <RadioButton id="Album" label="Album" name="musicType" value="Album" />
       <SearchInput onSearch={() => {}} placeholder="Search" label="Member Fullname" name="search" />
       <InputTypeText placeholder="Name" label="Member Nickname*" name="nickname" />
       <TextArea placeholder="About member..." label="About member*" name="aboutMember" />
