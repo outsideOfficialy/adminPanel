@@ -14,9 +14,9 @@ const RadioSpan: React.FC<RadioSpanProps> = ({ label, name, checked, onChange, s
   };
 
   return (
-    <div className="flex gap-[10px] items-center cursor-pointer w-fit" onClick={toggleCheck}>
+    <div className="flex gap-[15px] items-center cursor-pointer w-fit" onClick={toggleCheck}>
       <span
-        className={`material-symbols-outlined check rounded-full text-sm p-[3px] font-normal font-medium transition duration-200 ease-in-out w-fit ${
+        className={`text-sm material-symbols-outlined check rounded-full text-sm p-[3px] font-normal font-medium transition duration-200 ease-in-out w-fit ${
           name === selectedName
             ? "border-2 border-main-primary-color bg-main-primary-color text-white"
             : "border-2 border-main-primary-color bg-black text-black"

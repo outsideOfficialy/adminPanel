@@ -28,3 +28,7 @@
   font-size: 32px;
   font-variation-settings: "FILL" 0, "wght" 500, "GRAD" 0, "opsz" 56;
 }
+
+.material-symbols-outlined.check {
+  font-size: 22px;
+}
