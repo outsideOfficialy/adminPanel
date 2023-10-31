@@ -1,13 +1,13 @@
 "use client";
 
 import PageLayout from "@/components/PageLayout";
-import { InputTypeText, SearchInput, CustomInput, TextArea } from "@/components/Inputs";
+import { InputTypeText, SearchInput, TextArea } from "@/components/Inputs";
+import RadioGroup from "@/components/MusicTypeSelect";
 
 export default function Home() {
   return (
     <PageLayout title="Add music">
-      <CustomInput name="Music_type" label="Album" checked={true} />
-      <CustomInput name="Music_type" label="Single" checked={false} />
+      <RadioGroup />
       <SearchInput onSearch={() => {}} placeholder="Search" label="Member Fullname" name="search" />
       <InputTypeText placeholder="Name" label="Member Nickname*" name="nickname" />
       <TextArea placeholder="About member..." label="About member*" name="aboutMember" />
