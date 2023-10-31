@@ -7,7 +7,7 @@ interface ConfirmModalProps {
 
 const ConfirmModal: React.FC<ConfirmModalProps> = ({ onSetModal }) => {
   return (
-    <div className='max-w-[690px] relative flex flex-col justify-center items-center gap-[20px] bg-black border border-primary-color px-[65px] py-[50px]'>
+    <div className='w-full max-w-[690px] relative flex flex-col justify-center items-center gap-[20px] bg-black border border-primary-color px-[65px] pt-[80px] pb-[50px]'>
       <div>
           <button
             onClick={() => onSetModal(false)}
