@@ -14,7 +14,7 @@ const News = () => {
         },
         {
           platformLink: "some-link-to-platform",
-          platformName: "Spotify",
+          platformName: "Apple music",
           platformIcon: "asd"
         }]} />
     </PageLayout>
