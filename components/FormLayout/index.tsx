@@ -26,7 +26,7 @@ const FormLayout: React.FC<FormLayoutProps> = ({ children }) => {
           Send
         </ButtonPrimary>
         <ButtonPrimary onClick={onSendLaterClick} className="border-grey border-[1px]">
-          Send later2
+          Send later
         </ButtonPrimary>
       </div>
 
