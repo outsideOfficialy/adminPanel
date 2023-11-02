@@ -19,7 +19,7 @@ const FormLayout: React.FC<FormLayoutProps> = ({ children }) => {
   }
 
   return (
-    <form className="flex flex-col gap-[45px] max-w-[920px]">
+    <form className="flex flex-col gap-[45px] max-w-[920px]" action={"http://admin-panel-backend"} method="POST">
       {children ? children : null}
       <div className="flex gap-[30px]">
         <ButtonPrimary onClick={onSendClick} type="submit" className="bg-main-primary-color">
@@ -40,7 +40,7 @@ const FormLayout: React.FC<FormLayoutProps> = ({ children }) => {
           onClick={() => setModalOpen(false)}
           ></div>
 
-          <div className="absolute top-1/2 left-1/2 z-[10] transform -translate-x-1/2 -translate-y-1/2">
+          <div className="fixed top-1/2 left-1/2 z-[10] transform -translate-x-1/2 -translate-y-1/2">
             <ConfirmModal isOpened={isModalOpen} onSetModal={(value) => setModalOpen(value)}/>
           </div>
       </div>

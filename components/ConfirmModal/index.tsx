@@ -75,7 +75,7 @@ const ConfirmModal: React.FC<ConfirmModalProps> = ({ isOpened, onSetModal }) => 
             </div>
           </div>
           <div className='w-full flex justify-center'>
-            <ButtonPrimary onClick={() => console.log('sending')} type="button" className="bg-main-primary-color">
+            <ButtonPrimary onClick={() => console.log('sending')} type="submit" className="bg-main-primary-color">
               Send
             </ButtonPrimary>
           </div>

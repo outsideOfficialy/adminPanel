@@ -9,8 +9,6 @@ import soundcloud from '../../src/icons/soundcloud.svg'
 import youtubeMusic from '../../src/icons/youtubeMusic.svg'
 
 const News = () => {
-  console.log(spotify);
-
   return (
     <PageLayout title="News">
       <Dropdown inputsName="music[]" headerText="Links" links={[
