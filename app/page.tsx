@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import PageTemplate from "@/components/PageTemplate";
 import { ButtonPrimary } from "@/components/ButtonTemplate";

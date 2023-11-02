@@ -1,3 +1,5 @@
+
+import React, { useState } from "react";
 import clsx from "clsx";
 import React from "react";
 
@@ -14,6 +16,13 @@ interface SearchInputProps {
   name: string;
   onSearch: () => void; // Функция обработчика поиска
 }
+
+interface TextAreaFieldProps {
+  label: string;
+  placeholder: string;
+  name: string;
+}
+
 
 const InputTypeText: React.FC<InputFieldProps> = ({ label, placeholder, name, inputClassName }) => {
   return (
@@ -59,4 +68,21 @@ const SearchInput: React.FC<SearchInputProps> = ({ label, placeholder, name, onS
   );
 };
 
-export { InputTypeText, SearchInput };
+const TextArea: React.FC<TextAreaFieldProps> = ({ label, placeholder, name }) => {
+  return (
+    <div className="flex flex-col items-start gap-[10px] w-full">
+      {label && (
+        <label className="text-white text-2xl font-normal font-medium font-normal leading-6 tracking-wider">
+          {label}
+        </label>
+      )}
+      <textarea
+        placeholder={placeholder}
+        name={name}
+        className="bg-black min-h-[150px] border rounded-lg border-white text-white p-2.5 w-full text-base font-normal font-medium leading-normal tracking-wider transition duration-300 ease-in-out placeholder-grey focus:border-main-primary-color focus:ring-0 focus:outline-none"
+      />
+    </div>
+  );
+};
+
+export { InputTypeText, SearchInput, TextArea };
