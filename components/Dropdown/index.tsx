@@ -5,7 +5,7 @@ import { StaticImport } from "next/dist/shared/lib/get-img-props";
 
 interface DropdownProps {
   headerText: string;
-  inputsName: `${string}[]`;
+  inputsName: string;
   links: {
     platformName: string;
     platformIcon: string | StaticImport;
