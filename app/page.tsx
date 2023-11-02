@@ -1,20 +1,17 @@
 "use client";
 
-import React from "react";
-import PageLayout from "@/components/PageLayout";
-import { InputTypeText, SearchInput, TextArea } from "@/components/Inputs";
-import { RadioButton } from "@/components/RadioButtonGroup";
+import PageTemplate from "@/components/PageTemplate";
+import { ButtonPrimary } from "@/components/ButtonTemplate";
+import { InputTypeText } from "@/components/Inputs";
+import Link from "next/link";
 
 export default function Home() {
   return (
-    <PageLayout title="Add music">
-      <div className="flex flex-col gap-[10px]">
-        <RadioButton id="Single" label="Single" name="musicType" value="Single" />
-        <RadioButton id="Album" label="Album" name="musicType" value="Album" />
-      </div>
-      <SearchInput onSearch={() => {}} placeholder="Search" label="Member Fullname" name="search" />
-      <InputTypeText placeholder="Name" label="Member Nickname*" name="nickname" />
-      <TextArea placeholder="About member..." label="About member*" name="aboutMember" />
-    </PageLayout>
+    <PageTemplate title="Login" className="max-w-[443px] pt-[130px]">
+      <InputTypeText label="User-name*" placeholder="User-name..." name="user-name"/>
+      <InputTypeText label="Password*" placeholder="Password..." name="password" />
+
+      <Link href={"/news"}><ButtonPrimary className="bg-main-primary-color max-w-none">Login</ButtonPrimary></Link>
+    </PageTemplate>
   );
 }
