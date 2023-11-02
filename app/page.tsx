@@ -1,14 +1,17 @@
 "use client"
 
-import PageLayout from "@/components/PageLayout";
-import { InputTypeText, SearchInput } from "@/components/Inputs";
+import PageTemplate from "@/components/PageTemplate";
+import { ButtonPrimary } from "@/components/ButtonTemplate";
+import { InputTypeText } from "@/components/Inputs";
 import Link from "next/link";
 
 export default function Home() {
   return (
-    <PageLayout title="Add music">
-      <SearchInput onSearch={() => {}} placeholder="Search" label="Member Fullname" name="search" />
-      <InputTypeText placeholder="Name" label="Member Nickname*" name="nickname" />
-    </PageLayout>
+    <PageTemplate title="Login" className="max-w-[443px] pt-[130px]">
+      <InputTypeText label="User-name*" placeholder="User-name..." name="user-name"/>
+      <InputTypeText label="Password*" placeholder="Password..." name="password" />
+
+      <Link href={"/news"}><ButtonPrimary className="bg-main-primary-color max-w-none">Login</ButtonPrimary></Link>
+    </PageTemplate>
   );
 }
