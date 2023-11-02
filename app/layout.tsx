@@ -20,7 +20,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           rel="stylesheet"
         />
       </head>
-      <body className="font-montserrat w-screen min-h-screen bg-black text-white">{children}</body>
+      <body className="font-montserrat w-full min-h-screen bg-black text-white">{children}</body>
     </html>
   );
 }
