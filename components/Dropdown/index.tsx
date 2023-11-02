@@ -22,8 +22,8 @@ const Dropdown: React.FC<DropdownProps> = ({
   const [isOpen, setIsOpen] = React.useState<boolean>(false);
   const openToggler = () => setIsOpen(!isOpen);
 
-  return <div>
-    {label && <h3>{label}</h3>}
+  return <div className="flex flex-col gap-[10px]">
+    {label && <h3 className="text-2xl font-normal leading-6 tracking-wider">{label}</h3>}
     <button className={clsx("w-full max-w-[450px] cursor-default ")} type="button">
       {/* header */}
       <div onClick={openToggler} className={clsx("relative transition-all duration-300 flex justify-between cursor-pointer py-[10px] px-[15px] text-[14px] rounded-[5px] border-[1px] hover:border-main-primary-color ", isOpen ? "border-main-primary-color rounded-b-[0px]" : "border-white")}>
