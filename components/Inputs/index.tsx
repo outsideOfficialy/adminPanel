@@ -1,7 +1,5 @@
-
-import React, { useState } from "react";
-import clsx from "clsx";
 import React from "react";
+import clsx from "clsx";
 
 interface InputFieldProps {
   label?: string;
@@ -23,10 +21,14 @@ interface TextAreaFieldProps {
   name: string;
 }
 
-
 const InputTypeText: React.FC<InputFieldProps> = ({ label, placeholder, name, inputClassName }) => {
   return (
-    <div className={clsx("flex flex-col items-start gap-[10px] w-full max-w-[450px]", inputClassName ? inputClassName : "")}>
+    <div
+      className={clsx(
+        "flex flex-col items-start gap-[10px] w-full max-w-[450px]",
+        inputClassName ? inputClassName : ""
+      )}
+    >
       {label && (
         <label className="text-white text-2xl font-normal font-medium font-normal leading-6 tracking-wider">
           {label}
