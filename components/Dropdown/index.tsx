@@ -1,14 +1,14 @@
 import clsx from "clsx";
 import React from "react";
-import { InputTypeText } from "../Inputs";
+import Image from 'next/image'
+import { StaticImport } from "next/dist/shared/lib/get-img-props";
 
 interface DropdownProps {
   headerText: string;
   inputsName: `${string}[]`;
   links: {
     platformName: string;
-    platformLink: string;
-    platformIcon: any;
+    platformIcon: string | StaticImport;
   }[]
 }
 
@@ -36,13 +36,13 @@ const Dropdown: React.FC<DropdownProps> = ({
       {links.map((el, idx) => {
         return <div key={el.platformName + idx}>
           <h4 className="text-left">{el.platformName}</h4>
-          <div className="flex justify-between items-center">
-            <div className="w-2 h-2 border-[1px] border-white"></div>
+          <div className="flex justify-between items-center px-[5px]">
+            <Image className="w-[32px] h-[32px]" src={el.platformIcon} alt="logo" />
             <input
               placeholder="Paste link here..."
               type="text"
               name={inputsName}
-              className={clsx("bg-black border rounded-lg border-white text-white py-[10px] px-[10px] max-w-[320px] w-full text-[14px] font-normal font-medium leading-normal tracking-wider transition duration-300 ease-in-out placeholder-grey focus:border-main-primary-color focus:ring-0 focus:outline-none ")}
+              className={clsx("bg-black border rounded-lg border-white text-white py-[10px] px-[10px] max-w-[350px] w-full text-[14px] font-normal font-medium leading-normal tracking-wider transition duration-300 ease-in-out placeholder-grey focus:border-main-primary-color focus:ring-0 focus:outline-none ")}
             />
           </div>
         </div>;

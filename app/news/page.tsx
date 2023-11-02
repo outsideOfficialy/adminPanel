@@ -3,19 +3,24 @@ import React from "react";
 import PageLayout from "@/components/PageLayout";
 import Dropdown from "@/components/Dropdown";
 
+import itunes from '../../src/icons/itunes.svg'
+import spotify from '../../src/icons/spotify.svg'
+import soundcloud from '../../src/icons/soundcloud.svg'
+import youtubeMusic from '../../src/icons/youtubeMusic.svg'
+
 const News = () => {
+  console.log(spotify);
+
   return (
     <PageLayout title="News">
       <Dropdown inputsName="music[]" headerText="Links" links={[
         {
-          platformLink: "some-link-to-platform",
           platformName: "Spotify",
-          platformIcon: "asd"
+          platformIcon: spotify
         },
         {
-          platformLink: "some-link-to-platform",
-          platformName: "Apple music",
-          platformIcon: "asd"
+          platformName: "Itunes",
+          platformIcon: itunes
         }]} />
     </PageLayout>
   )
