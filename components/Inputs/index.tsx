@@ -109,14 +109,20 @@ const SingleFileInput: React.FC<SingleFileInputProps> = ({
   placeholder, name, label, id
 }) => {
 
-  const [filePath, setFilePath] = React.useState("path/to/your/file");
+  const [filePath, setFilePath] = React.useState("Your filename");
 
   return <InputWrapper label={label}>
     <div>
       <label htmlFor={id}
         className="inline-block cursor-pointer py-[10px] px-[15px] text-[14px] border-white border-[1px] rounded-[5px] mr-[25px]"
         >{placeholder}</label>
-      <input name={name} type="file" className="hidden" id={id} />
+      <input name={name} type="file" className="hidden" id={id} onChange={(e) => {
+        if (!e.target.files) return; 
+        const file = e.target.files[0];
+
+        file ? setFilePath(file.name) : setFilePath("Something wrong...");
+
+      }} />
       {/* file name */}
       <span>{filePath}</span>
     </div>
