@@ -21,6 +21,11 @@ interface TextAreaFieldProps {
   name: string;
 }
 
+interface FileInputProps {
+  placeholder: string;
+  name: string;
+}
+
 const InputTypeText: React.FC<InputFieldProps> = ({ label, placeholder, name, inputClassName }) => {
   return (
     <div
@@ -86,5 +91,11 @@ const TextArea: React.FC<TextAreaFieldProps> = ({ label, placeholder, name }) =>
     </div>
   );
 };
+
+const FileInput: React.FC<FileInputProps> = ({
+  placeholder
+}) => {
+  return <></>;
+}
 
 export { InputTypeText, SearchInput, TextArea };

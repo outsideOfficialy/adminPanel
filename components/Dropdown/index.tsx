@@ -20,7 +20,7 @@ const Dropdown: React.FC<DropdownProps> = ({ headerText, inputsName, links, labe
   return (
     <div className="flex flex-col gap-[10px]">
       {label && <h3 className="text-2xl font-normal leading-6 tracking-wider">{label}</h3>}
-      <button className={clsx("w-full max-w-[450px] cursor-default ")} type="button">
+      <button className={clsx("w-full max-w-[450px] cursor-default", isOpen ? "" : " h-[46px]")} type="button">
         {/* header */}
         <div
           onClick={openToggler}
@@ -44,7 +44,7 @@ const Dropdown: React.FC<DropdownProps> = ({ headerText, inputsName, links, labe
         <div
           className={clsx(
             "border-[1px] border-main-primary-color border-t-0 rounded-b-[5px] origin-top transition-all duration-200 p-[15px] flex flex-col gap-[21px]",
-            isOpen ? "scale-y-100 opacity-100" : "scale-y-0 max-h-0 p-0 opacity-0"
+            isOpen ? "scale-y-100 opacity-100" : "scale-y-0 max-h-0 opacity-0"
           )}
         >
           {links.map((el, idx) => {
