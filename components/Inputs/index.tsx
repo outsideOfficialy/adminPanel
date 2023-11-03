@@ -27,7 +27,7 @@ interface TextAreaFieldProps {
   name: string;
 }
 
-interface SingleFileInputProps {
+interface FileInputProps {
   placeholder: string;
   name: string;
   label?: string;
@@ -105,7 +105,7 @@ const TextArea: React.FC<TextAreaFieldProps> = ({ label, placeholder, name }) =>
   );
 };
 
-const SingleFileInput: React.FC<SingleFileInputProps> = ({
+const FileInput: React.FC<FileInputProps> = ({
   placeholder, name, label, id
 }) => {
 
@@ -116,11 +116,15 @@ const SingleFileInput: React.FC<SingleFileInputProps> = ({
       <label htmlFor={id}
         className="inline-block cursor-pointer py-[10px] px-[15px] text-[14px] border-white border-[1px] rounded-[5px] mr-[25px]"
         >{placeholder}</label>
-      <input name={name} type="file" className="hidden" id={id} onChange={(e) => {
+      <input name={name} multiple type="file" className="hidden" id={id} onChange={(e) => {
         if (!e.target.files) return; 
         const file = e.target.files[0];
-
-        file ? setFilePath(file.name) : setFilePath("Something wrong...");
+        const arr = [];
+        
+        for (let i = 0, file = e.target.files[i]; i < e.target.files.length; i += 1) {
+          arr.push(file.name);
+        }
+        file ? setFilePath(arr.join(", ")) : setFilePath("Something wrong...");
 
       }} />
       {/* file name */}
@@ -129,4 +133,4 @@ const SingleFileInput: React.FC<SingleFileInputProps> = ({
   </InputWrapper>;
 }
 
-export { InputTypeText, SearchInput, TextArea, SingleFileInput };
+export { InputTypeText, SearchInput, TextArea, FileInput };
