@@ -1,6 +1,6 @@
 "use client"
 
-import { SearchInput, InputTypeText } from "@/components/Inputs";
+import { SearchInput, InputTypeText, SingleFileInput } from "@/components/Inputs";
 import PageLayout from "@/components/PageLayout";
 import Dropdown from "@/components/Dropdown";
 import itunes from '../../src/icons/itunes.svg'
@@ -12,6 +12,8 @@ export default function Home() {
   return (
 
     <PageLayout title="Members">
+      {/* necessary hidden input */}
+      <input type="hidden" name="page" value="member_page" />
       <SearchInput onSearch={() => {
 
       }} placeholder="Member ID..." label="Member search" name="id" />
@@ -31,8 +33,8 @@ export default function Home() {
             "platformName": "Apple music"
           }
         ]} inputsName="social_media_links" />
-      <input type="hidden" name="page" value="member_page" />
-      <input type="file" name="preview_picture" />
+      <SingleFileInput placeholder="Browse..." name="preview_picture" label="Select preview picture*" id="member-file-input"/>
+      {/* <input type="file" name="preview_picture" /> */}
     </PageLayout>
   );
 }
