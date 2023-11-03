@@ -37,10 +37,12 @@ export const ButtonPrimary: React.FC<ButtonTemplateProps> = ({
 }
 
 export const ButtonSecondary: React.FC<ButtonTemplateProps> = ({
-
+  type, children, onClick, className
 }) => {
   // это будет для кнопок Browse.., кнопки там где плюсик внутри в строке добавления песен
-  return <></>
+  return <ButtonTemplate type={type} onClick={onClick} className={clsx("transition duration-300 hover:border-main-primary-color rounded-[5px] border-[1px] border-white ", className)}>
+    {children}
+  </ButtonTemplate>
 }
 
 

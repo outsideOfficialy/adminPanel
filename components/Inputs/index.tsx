@@ -1,4 +1,5 @@
 import React from "react";
+import { ButtonSecondary } from "../ButtonTemplate";
 import clsx from "clsx";
 
 interface InputWrapperProps {
@@ -32,6 +33,11 @@ interface FileInputProps {
   name: string;
   label?: string;
   id: string;
+}
+
+interface SongsInputsProps {
+  label?: string;
+  name: string;
 }
 
 const InputWrapper: React.FC<InputWrapperProps> = ({
@@ -115,12 +121,12 @@ const FileInput: React.FC<FileInputProps> = ({
     <div>
       <label htmlFor={id}
         className="inline-block cursor-pointer py-[10px] px-[15px] text-[14px] border-white border-[1px] rounded-[5px] mr-[25px]"
-        >{placeholder}</label>
+      >{placeholder}</label>
       <input name={name} multiple type="file" className="hidden" id={id} onChange={(e) => {
-        if (!e.target.files) return; 
+        if (!e.target.files) return;
         const file = e.target.files[0];
         const arr = [];
-        
+
         for (let i = 0, file = e.target.files[i]; i < e.target.files.length; i += 1) {
           arr.push(file.name);
         }
@@ -133,4 +139,23 @@ const FileInput: React.FC<FileInputProps> = ({
   </InputWrapper>;
 }
 
-export { InputTypeText, SearchInput, TextArea, FileInput };
+const SongsInputs: React.FC<SongsInputsProps> = ({
+  label, name
+}) => {
+  const [songsCount, setSongsCount] = React.useState<number[]>([1]);
+
+  const increaseSongList = () => setSongsCount([...songsCount, songsCount.length + 1]);
+
+  return <>
+    <InputWrapper label={label} className="gap-[25px]">
+      <div className="flex flex-col gap-[25px] w-full">
+        {songsCount.map((el) => {
+          return <InputTypeText key={el} name="songs_list[]" placeholder={`Song name №${el}`}/>
+        })}
+        <ButtonSecondary onClick={increaseSongList} className="shadow-none px-[15px] min-h-[37px] w-min">+</ButtonSecondary>
+      </div>
+    </InputWrapper>
+  </>
+}
+
+export { InputTypeText, SearchInput, TextArea, FileInput, SongsInputs };
