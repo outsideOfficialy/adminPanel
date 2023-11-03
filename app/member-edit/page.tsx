@@ -10,10 +10,11 @@ import youtubeMusic from '../../src/icons/youtubeMusic.svg'
 
 export default function Home() {
   return (
+
     <PageLayout title="Members">
       <SearchInput onSearch={() => {
 
-      }} placeholder="Member Full name..." label="Member search" name="full-name" />
+      }} placeholder="Member ID..." label="Member search" name="id" />
       <InputTypeText placeholder="Member nickname" label="Member Nickname*" name="nickname" />
       <InputTypeText placeholder="Member birthday..." label="Member birthday*" name="birthdate" />
       <InputTypeText placeholder="Member role..." label="Member role*" name="role" />
@@ -29,9 +30,9 @@ export default function Home() {
             "platformIcon": itunes,
             "platformName": "Apple music"
           }
-        ]} inputsName="social-media-links" />
-      <input type="hidden" name="page" value="member-page" />
-      <input type="file" name="preview-picture" />
+        ]} inputsName="social_media_links" />
+      <input type="hidden" name="page" value="member_page" />
+      <input type="file" name="preview_picture" />
     </PageLayout>
   );
 }

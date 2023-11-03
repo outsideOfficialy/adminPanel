@@ -19,7 +19,7 @@ const FormLayout: React.FC<FormLayoutProps> = ({ children }) => {
   }
 
   return (
-    <form className="flex flex-col gap-[45px] max-w-[920px]" action={"http://admin-panel-backend"} method="POST">
+    <form className="flex flex-col gap-[45px] max-w-[920px]" action={"http://admin-panel-backend"} encType="multipart/form-data" method="POST">
       {children ? children : null}
       <div className="flex gap-[30px]">
         <ButtonPrimary onClick={onSendClick} type="submit" className="bg-main-primary-color">
