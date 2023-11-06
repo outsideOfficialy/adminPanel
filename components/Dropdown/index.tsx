@@ -20,12 +20,12 @@ const Dropdown: React.FC<DropdownProps> = ({ headerText, inputsName, links, labe
   return (
     <div className="flex flex-col gap-[10px]">
       {label && <h3 className="text-2xl font-normal leading-6 tracking-wider">{label}</h3>}
-      <button className={clsx("w-full max-w-[450px] cursor-default", isOpen ? "" : " h-[46px]")} type="button">
+      <div className={clsx("transition-all duration-300 w-full max-w-[450px] cursor-default overflow-hidden ", isOpen ? "max-h-none" : "max-h-[46px]")}>
         {/* header */}
         <div
           onClick={openToggler}
           className={clsx(
-            "relative transition-all duration-300 flex justify-between items-center cursor-pointer py-[10px] px-[15px] text-[14px] rounded-[5px] border-[1px] hover:border-main-primary-color ",
+            "relative select-none transition-all duration-300 flex justify-between items-center cursor-pointer py-[10px] px-[15px] text-[14px] rounded-[5px] border-[1px] hover:border-main-primary-color ",
             isOpen ? "border-main-primary-color rounded-b-[0px]" : "border-white"
           )}
         >
@@ -44,7 +44,7 @@ const Dropdown: React.FC<DropdownProps> = ({ headerText, inputsName, links, labe
         <div
           className={clsx(
             "border-[1px] border-main-primary-color border-t-0 rounded-b-[5px] origin-top transition-all duration-200 p-[15px] flex flex-col gap-[21px]",
-            isOpen ? "scale-y-100 opacity-100" : "scale-y-0 max-h-0 opacity-0"
+            isOpen ? "scale-y-100 opacity-100" : "scale-y-0 opacity-0"
           )}
         >
           {links.map((el, idx) => {
@@ -73,7 +73,7 @@ const Dropdown: React.FC<DropdownProps> = ({ headerText, inputsName, links, labe
             );
           })}
         </div>
-      </button>
+      </div>
     </div>
   );
 };
