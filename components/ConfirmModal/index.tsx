@@ -13,17 +13,17 @@ interface ConfirmModalProps {
 
 const ConfirmModal: React.FC<ConfirmModalProps> = ({ isOpened, onSetModal }) => {
   return (
-    <div className='relative'>
+    isOpened && <div className='relative' >
       <div className={`transform ${isOpened ? "translate-y-0" : "-translate-y-[300%]"} transition-transform duration-300 ease-in-out relative z-[10]`}>
         {<div className={'w-[690px] flex flex-col justify-center items-center gap-[20px] px-[65px] pt-[80px] pb-[50px] bg-black border border-primary-color'}>
           <div className='w-full'>
-              <button
-                type='button'
-                onClick={() => onSetModal(false)}
-                className="close absolute top-[20px] right-[20px] w-[24px] h-[24px] transition duration-300 ease-in-out hover:text-main-primary-color material-symbols-outlined"
-              >
-                close
-              </button>
+            <button
+              type='button'
+              onClick={() => onSetModal(false)}
+              className="close absolute top-[20px] right-[20px] w-[24px] h-[24px] transition duration-300 ease-in-out hover:text-main-primary-color material-symbols-outlined"
+            >
+              close
+            </button>
             <h3 className='text-[36px] text-center font-semibold'>Confirmation of sending data</h3>
           </div>
           <div className='w-full max-h-[576px] overflow-auto flex flex-col gap-[45px]'>
@@ -35,19 +35,19 @@ const ConfirmModal: React.FC<ConfirmModalProps> = ({ isOpened, onSetModal }) => 
             <div className='flex flex-col gap-[10px]'>
               <h4 className='text-[24px] font-medium'>Release link's:</h4>
               <div className='pl-[10px] flex gap-[15px]'>
-                <span><Image src={spotify} alt="spotify"/></span>
-                <span><Image src={soundcloud} alt="soundcloud"/></span>
-                <span><Image src={itunes} alt="itunes"/></span>
-                <span><Image src={youtubeMusic} alt="youtubeMusic"/></span>
+                <span><Image src={spotify} alt="spotify" /></span>
+                <span><Image src={soundcloud} alt="soundcloud" /></span>
+                <span><Image src={itunes} alt="itunes" /></span>
+                <span><Image src={youtubeMusic} alt="youtubeMusic" /></span>
               </div>
             </div>
             <div className='flex flex-col gap-[10px]'>
               <h4 className='text-[24px] font-medium'>Release songs:</h4>
               <div className='pl-[10px]'>
                 <div className='flex flex-col gap-[10px]'>
-                <span>Song name №1</span>
-                <span>Song name №2</span>
-                <span>Song name №3</span>
+                  <span>Song name №1</span>
+                  <span>Song name №2</span>
+                  <span>Song name №3</span>
                 </div>
               </div>
             </div>
@@ -69,7 +69,7 @@ const ConfirmModal: React.FC<ConfirmModalProps> = ({ isOpened, onSetModal }) => 
           </div>
         </div>}
       </div>
-    </div>
+    </div >
   )
 }
 
