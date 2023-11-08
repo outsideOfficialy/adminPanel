@@ -8,6 +8,15 @@
   font-weight: 400;
 }
 
+:root {
+  --main-primary: #ec642b;
+  --primary: #ed772f;
+  --sub-primary: #ef9335;
+  --black: #1e1e1e;
+  --grey: #afac95;
+  --white: #e3e7d9;
+}
+
 /* if it is necessary */
 * {
   margin: 0;
@@ -39,12 +48,12 @@
 
 /* customize the scrollbar Track */
 ::-webkit-scrollbar-track {
-  background: 1E1E1E;
+  background: 11eE1E;
 }
 
 /* customize the scrollbar Handle */
 ::-webkit-scrollbar-thumb {
-  background: #EC642B;
+  background: var(--primary);
 }
 
 .material-symbols-outlined.check {
