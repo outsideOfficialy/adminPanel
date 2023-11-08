@@ -6,28 +6,46 @@ import { ButtonPrimary } from "../ButtonTemplate";
 
 function SendFormBtn() {
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
+  const [isDatePickerVisible, setDatePickerVisible] = useState(false);
 
   const onSendClick = () => {
     // Обработка события для кнопки "Send"
   };
 
   const onSendLaterClick = () => {
-    // Обработка события для кнопки "Send later"
+    setDatePickerVisible(true);
   };
+
+  const isSendLaterDisabled = !selectedDate;
 
   return (
     <div className="flex flex-col max-w-[450px] gap-[45px]">
-      <DatePicker
-        selected={selectedDate}
-        onChange={(date: Date | null) => setSelectedDate(date)}
-        placeholderText="Выберите дату"
-        className="bg-black border rounded-lg border-white text-white p-2.5 w-full text-base font-normal font-medium leading-normal tracking-wider transition duration-300 ease-in-out placeholder-grey focus:border-main-primary-color focus:ring-0 focus:outline-none"
-      />
+      {isDatePickerVisible && (
+        <DatePicker
+          selected={selectedDate}
+          onChange={(date: Date | null) => setSelectedDate(date)}
+          placeholderText="Выберите дату"
+          className="bg-black border rounded-lg border-white text-white p-2.5 w-full text-base font-normal font-medium leading-normal tracking-wider transition duration-300 ease-in-out placeholder-grey focus:border-main-primary-color focus:ring-0 focus:outline-none"
+        />
+      )}
       <div className="flex w-full justify-between">
-        <ButtonPrimary onClick={onSendClick} type="submit" className="bg-main-primary-color">
+        <ButtonPrimary
+          onClick={onSendClick}
+          type="submit"
+          className={` ${
+            isSendLaterDisabled
+              ? "bg-main-primary-color"
+              : "bg-black cursor-not-allowed opacity-50 border-grey border-[1px]"
+          }`}
+        >
           Send
         </ButtonPrimary>
-        <ButtonPrimary onClick={onSendLaterClick} className="bg-black border-grey border-[1px]">
+        <ButtonPrimary
+          onClick={onSendLaterClick}
+          className={`bg-black border-grey border-[1px] ${
+            isSendLaterDisabled ? "" : "bg-main-primary-color border-main-primary-color"
+          }`}
+        >
           Send later
         </ButtonPrimary>
       </div>
