@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { ButtonSecondary } from "../ButtonTemplate";
 import clsx from "clsx";
 
 interface InputWrapperProps {
@@ -11,6 +12,7 @@ interface InputFieldProps {
   label?: string;
   placeholder: string;
   inputClassName?: string;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   name: string;
 }
 
@@ -48,10 +50,11 @@ const InputWrapper: React.FC<InputWrapperProps> = ({
   </div>;
 }
 
-const InputTypeText: React.FC<InputFieldProps> = ({ label, placeholder, name, inputClassName }) => {
+const InputTypeText: React.FC<InputFieldProps> = ({ label, placeholder, name, inputClassName, onChange }) => {
   return (
     <InputWrapper label={label} className={inputClassName}>
       <input
+        onChange={onChange ? onChange : undefined}
         type="text"
         placeholder={placeholder}
         name={name}
@@ -133,4 +136,46 @@ const FileInput: React.FC<FileInputProps> = ({
   </InputWrapper>;
 }
 
-export { InputTypeText, SearchInput, TextArea, FileInput };
+const SongsInputs: React.FC<{label: string;}> = ({
+  label
+}) => {
+  const [songsCount, setSongsCount] = React.useState<string[]>([""]);
+
+
+  const increaseSongList = () => setSongsCount([...songsCount, ""]);
+  const decreaseSongList = (idx: number) => {
+    if (songsCount.length === 1) return;
+    const filteredArray = [...songsCount.filter((el, i) => i !== idx)];
+    setSongsCount(filteredArray);
+  };
+  const inputChange = (e: React.ChangeEvent<HTMLInputElement>, idx: number) => {
+    const newInputs = [...songsCount];
+    newInputs[idx] = e.target.value;
+    setSongsCount(newInputs);
+  }
+
+
+  return <>
+    <InputWrapper label={label} className="gap-[25px]">
+      <div className="flex flex-col gap-[25px] w-full">
+        {songsCount.map((el, idx) => {
+          return <div key={idx} className="flex gap-[10px] items-start">
+            
+            <input type="text" className="bg-black border rounded-lg border-white text-white p-2.5 max-w-[450px] w-full text-base font-medium leading-normal tracking-wider transition duration-300 ease-in-out placeholder-grey focus:border-main-primary-color focus:ring-0 focus:outline-none" value={el} onChange={(e) => inputChange(e, idx)} name="songs_list[]" placeholder={`Song name №${idx + 1}`} />
+            
+            <ButtonSecondary onClick={() => decreaseSongList(idx)} className="shadow-none relative w-full max-w-[46px] min-h-[46px]">
+              <span className="material-symbols-outlined absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+                delete
+              </span>
+            </ButtonSecondary>
+          </div>
+        })}
+        <ButtonSecondary onClick={increaseSongList} className="relative shadow-none px-[15px] min-h-none max-w-[46px] min-h-[46px]">
+          <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">+</span>
+        </ButtonSecondary>
+      </div>
+    </InputWrapper>
+  </>
+};
+
+export { InputTypeText, SearchInput, TextArea, FileInput, SongsInputs };

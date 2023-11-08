@@ -24,7 +24,7 @@ export default function Home() {
       <InputTypeText placeholder="Member nickname" label="Member Nickname*" name="nickname" />
       <InputTypeText placeholder="Member birthday..." label="Member birthday*" name="birthdate" />
       <InputTypeText placeholder="Member role..." label="Member role*" name="role" />
-      <InputTypeText placeholder="About member..." label="About member" name="about" />
+      <InputTypeText placeholder="About member..." label="About member*" name="about" />
       <Dropdown headerText="Links"
         label="Social media links"
         links={[
