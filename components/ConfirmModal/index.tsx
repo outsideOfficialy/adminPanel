@@ -1,5 +1,5 @@
 import React from 'react'
-import { ButtonTemplate } from '../ButtonTemplate'
+import ButtonTemplate from '../ButtonTemplate'
 import Image from 'next/image'
 import itunes from '../../src/icons/itunes.svg'
 import spotify from '../../src/icons/spotify.svg'
