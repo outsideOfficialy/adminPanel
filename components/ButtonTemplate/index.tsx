@@ -3,7 +3,7 @@ import clsx from "clsx";
 interface ButtonTemplateProps {
   type?: "button" | "submit" | "reset";
   children: React.ReactNode | React.ReactNode[];
-  onClick?: (e: React.FormEvent) => void;
+  onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
   secondary?: boolean;
   secondaryActive?: boolean;
   primary?: boolean;
@@ -36,8 +36,8 @@ export const ButtonTemplate: React.FC<ButtonTemplateProps> = ({
         },
         className
       )}
+      onClick={onClick ? onClick : undefined}
       type={type}
-      onClick={onClick ? onClick : null}
     >
       {children}
     </button>

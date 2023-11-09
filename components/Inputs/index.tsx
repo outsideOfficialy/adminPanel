@@ -146,6 +146,8 @@ const SongsInputs: React.FC<{ label: string; name: string; }> = ({
 
   const increaseSongList = () => setSongsCount([...songsCount, ""]);
   const decreaseSongList = (idx: number) => {
+    console.log("asdasadsad");
+
     if (songsCount.length === 1) return;
     const filteredArray = [...songsCount.filter((el, i) => i !== idx)];
     setSongsCount(filteredArray);
@@ -165,7 +167,7 @@ const SongsInputs: React.FC<{ label: string; name: string; }> = ({
 
             <input type="text" className="bg-black border rounded-lg border-white text-white p-2.5 max-w-[450px] w-full text-base font-medium leading-normal tracking-wider transition duration-300 ease-in-out placeholder-grey focus:border-main-primary-color focus:ring-0 focus:outline-none" value={el} onChange={(e) => inputChange(e, idx)} name={name} placeholder={`Song name №${idx + 1}`} />
 
-            <ButtonTemplate disabled border onClick={() => decreaseSongList(idx)}>
+            <ButtonTemplate border onClick={() => decreaseSongList(idx)}>
               <span className="delete material-symbols-outlined absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
                 delete
               </span>
