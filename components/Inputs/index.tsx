@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { ButtonSecondary } from "../ButtonTemplate";
+import { ButtonTemplate } from "../ButtonTemplate";
 import clsx from "clsx";
 
 interface InputWrapperProps {
@@ -120,7 +120,7 @@ const FileInput: React.FC<FileInputProps> = ({
     <div>
       <label htmlFor={id}
         className="inline-block cursor-pointer py-[10px] px-[15px] text-[14px] border-white border-[1px] rounded-[5px] mr-[25px]"
-        >{placeholder}</label>
+      >{placeholder}</label>
       <input accept={accept} name={name} multiple={multiple} type="file" className="hidden" id={id} onChange={(e) => {
 
         if (!e.target.files) return;
@@ -137,7 +137,7 @@ const FileInput: React.FC<FileInputProps> = ({
   </InputWrapper>;
 }
 
-const SongsInputs: React.FC<{label: string; name: string;}> = ({
+const SongsInputs: React.FC<{ label: string; name: string; }> = ({
   label,
   name
 }) => {
@@ -162,19 +162,19 @@ const SongsInputs: React.FC<{label: string; name: string;}> = ({
       <div className="flex flex-col gap-[25px] w-full">
         {songsCount.map((el, idx) => {
           return <div key={idx} className="flex gap-[10px] items-start">
-            
+
             <input type="text" className="bg-black border rounded-lg border-white text-white p-2.5 max-w-[450px] w-full text-base font-medium leading-normal tracking-wider transition duration-300 ease-in-out placeholder-grey focus:border-main-primary-color focus:ring-0 focus:outline-none" value={el} onChange={(e) => inputChange(e, idx)} name={name} placeholder={`Song name №${idx + 1}`} />
-            
-            <ButtonSecondary onClick={() => decreaseSongList(idx)} className="shadow-none relative w-full max-w-[46px] min-h-[46px]">
-              <span className="material-symbols-outlined absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+
+            <ButtonTemplate disabled border onClick={() => decreaseSongList(idx)}>
+              <span className="delete material-symbols-outlined absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
                 delete
               </span>
-            </ButtonSecondary>
+            </ButtonTemplate>
           </div>
         })}
-        <ButtonSecondary onClick={increaseSongList} className="relative shadow-none px-[15px] min-h-none max-w-[46px] min-h-[46px]">
+        <ButtonTemplate border onClick={increaseSongList}>
           <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">+</span>
-        </ButtonSecondary>
+        </ButtonTemplate>
       </div>
     </InputWrapper>
   </>

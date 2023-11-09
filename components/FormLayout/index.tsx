@@ -1,5 +1,4 @@
 import React from "react";
-import { ButtonPrimary } from "../ButtonTemplate";
 import ConfirmModal from "../ConfirmModal";
 import SendFormBtn from "../SendFormBtn";
 

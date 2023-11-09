@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import "./style.css";
-import { ButtonPrimary } from "../ButtonTemplate";
+import { ButtonTemplate } from "../ButtonTemplate";
 
 interface SendFormBtnProps {
   setModalOpen: (e: boolean) => void;
@@ -33,30 +33,27 @@ const SendFormBtn: React.FC<SendFormBtnProps> = ({ setModalOpen }) => {
           className="bg-black border rounded-lg border-white text-white p-2.5 w-full text-base font-medium leading-normal tracking-wider transition duration-300 ease-in-out placeholder-grey focus:border-main-primary-color focus:ring-0 focus:outline-none"
         />
       )}
-      <div className="flex w-full justify-between">
-        <ButtonPrimary
+      <div className="flex w-full gap-[30px]">
+        <ButtonTemplate
           onClick={(e) => {
             e.preventDefault();
             setModalOpen(true);
             onSendClick();
           }}
           type="submit"
-          className={` ${
-            isSendLaterDisabled
-              ? "bg-main-primary-color"
-              : "bg-black cursor-not-allowed opacity-50 border-grey border-[1px]"
-          }`}
+          disabled={selectedDate ? true : false}
+          primary
         >
           Send
-        </ButtonPrimary>
-        <ButtonPrimary
+        </ButtonTemplate>
+        <ButtonTemplate
           onClick={onSendLaterClick}
-          className={`bg-black border-grey border-[1px] ${
-            isSendLaterDisabled ? "" : "bg-main-primary-color border-main-primary-color"
-          }`}
+          secondary
+          disabled={selectedDate ? true : false}
+          className={selectedDate ? "bg-main-primary-color border-main-primary-color hover:shadow-main-primary-color" : ""}
         >
           Send later
-        </ButtonPrimary>
+        </ButtonTemplate>
       </div>
     </div>
   );

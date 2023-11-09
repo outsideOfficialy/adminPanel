@@ -1,5 +1,5 @@
 import React from 'react'
-import { ButtonPrimary } from '../ButtonTemplate'
+import { ButtonTemplate } from '../ButtonTemplate'
 import Image from 'next/image'
 import itunes from '../../src/icons/itunes.svg'
 import spotify from '../../src/icons/spotify.svg'
@@ -72,9 +72,9 @@ const ConfirmModal: React.FC<ConfirmModalProps> = ({ isOpened, onSetModal }) => 
             </div>
           </div>
           <div className='w-full flex justify-center'>
-            <ButtonPrimary onClick={() => console.log('Sending...')} type="submit" className="bg-main-primary-color">
+            <ButtonTemplate primary onClick={() => console.log('Sending...')} type="submit" className="bg-main-primary-color">
               Send
-            </ButtonPrimary>
+            </ButtonTemplate>
           </div>
         </div>}
       </div>
