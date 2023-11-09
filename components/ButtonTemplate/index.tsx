@@ -15,9 +15,19 @@ const ButtonTemplate: React.FC<ButtonTemplateProps> = ({
   onClick,
   className
 }) => {
-  return <button className={`transition duration-300 rounded-[5px] w-full text-center shadow-[0px_0px_10px_0px_rgba(239,147,53,0.25)] hover:shadow-[rgba(239,147,53)] ${className}`} type={type} onClick={onClick ? onClick : undefined}>
-    {children}
-  </button>
+  return (
+    <button
+      className={clsx(
+        "transition duration-300 rounded-[5px] w-full min-h-[60px]",
+        "text-center shadow-[0px_0px_10px_0px_rgba(239,147,53,0.25)] hover:shadow-[rgba(239,147,53)]",
+        className
+      )}
+      type={type}
+      onClick={onClick ? onClick : undefined}
+    >
+      {children}
+    </button>
+  );
 };
 
 export const ButtonPrimary: React.FC<ButtonTemplateProps> = ({
@@ -26,6 +36,7 @@ export const ButtonPrimary: React.FC<ButtonTemplateProps> = ({
   onClick,
   type
 }) => {
+
   return <ButtonTemplate type={type} onClick={onClick} className={clsx("text-[20px] max-w-[180px] font-medium min-h-[60px]",
   className ? className : "")}>
     {children}
