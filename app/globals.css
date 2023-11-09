@@ -37,6 +37,11 @@
   font-size: 32px;
   font-variation-settings: "FILL" 0, "wght" 500, "GRAD" 0, "opsz" 56;
 }
+
+.material-symbols-outlined.check {
+  font-size: 22px;
+}
+
 /* customize the scrollbar Width & Height */
 ::-webkit-scrollbar {
   /* vertical scrollbar */
@@ -48,14 +53,10 @@
 
 /* customize the scrollbar Track */
 ::-webkit-scrollbar-track {
-  background: 11eE1E;
+  background: var(--black);
 }
 
 /* customize the scrollbar Handle */
 ::-webkit-scrollbar-thumb {
-  background: var(--primary);
-}
-
-.material-symbols-outlined.check {
-  font-size: 22px;
+  background: var(--main-primary);
 }
