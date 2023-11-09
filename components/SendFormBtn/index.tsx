@@ -22,6 +22,7 @@ function SendFormBtn() {
     <div className="flex flex-col max-w-[450px] gap-[45px]">
       {isDatePickerVisible && (
         <DatePicker
+          name="send_later"
           selected={selectedDate}
           onChange={(date: Date | null) => setSelectedDate(date)}
           placeholderText="Выберите дату"
