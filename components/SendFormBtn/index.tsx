@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import "./style.css";
-import { ButtonTemplate } from "../ButtonTemplate";
+import ButtonTemplate from "../ButtonTemplate";
 
 interface SendFormBtnProps {
   setModalOpen: (e: boolean) => void;
