@@ -1,7 +1,7 @@
 "use client"
 
 import PageTemplate from "@/components/PageTemplate";
-import { ButtonTemplate } from "@/components/ButtonTemplate";
+import ButtonTemplate from "@/components/ButtonTemplate";
 import { InputTypeText } from "@/components/Inputs";
 import Link from "next/link";
 

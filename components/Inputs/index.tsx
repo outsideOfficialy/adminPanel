@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { ButtonTemplate } from "../ButtonTemplate";
+import ButtonTemplate from "../ButtonTemplate";
 import clsx from "clsx";
 
 interface InputWrapperProps {
@@ -146,7 +146,6 @@ const SongsInputs: React.FC<{ label: string; name: string; }> = ({
 
   const increaseSongList = () => setSongsCount([...songsCount, ""]);
   const decreaseSongList = (idx: number) => {
-    console.log("asdasadsad");
 
     if (songsCount.length === 1) return;
     const filteredArray = [...songsCount.filter((el, i) => i !== idx)];

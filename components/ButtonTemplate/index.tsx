@@ -12,9 +12,7 @@ interface ButtonTemplateProps {
   className?: string;
 }
 
-//! -----------------------------------------
-
-export const ButtonTemplate: React.FC<ButtonTemplateProps> = ({
+const ButtonTemplate: React.FC<ButtonTemplateProps> = ({
   children,
   type = "button",
   onClick,
@@ -44,24 +42,4 @@ export const ButtonTemplate: React.FC<ButtonTemplateProps> = ({
   );
 };
 
-// export const ButtonPrimary: React.FC<ButtonTemplateProps> = ({
-//   children,
-//   className,
-//   onClick,
-//   type,
-// }) => {
-
-//   return <ButtonTemplate secondary type={type} onClick={onClick} className={clsx("text-[20px] max-w-[180px] font-medium",
-//     className ? className : "")}>
-//     {children}
-//   </ButtonTemplate>
-// }
-
-// export const ButtonSecondary: React.FC<ButtonTemplateProps> = ({
-//   type, children, onClick, className
-// }) => {
-//   // это будет для кнопок Browse.., кнопки там где плюсик внутри в строке добавления песен
-//   return <ButtonTemplate type={type} onClick={onClick}>
-//     {children}
-//   </ButtonTemplate>
-// }
+export default ButtonTemplate;
