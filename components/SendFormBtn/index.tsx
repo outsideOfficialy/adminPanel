@@ -4,7 +4,13 @@ import "react-datepicker/dist/react-datepicker.css";
 import "./style.css";
 import { ButtonPrimary } from "../ButtonTemplate";
 
-function SendFormBtn() {
+interface SendFormBtnProps {
+  setModalOpen: (e: boolean) => void;
+}
+
+const SendFormBtn:React.FC<SendFormBtnProps> = ({
+  setModalOpen
+}) => {
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
   const [isDatePickerVisible, setDatePickerVisible] = useState(false);
 
@@ -31,7 +37,11 @@ function SendFormBtn() {
       )}
       <div className="flex w-full justify-between">
         <ButtonPrimary
-          onClick={onSendClick}
+          onClick={(e) => {
+            e.preventDefault();
+            setModalOpen(true);
+            onSendClick();
+          }}
           type="submit"
           className={` ${
             isSendLaterDisabled

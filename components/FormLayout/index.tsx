@@ -10,15 +10,6 @@ interface FormLayoutProps {
 const FormLayout: React.FC<FormLayoutProps> = ({ children }) => {
   const [isModalOpen, setModalOpen] = React.useState(false);
 
-  const onSendLaterClick = (e: React.FormEvent) => {
-    e.preventDefault();
-  };
-
-  const onSendClick = (e: React.FormEvent) => {
-    e.preventDefault();
-    setModalOpen(true);
-  };
-
   return (
     <form
       className="flex flex-col gap-[45px] max-w-[920px]"
@@ -36,7 +27,7 @@ const FormLayout: React.FC<FormLayoutProps> = ({ children }) => {
         </ButtonPrimary>
       </div> */}
 
-      <SendFormBtn />
+      <SendFormBtn setModalOpen={setModalOpen} />
 
       <div>
         {/* shadow bg for confirmModal */}
