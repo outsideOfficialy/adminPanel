@@ -35,6 +35,7 @@ interface FileInputProps {
   label?: string;
   id: string;
   multiple?: boolean;
+  accept: string;
 }
 
 const InputWrapper: React.FC<InputWrapperProps> = ({
@@ -110,7 +111,7 @@ const TextArea: React.FC<TextAreaFieldProps> = ({ label, placeholder, name }) =>
 };
 
 const FileInput: React.FC<FileInputProps> = ({
-  placeholder, name, label, id, multiple = false
+  placeholder, name, label, id, multiple = false, accept
 }) => {
 
   const [filePath, setFilePath] = React.useState("Your filename...");
@@ -120,7 +121,7 @@ const FileInput: React.FC<FileInputProps> = ({
       <label htmlFor={id}
         className="inline-block cursor-pointer py-[10px] px-[15px] text-[14px] border-white border-[1px] rounded-[5px] mr-[25px]"
         >{placeholder}</label>
-      <input name={name} multiple={multiple} type="file" className="hidden" id={id} onChange={(e) => {
+      <input accept={accept} name={name} multiple={multiple} type="file" className="hidden" id={id} onChange={(e) => {
 
         if (!e.target.files) return;
         const file = e.target.files[0];

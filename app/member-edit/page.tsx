@@ -37,7 +37,7 @@ export default function Home() {
             "platformName": "Apple music"
           }
         ]} inputsName="social_media_links" />
-      <FileInput placeholder="Browse..." name="preview_picture[]" label="Select preview picture*" id="member-file-input" />
+      <FileInput accept="image/webp, image/png, image/jpg" placeholder="Browse..." name="preview_picture[]" label="Select preview picture*" id="member-file-input" />
     </PageLayout>
   );
 }
