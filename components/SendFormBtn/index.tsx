@@ -8,9 +8,7 @@ interface SendFormBtnProps {
   setModalOpen: (e: boolean) => void;
 }
 
-const SendFormBtn:React.FC<SendFormBtnProps> = ({
-  setModalOpen
-}) => {
+const SendFormBtn: React.FC<SendFormBtnProps> = ({ setModalOpen }) => {
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
   const [isDatePickerVisible, setDatePickerVisible] = useState(false);
 
@@ -32,7 +30,7 @@ const SendFormBtn:React.FC<SendFormBtnProps> = ({
           selected={selectedDate}
           onChange={(date: Date | null) => setSelectedDate(date)}
           placeholderText="Выберите дату"
-          className="bg-black border rounded-lg border-white text-white p-2.5 w-full text-base font-normal font-medium leading-normal tracking-wider transition duration-300 ease-in-out placeholder-grey focus:border-main-primary-color focus:ring-0 focus:outline-none"
+          className="bg-black border rounded-lg border-white text-white p-2.5 w-full text-base font-medium leading-normal tracking-wider transition duration-300 ease-in-out placeholder-grey focus:border-main-primary-color focus:ring-0 focus:outline-none"
         />
       )}
       <div className="flex w-full justify-between">
@@ -62,6 +60,6 @@ const SendFormBtn:React.FC<SendFormBtnProps> = ({
       </div>
     </div>
   );
-}
+};
 
 export default SendFormBtn;
