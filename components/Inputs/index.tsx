@@ -137,8 +137,9 @@ const FileInput: React.FC<FileInputProps> = ({
   </InputWrapper>;
 }
 
-const SongsInputs: React.FC<{label: string;}> = ({
-  label
+const SongsInputs: React.FC<{label: string; name: string;}> = ({
+  label,
+  name
 }) => {
   const [songsCount, setSongsCount] = React.useState<string[]>([""]);
 
@@ -162,7 +163,7 @@ const SongsInputs: React.FC<{label: string;}> = ({
         {songsCount.map((el, idx) => {
           return <div key={idx} className="flex gap-[10px] items-start">
             
-            <input type="text" className="bg-black border rounded-lg border-white text-white p-2.5 max-w-[450px] w-full text-base font-medium leading-normal tracking-wider transition duration-300 ease-in-out placeholder-grey focus:border-main-primary-color focus:ring-0 focus:outline-none" value={el} onChange={(e) => inputChange(e, idx)} name="songs_list[]" placeholder={`Song name №${idx + 1}`} />
+            <input type="text" className="bg-black border rounded-lg border-white text-white p-2.5 max-w-[450px] w-full text-base font-medium leading-normal tracking-wider transition duration-300 ease-in-out placeholder-grey focus:border-main-primary-color focus:ring-0 focus:outline-none" value={el} onChange={(e) => inputChange(e, idx)} name={name} placeholder={`Song name №${idx + 1}`} />
             
             <ButtonSecondary onClick={() => decreaseSongList(idx)} className="shadow-none relative w-full max-w-[46px] min-h-[46px]">
               <span className="material-symbols-outlined absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">

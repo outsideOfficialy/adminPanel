@@ -9,7 +9,7 @@ export default function Home() {
     <PageLayout title="Add music">
       <SearchInput onSearch={() => { }} placeholder="Search" label="Music id" name="search" />
       <InputTypeText placeholder="Name" label="Realease name*" name="nickname" />
-      <SongsInputs name="songs[]" label="Release song(s) *"/>
+      <SongsInputs name="songs_list[]" label="Release song(s) *"/>
     </PageLayout>
   );
 }
