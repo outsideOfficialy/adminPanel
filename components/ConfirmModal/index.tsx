@@ -5,6 +5,7 @@ import itunes from '../../src/icons/itunes.svg'
 import spotify from '../../src/icons/spotify.svg'
 import soundcloud from '../../src/icons/soundcloud.svg'
 import youtubeMusic from '../../src/icons/youtubeMusic.svg'
+import { Transition } from '@headlessui/react'
 
 interface ConfirmModalProps {
   isOpened: boolean
@@ -13,14 +14,22 @@ interface ConfirmModalProps {
 
 const ConfirmModal: React.FC<ConfirmModalProps> = ({ isOpened, onSetModal }) => {
   return (
-    isOpened && <div className='relative' >
-      <div className={`transform ${isOpened ? "translate-y-0" : "-translate-y-[300%]"} transition-transform duration-300 ease-in-out relative z-[10]`}>
+      <Transition
+        show={isOpened}
+        enter="transition-transform duration-300 ease-in-out"
+        enterFrom="-translate-y-[300%]"
+        enterTo="translate-y-0"
+        leave="transition-transform duration-300 ease-in-out"
+        leaveFrom="translate-y-0"
+        leaveTo="-translate-y-[300%]"
+      >
+      <div className="relative z-[10]">
         {<div className={'w-[690px] flex flex-col justify-center items-center gap-[20px] px-[65px] pt-[80px] pb-[50px] bg-black border border-primary-color'}>
           <div className='w-full'>
             <button
               type='button'
               onClick={() => onSetModal(false)}
-              className="close absolute top-[20px] right-[20px] w-[24px] h-[24px] transition duration-300 ease-in-out hover:text-main-primary-color material-symbols-outlined"
+              className="close absolute top-[20px] right-[20px] w-[24px] h-[24px] hover:text-main-primary-color material-symbols-outlined"
             >
               close
             </button>
@@ -69,7 +78,7 @@ const ConfirmModal: React.FC<ConfirmModalProps> = ({ isOpened, onSetModal }) => 
           </div>
         </div>}
       </div>
-    </div >
+    </Transition>
   )
 }
 
