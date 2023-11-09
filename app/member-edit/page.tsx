@@ -1,5 +1,6 @@
 "use client"
 
+import React from "react";
 import { SearchInput, InputTypeText, FileInput } from "@/components/Inputs";
 import PageLayout from "@/components/PageLayout";
 import Dropdown from "@/components/Dropdown";
@@ -9,6 +10,9 @@ import soundcloud from '../../src/icons/soundcloud.svg'
 import youtubeMusic from '../../src/icons/youtubeMusic.svg'
 
 export default function Home() {
+  const [fileName, setFileName] = React.useState("Your file...");
+
+
   return (
 
     <PageLayout title="Members">
@@ -20,7 +24,7 @@ export default function Home() {
       <InputTypeText placeholder="Member nickname" label="Member Nickname*" name="nickname" />
       <InputTypeText placeholder="Member birthday..." label="Member birthday*" name="birthdate" />
       <InputTypeText placeholder="Member role..." label="Member role*" name="role" />
-      <InputTypeText placeholder="About member..." label="About member" name="about" />
+      <InputTypeText placeholder="About member..." label="About member*" name="about" />
       <Dropdown headerText="Links"
         label="Social media links"
         links={[
@@ -33,8 +37,7 @@ export default function Home() {
             "platformName": "Apple music"
           }
         ]} inputsName="social_media_links" />
-      <FileInput placeholder="Browse..." name="preview_picture[]" label="Select preview picture*" id="member-file-input"/>
-      {/* <input type="file" name="preview_picture" /> */}
+      <FileInput accept="image/webp, image/png, image/jpg" placeholder="Browse..." name="preview_picture[]" label="Select preview picture*" id="member-file-input" />
     </PageLayout>
   );
 }

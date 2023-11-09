@@ -34,11 +34,8 @@ interface FileInputProps {
   name: string;
   label?: string;
   id: string;
-}
-
-interface SongsInputsProps {
-  label?: string;
-  name: string;
+  multiple?: boolean;
+  accept: string;
 }
 
 const InputWrapper: React.FC<InputWrapperProps> = ({
@@ -114,24 +111,23 @@ const TextArea: React.FC<TextAreaFieldProps> = ({ label, placeholder, name }) =>
 };
 
 const FileInput: React.FC<FileInputProps> = ({
-  placeholder, name, label, id
+  placeholder, name, label, id, multiple = false, accept
 }) => {
 
-  const [filePath, setFilePath] = React.useState("Your filename");
+  const [filePath, setFilePath] = React.useState("Your filename...");
 
   return <InputWrapper label={label}>
     <div>
       <label htmlFor={id}
         className="inline-block cursor-pointer py-[10px] px-[15px] text-[14px] border-white border-[1px] rounded-[5px] mr-[25px]"
-      >{placeholder}</label>
-      <input name={name} multiple type="file" className="hidden" id={id} onChange={(e) => {
+        >{placeholder}</label>
+      <input accept={accept} name={name} multiple={multiple} type="file" className="hidden" id={id} onChange={(e) => {
+
         if (!e.target.files) return;
         const file = e.target.files[0];
         const arr = [];
 
-        for (let i = 0, file = e.target.files[i]; i < e.target.files.length; i += 1) {
-          arr.push(file.name);
-        }
+        for (let i = 0, file = e.target.files[i]; i < e.target.files.length; i += 1) arr.push(file.name);
         file ? setFilePath(arr.join(", ")) : setFilePath("Something wrong...");
 
       }} />
@@ -141,8 +137,8 @@ const FileInput: React.FC<FileInputProps> = ({
   </InputWrapper>;
 }
 
-const SongsInputs: React.FC<SongsInputsProps> = ({
-  label, name
+const SongsInputs: React.FC<{label: string;}> = ({
+  label
 }) => {
   const [songsCount, setSongsCount] = React.useState<string[]>([""]);
 
