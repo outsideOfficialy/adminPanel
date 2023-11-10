@@ -8,6 +8,15 @@
   font-weight: 400;
 }
 
+:root {
+  --main-primary: #ec642b;
+  --primary: #ed772f;
+  --sub-primary: #ef9335;
+  --black: #1e1e1e;
+  --grey: #afac95;
+  --white: #e3e7d9;
+}
+
 /* if it is necessary */
 * {
   margin: 0;
@@ -29,11 +38,16 @@
   font-variation-settings: "FILL" 0, "wght" 500, "GRAD" 0, "opsz" 56;
 }
 
+.material-symbols-outlined.check {
+  font-size: 22px;
+}
+
 .material-symbols-outlined.delete {
   font-size: 16px;
   font-weight: 200;
   font-variation-settings: "FILL" 0, "wght" 500, "GRAD" 0, "opsz" 56;
 }
+
 /* customize the scrollbar Width & Height */
 ::-webkit-scrollbar {
   /* vertical scrollbar */
@@ -45,14 +59,10 @@
 
 /* customize the scrollbar Track */
 ::-webkit-scrollbar-track {
-  background: 1E1E1E;
+  background: var(--black);
 }
 
 /* customize the scrollbar Handle */
 ::-webkit-scrollbar-thumb {
-  background: #EC642B;
-}
-
-.material-symbols-outlined.check {
-  font-size: 22px;
+  background: var(--main-primary);
 }
