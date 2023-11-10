@@ -144,14 +144,14 @@ const SearchInput: React.FC<SearchInputProps> = ({ label, placeholder, name, onS
         <ul className="max-h-[319px] overflow-scroll pr-[10px] flex flex-col gap-[15px]">
           {testInfo.map((item) => {
             return (
-              <li onClick={() => openToggler(false)} className="relative pb-[10px] border-b-[1px] border-gray cursor-pointer" key={item.id}>
+              <li onClick={() => openToggler(false)} className="relative pb-[10px] border-b-[1px] border-grey cursor-pointer" key={item.id}>
                 <div className="flex flex-col gap-[5px]">
                   <p className="leading-[17px] text-[12px]">ID {item.id}</p>
                   <p className="leading-[17px] text-[14px]">Title: {item.title}</p>
-                  <p className="leading-[17px] text-[12px]">News text: <span className="text-gray">{item.text}</span></p>
+                  <p className="leading-[17px] text-[12px]">News text: <span className="text-grey">{item.text}</span></p>
                 </div>
                 <button
-                className="material-symbols-outlined delete absolute right-0 top-0 text-gray transition duration-300 ease-in-out hover:text-main-primary-color"
+                className="material-symbols-outlined delete absolute right-0 top-0 text-grey transition duration-300 ease-in-out hover:text-main-primary-color"
                 onClick={onSearch}>
                   delete
               </button>
