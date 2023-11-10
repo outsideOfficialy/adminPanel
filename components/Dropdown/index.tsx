@@ -59,7 +59,7 @@ const Dropdown: React.FC<DropdownProps> = ({ headerText, inputsName, links, labe
                           type="text"
                           name={`${inputsName}[${idx}][link]`}
                           className={clsx(
-                            "bg-black border rounded-lg border-white text-white py-[10px] px-[10px] max-w-[350px] w-full text-[14px] font-normal font-medium leading-normal tracking-wider transition duration-400 ease-in-out placeholder-grey focus:border-main-primary-color focus:ring-0 focus:outline-none "
+                            "bg-black border rounded-lg border-white text-white py-[10px] px-[10px] max-w-[350px] w-full text-[14px] font-medium leading-normal tracking-wider transition duration-400 ease-in-out placeholder-grey focus:border-main-primary-color focus:ring-0 focus:outline-none "
                           )}
                         />
                       </div>
