@@ -8,6 +8,7 @@ import itunes from '../../src/icons/itunes.svg'
 import spotify from '../../src/icons/spotify.svg'
 import soundcloud from '../../src/icons/soundcloud.svg'
 import youtubeMusic from '../../src/icons/youtubeMusic.svg'
+import { Popover, Transition } from '@headlessui/react'
 
 export default function Home() {
   const [fileName, setFileName] = React.useState("Your file...");
@@ -25,6 +26,7 @@ export default function Home() {
       <InputTypeText placeholder="Member birthday..." label="Member birthday*" name="birthdate" />
       <InputTypeText placeholder="Member role..." label="Member role*" name="role" />
       <InputTypeText placeholder="About member..." label="About member*" name="about" />
+
       <Dropdown headerText="Links"
         label="Social media links"
         links={[
