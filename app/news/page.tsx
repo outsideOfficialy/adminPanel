@@ -12,7 +12,18 @@ import youtubeMusic from '../../src/icons/youtubeMusic.svg'
 const News = () => {
   return (
     <PageLayout title="News">
-      <SearchInput onSearch={() => { }} placeholder="ID news..." label="News id" name="search"/>
+      <input type="hidden" name="page" value="member_page" />
+      <SearchInput onSearch={(e: React.MouseEvent<HTMLButtonElement>) => {
+        e.preventDefault();
+
+        const val = (e.currentTarget.previousElementSibling as HTMLInputElement).value;
+        const page = (document.querySelector("input[name='page']") as HTMLInputElement).value;
+
+        fetch(`http://admin-panel-backend/index.php?id=${val}&page=${page}`, { method: "GET" }).then(d => d.json()).then(d => {
+          console.log(d);
+        });
+
+      }} placeholder="ID news..." label="News id" name="search" />
       <Dropdown inputsName="music[]" headerText="Links" links={[
         {
           platformName: "Spotify",

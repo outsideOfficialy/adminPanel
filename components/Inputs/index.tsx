@@ -29,7 +29,7 @@ interface SearchInputProps {
   label?: string;
   placeholder: string;
   name: string;
-  onSearch: () => void; // Функция обработчика поиска
+  onSearch: (e: React.MouseEvent<HTMLButtonElement>) => void; // Функция обработчика поиска
 }
 
 interface TextAreaFieldProps {
