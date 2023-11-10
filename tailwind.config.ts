@@ -17,7 +17,7 @@ const config: Config = {
         "primary-color": "#ED772F",
         "sub-primary-color": "#EF9335",
         black: "#1E1E1E",
-        grey: "#AFAC95",
+        gray: "#AFAC95",
         white: "#E3E7D9"
       }
     }

@@ -28,6 +28,12 @@
   font-size: 32px;
   font-variation-settings: "FILL" 0, "wght" 500, "GRAD" 0, "opsz" 56;
 }
+
+.material-symbols-outlined.delete {
+  font-size: 16px;
+  font-weight: 200;
+  font-variation-settings: "FILL" 0, "wght" 500, "GRAD" 0, "opsz" 56;
+}
 /* customize the scrollbar Width & Height */
 ::-webkit-scrollbar {
   /* vertical scrollbar */
