@@ -34,12 +34,12 @@ const Dropdown: React.FC<DropdownProps> = ({ headerText, inputsName, links, labe
               </div>
             </Popover.Button>
             <Transition
-              enter="transition duration-100 ease-out"
-              enterFrom="transform scale-95 opacity-0"
-              enterTo="transform scale-100 opacity-100"
-              leave="transition duration-75 ease-out"
-              leaveFrom="transform scale-100 opacity-100"
-              leaveTo="transform scale-95 opacity-0">
+              enter="transition origin-top duration-200 transform"
+              enterFrom="opacity-0 scale-y-0"
+              enterTo="opacity-100 scale-y-1"
+              leave="transition origin-top duration-200 transform"
+              leaveFrom="opacity-100 scale-y-0"
+              leaveTo="opacity-0 scale-y-0">
               <Popover.Panel className={"border-[1px] border-main-primary-color border-t-0 rounded-b-[5px] origin-top transition-all duration-200 p-[15px] flex flex-col gap-[21px]"}>
                 {links.map((el, idx) => {
                   return (
