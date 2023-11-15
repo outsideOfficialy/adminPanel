@@ -1,6 +1,15 @@
 import React, { useEffect } from "react";
 import ButtonTemplate from "../ButtonTemplate";
 import clsx from "clsx";
+import { Transition } from "@headlessui/react";
+
+// Тест array для SearchInput
+const testInfo = [
+  {id: '258789', title: 'New release is coming out', text: ' Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sagittis massa non nunc aliquet...'}, 
+  {id: '258789', title: 'New release is coming out', text: ' Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sagittis massa non nunc aliquet...'}, 
+  {id: '258789', title: 'New release is coming out', text: ' Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sagittis massa non nunc aliquet...'},
+  {id: '258789', title: 'New release is coming out', text: ' Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sagittis massa non nunc aliquet...'},
+]
 
 interface InputWrapperProps {
   label?: string;
@@ -20,7 +29,7 @@ interface SearchInputProps {
   label?: string;
   placeholder: string;
   name: string;
-  onSearch: () => void; // Функция обработчика поиска
+  onSearch: (e: React.MouseEvent<HTMLButtonElement>) => void; // Функция обработчика поиска
 }
 
 interface TextAreaFieldProps {
@@ -66,29 +75,92 @@ const InputTypeText: React.FC<InputFieldProps> = ({ label, placeholder, name, in
 };
 
 
-// TODO надо заменить по принципу InputTypeText остальные инпуты
+// // TODO надо заменить по принципу InputTypeText остальные инпуты
+// const SearchInput: React.FC<SearchInputProps> = ({ label, placeholder, name, onSearch }) => {
+//   return (
+//     <div className="flex flex-col items-start gap-[10px] w-full max-w-[450px]">
+//       {label && (
+//         <label className="text-white text-2xl font-normal font-medium font-normal leading-6 tracking-wider">
+//           {label}
+//         </label>
+//       )}
+//       <div className="relative w-full">
+//         <input
+//           type="text"
+//           placeholder={placeholder}
+//           name={name}
+//           className="bg-black border rounded-lg border-white text-white p-2.5 max-w-[450px] w-full text-base font-normal font-medium leading-normal tracking-wider transition duration-300 ease-in-out placeholder-grey focus:border-main-primary-color focus:ring-0 focus:outline-none"
+//         />
+//         <button
+//           className="material-symbols-outlined search absolute right-0 top-0 bottom-0 bg-main-primary text-white rounded-r-lg p-2.5 font-normal font-medium transition duration-300 ease-in-out hover:text-main-primary-color"
+//           onClick={onSearch}
+//         >
+//           search
+//         </button>
+//       </div>
+//     </div>
+//   );
+// };
+
 const SearchInput: React.FC<SearchInputProps> = ({ label, placeholder, name, onSearch }) => {
+  const [isOpen, setIsOpen] = React.useState<boolean>(false);
+  const openToggler = (value: boolean) => setIsOpen(value);
+
   return (
-    <div className="flex flex-col items-start gap-[10px] w-full max-w-[450px]">
-      {label && (
-        <label className="text-white text-2xl font-normal font-medium font-normal leading-6 tracking-wider">
-          {label}
-        </label>
-      )}
-      <div className="relative w-full">
-        <input
-          type="text"
-          placeholder={placeholder}
-          name={name}
-          className="bg-black border rounded-lg border-white text-white p-2.5 max-w-[450px] w-full text-base font-normal font-medium leading-normal tracking-wider transition duration-300 ease-in-out placeholder-grey focus:border-main-primary-color focus:ring-0 focus:outline-none"
-        />
-        <button
-          className="material-symbols-outlined search absolute right-0 top-0 bottom-0 bg-main-primary text-white rounded-r-lg p-2.5 font-normal font-medium transition duration-300 ease-in-out hover:text-main-primary-color"
-          onClick={onSearch}
-        >
-          search
-        </button>
+    <div className="w-full max-w-[450px]">
+      {/* head */}
+      <div className="cursor-pointer flex flex-col items-start gap-[10px]">
+        {label && (
+          <label className="text-white text-2xl font-normal leading-6 tracking-wider">
+            {label}
+          </label>
+        )}
+        <div onClick={() => openToggler(true)} className="relative w-full">
+          <input
+            type="text"
+            placeholder={placeholder}
+            name={name}
+            className={clsx("bg-black border rounded-lg text-white p-2.5 max-w-[450px] w-full text-base font-medium leading-normal tracking-wider transition duration-200 ease-in-out placeholder-grey focus:border-main-primary-color focus:ring-0 focus:outline-none", isOpen ? "border-main-primary-color rounded-b-[0px]" : "border-white")}
+          />
+          <button
+            className="material-symbols-outlined search absolute right-0 top-0 bottom-0 bg-main-primary text-white rounded-r-lg p-2.5 font-medium transition duration-300 ease-in-out hover:text-main-primary-color"
+            onClick={onSearch}
+          >
+            search
+          </button>
+        </div>
       </div>
+      {/* body */}
+      <Transition
+        show={isOpen}
+        enter="transition origin-top duration-200 transform"
+        enterFrom="opacity-0 scale-y-0"
+        enterTo="opacity-100 scale-y-1"
+        leave="transition origin-top duration-200 transform"
+        leaveFrom="opacity-100 scale-y-0"
+        leaveTo="opacity-0 scale-y-0"
+      >
+      <div className="border-[1px] border-main-primary-color pl-[15px] pr-[5px] py-[10px] rounded-b-[5px]">
+        <ul className="max-h-[319px] overflow-scroll pr-[10px] flex flex-col gap-[15px]">
+          {testInfo.map((item) => {
+            return (
+              <li onClick={() => openToggler(false)} className="relative pb-[10px] border-b-[1px] border-grey cursor-pointer" key={item.id}>
+                <div className="flex flex-col gap-[5px]">
+                  <p className="leading-[17px] text-[12px]">ID {item.id}</p>
+                  <p className="leading-[17px] text-[14px]">Title: {item.title}</p>
+                  <p className="leading-[17px] text-[12px]">News text: <span className="text-grey">{item.text}</span></p>
+                </div>
+                <button
+                className="material-symbols-outlined delete absolute right-0 top-0 text-grey transition duration-300 ease-in-out hover:text-main-primary-color"
+                onClick={onSearch}>
+                  delete
+              </button>
+              </li>
+            )
+          })}
+        </ul>
+      </div>
+      </Transition>
     </div>
   );
 };
