@@ -43,7 +43,7 @@ const InputWrapper: React.FC<InputWrapperProps> = ({
 }) => {
   return <div className={clsx("flex flex-col items-start gap-[10px] w-full max-w-[450px] ", className ? className : "")}>
     {label && (
-      <label className="text-white text-2xl font-normal font-medium font-normal leading-6 tracking-wider">
+      <label className="text-white text-2xl font-normal leading-6 tracking-wider">
         {label}
       </label>
     )}
@@ -59,7 +59,7 @@ const InputTypeText: React.FC<InputFieldProps> = ({ label, placeholder, name, in
         type="text"
         placeholder={placeholder}
         name={name}
-        className="bg-black border rounded-lg border-white text-white p-2.5 max-w-[450px] w-full text-base font-normal font-medium leading-normal tracking-wider transition duration-300 ease-in-out placeholder-grey focus:border-main-primary-color focus:ring-0 focus:outline-none "
+        className="bg-black border rounded-lg border-white text-white p-2.5 max-w-[450px] w-full text-base font-medium leading-normal tracking-wider transition duration-300 ease-in-out placeholder-grey focus:border-main-primary-color focus:ring-0 focus:outline-none "
       />
     </InputWrapper>
   );
@@ -71,7 +71,7 @@ const SearchInput: React.FC<SearchInputProps> = ({ label, placeholder, name, onS
   return (
     <div className="flex flex-col items-start gap-[10px] w-full max-w-[450px]">
       {label && (
-        <label className="text-white text-2xl font-normal font-medium font-normal leading-6 tracking-wider">
+        <label className="text-white text-2xl font-normal leading-6 tracking-wider">
           {label}
         </label>
       )}
@@ -80,10 +80,10 @@ const SearchInput: React.FC<SearchInputProps> = ({ label, placeholder, name, onS
           type="text"
           placeholder={placeholder}
           name={name}
-          className="bg-black border rounded-lg border-white text-white p-2.5 max-w-[450px] w-full text-base font-normal font-medium leading-normal tracking-wider transition duration-300 ease-in-out placeholder-grey focus:border-main-primary-color focus:ring-0 focus:outline-none"
+          className="bg-black border rounded-lg border-white text-white p-2.5 max-w-[450px] w-full text-base font-medium leading-normal tracking-wider transition duration-300 ease-in-out placeholder-grey focus:border-main-primary-color focus:ring-0 focus:outline-none"
         />
         <button
-          className="material-symbols-outlined search absolute right-0 top-0 bottom-0 bg-main-primary text-white rounded-r-lg p-2.5 font-normal font-medium transition duration-300 ease-in-out hover:text-main-primary-color"
+          className="material-symbols-outlined search absolute right-0 top-0 bottom-0 bg-main-primary text-white rounded-r-lg p-2.5 font-medium transition duration-300 ease-in-out hover:text-main-primary-color"
           onClick={onSearch}
         >
           search
@@ -97,14 +97,14 @@ const TextArea: React.FC<TextAreaFieldProps> = ({ label, placeholder, name }) =>
   return (
     <div className="flex flex-col items-start gap-[10px] w-full">
       {label && (
-        <label className="text-white text-2xl font-normal font-medium font-normal leading-6 tracking-wider">
+        <label className="text-white text-2xl font-normal leading-6 tracking-wider">
           {label}
         </label>
       )}
       <textarea
         placeholder={placeholder}
         name={name}
-        className="bg-black min-h-[150px] border rounded-lg border-white text-white p-2.5 w-full text-base font-normal font-medium leading-normal tracking-wider transition duration-300 ease-in-out placeholder-grey focus:border-main-primary-color focus:ring-0 focus:outline-none"
+        className="bg-black min-h-[150px] border rounded-lg border-white text-white p-2.5 w-full text-base font-medium leading-normal tracking-wider transition duration-300 ease-in-out placeholder-grey focus:border-main-primary-color focus:ring-0 focus:outline-none"
       />
     </div>
   );

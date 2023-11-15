@@ -8,7 +8,6 @@ import itunes from '../../src/icons/itunes.svg'
 import spotify from '../../src/icons/spotify.svg'
 import soundcloud from '../../src/icons/soundcloud.svg'
 import youtubeMusic from '../../src/icons/youtubeMusic.svg'
-import { Popover, Transition } from '@headlessui/react'
 
 export default function Home() {
   const [fileName, setFileName] = React.useState("Your file...");

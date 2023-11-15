@@ -14,16 +14,9 @@ interface DropdownProps {
   }[];
 }
 
-
-
-
-
-
 const Dropdown: React.FC<DropdownProps> = ({ headerText, inputsName, links, label }) => {
 
   const [isOpen, setIsOpen] = React.useState<boolean>(false);
-
-
 
   return (
     <div className="flex flex-col gap-[10px]">

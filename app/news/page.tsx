@@ -1,25 +1,20 @@
 "use client"
 import React from "react";
 import PageLayout from "@/components/PageLayout";
-import Dropdown from "@/components/Dropdown";
 
-import itunes from '../../src/icons/itunes.svg'
-import spotify from '../../src/icons/spotify.svg'
-import soundcloud from '../../src/icons/soundcloud.svg'
-import youtubeMusic from '../../src/icons/youtubeMusic.svg'
+import { InputTypeText, SearchInput, FileInput, TextArea } from "@/components/Inputs";
 
 const News = () => {
   return (
     <PageLayout title="News">
-      <Dropdown inputsName="music[]" headerText="Links" links={[
-        {
-          platformName: "Spotify",
-          platformIcon: spotify
-        },
-        {
-          platformName: "Itunes",
-          platformIcon: itunes
-        }]} />
+      <SearchInput onSearch={() => { }} placeholder="ID news...." label="ID News" name="id" />
+      
+      <InputTypeText placeholder="Title text..." label="Title*" name="title" />
+      <InputTypeText placeholder="Subtitle text..." label="Subtitle" name="subtitle" />
+      
+      <TextArea label="News content" placeholder="News text..." name="content" />
+
+      <FileInput placeholder="Browse..." accept="image/webp, image/png, image/jpg, image/jpeg" name="preview_picture" label="Select preview picture*" id="news-file-input" />
     </PageLayout>
   )
 }
