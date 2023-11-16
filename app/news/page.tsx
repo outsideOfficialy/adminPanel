@@ -19,9 +19,8 @@ const News = () => {
         e.preventDefault();
 
         const val = (e.currentTarget.previousElementSibling as HTMLInputElement).value;
-        const page = (document.querySelector("input[name='page']") as HTMLInputElement).value;
 
-        fetch(`http://admin-panel-backend/index.php?id=${val}&page=${page}`, { method: "GET" }).then(d => d.json()).then(d => {
+        fetch(`http://admin-panel-backend/news/${val}`, { method: "GET" }).then(d => d.json()).then(d => {
           console.log(d);
         });
 
