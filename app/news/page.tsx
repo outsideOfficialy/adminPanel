@@ -1,22 +1,35 @@
 "use client"
 import React from "react";
 import PageLayout from "@/components/PageLayout";
+import Dropdown from "@/components/Dropdown";
+import { SearchInput } from "@/components/Inputs";
 
 import { InputTypeText, SearchInput, FileInput, TextArea } from "@/components/Inputs";
 
 const News = () => {
   return (
-    <PageLayout onSubmit={(e) => {
-      
-    }} title="News">
-      <SearchInput onSearch={() => { }} placeholder="ID news...." label="ID News" name="id" />
-      
-      <InputTypeText placeholder="Title text..." label="Title*" name="title" />
-      <InputTypeText placeholder="Subtitle text..." label="Subtitle" name="subtitle" />
-      
-      <TextArea label="News content" placeholder="News text..." name="content" />
+    <PageLayout title="News">
+      <input type="hidden" name="page" value="member_page" />
+      <SearchInput onSearch={(e: React.MouseEvent<HTMLButtonElement>) => {
+        e.preventDefault();
 
-      <FileInput placeholder="Browse..." accept="image/webp, image/png, image/jpg, image/jpeg" name="preview_picture[]" label="Select preview picture*" id="news-file-input" />
+        const val = (e.currentTarget.previousElementSibling as HTMLInputElement).value;
+        const page = (document.querySelector("input[name='page']") as HTMLInputElement).value;
+
+        fetch(`http://admin-panel-backend/index.php?id=${val}&page=${page}`, { method: "GET" }).then(d => d.json()).then(d => {
+          console.log(d);
+        });
+
+      }} placeholder="ID news..." label="News id" name="search" />
+      <Dropdown inputsName="music[]" headerText="Links" links={[
+        {
+          platformName: "Spotify",
+          platformIcon: spotify
+        },
+        {
+          platformName: "Itunes",
+          platformIcon: itunes
+        }]} />
     </PageLayout>
   )
 }
