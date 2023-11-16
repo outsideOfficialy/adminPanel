@@ -7,11 +7,27 @@ import { InputTypeText, SearchInput, FileInput, TextArea } from "@/components/In
 
 export default function Home() {
   return (
-    <PageLayout title="Merch">
+    <PageLayout onSubmit={(e) => {
+      e.preventDefault();
+      const formElem = document.querySelector("form");
+      if (!formElem) return;
+
+      const formData = new FormData(formElem);
+
+      fetch("http://admin-panel-backend/merch", {
+        method: "POST",
+        body: formData
+      })
+        .then(d => d.text())
+        .then(d => console.log(d))
+        .catch((reason) => {
+          console.log(reason);
+        });
+    }} title="Merch">
 
       <SearchInput onSearch={() => { }} placeholder="ID merch...." label="ID Merch" name="id" />
 
-      <FileInput placeholder="Browse..." accept="image/webp, image/png, image/jpg, image/jpeg" name="preview_picture" label="Select preview picture's*" id="merch-file-input" multiple />
+      <FileInput placeholder="Browse..." accept="image/webp, image/png, image/jpg, image/jpeg" name="preview_picture[]" label="Select preview picture's*" id="merch-file-input" multiple />
 
       <InputTypeText placeholder="Merch title..." label="Merch title*" name="title" />
       <InputTypeText placeholder="Merch price $" label="Merch price*" name="price" />

@@ -12,21 +12,37 @@ import youtubeMusic from '../../src/icons/youtubeMusic.svg'
 
 export default function Home() {
   return (
-    <PageLayout title="Add music">
-      <SearchInput onSearch={() => { 
-        
-       }} placeholder="Search" label="Music id" name="search" />
+    <PageLayout onSubmit={(e) => {
+      e.preventDefault();
+      const formElem = document.querySelector("form");
+      if (!formElem) return;
+
+      const formData = new FormData(formElem);
+
+      fetch("http://admin-panel-backend/music", {
+        method: "POST",
+        body: formData
+      })
+        .then(d => d.text())
+        .then(d => console.log(d))
+        .catch((reason) => {
+          console.log(reason);
+        });
+    }} title="Add music">
+      <SearchInput onSearch={() => {
+
+      }} placeholder="Search" label="Music id" name="id" />
       <RadioGroup
         title="Release type"
         group={[
           {
-            name: "musicType",
+            name: "music_type",
             id: "Album",
             label: "Album",
             value: "album"
           },
           {
-            name: "musicType",
+            name: "music_type",
             id: "Single",
             label: "Single",
             value: "single"
@@ -56,8 +72,8 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <SongsInputs name="songs_list[]" label="Release song(s) *" />
-      <FileInput placeholder="Browse..." name="preview_picture" label="Select single\album picture*" id="preview_picture" accept="image/webp, image/png, image/jpg, image/jpeg" />
+      <SongsInputs name="release_songs[]" label="Release song(s) *" />
+      <FileInput placeholder="Browse..." name="preview_picture[]" label="Select single\album picture*" id="preview_picture" accept="image/webp, image/png, image/jpg, image/jpeg" />
     </PageLayout>
   );
 }

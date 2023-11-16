@@ -31,7 +31,7 @@ interface TextAreaFieldProps {
 
 interface FileInputProps {
   placeholder: string;
-  name: string;
+  name: `${string}[]`;
   label?: string;
   id: string;
   multiple?: boolean;
@@ -124,11 +124,13 @@ const FileInput: React.FC<FileInputProps> = ({
       <input accept={accept} name={name} multiple={multiple} type="file" className="hidden" id={id} onChange={(e) => {
 
         if (!e.target.files) return;
-        const file = e.target.files[0];
         const arr = [];
 
-        for (let i = 0, file = e.target.files[i]; i < e.target.files.length; i += 1) arr.push(file.name);
-        file ? setFilePath(arr.join(", ")) : setFilePath("Something wrong...");
+        for (let i = 0; i < e.target.files.length; i += 1) {
+          const f = e.target.files[i];
+          arr.push(f.name);
+        }
+        setFilePath(arr.join(", "));
 
       }} />
       {/* file name */}
