@@ -40,7 +40,7 @@ interface TextAreaFieldProps {
 
 interface FileInputProps {
   placeholder: string;
-  name: string;
+  name: `${string}[]`;
   label?: string;
   id: string;
   multiple?: boolean;
@@ -52,7 +52,7 @@ const InputWrapper: React.FC<InputWrapperProps> = ({
 }) => {
   return <div className={clsx("flex flex-col items-start gap-[10px] w-full max-w-[450px] ", className ? className : "")}>
     {label && (
-      <label className="text-white text-2xl font-normal font-medium font-normal leading-6 tracking-wider">
+      <label className="text-white text-2xl font-normal leading-6 tracking-wider">
         {label}
       </label>
     )}
@@ -68,7 +68,7 @@ const InputTypeText: React.FC<InputFieldProps> = ({ label, placeholder, name, in
         type="text"
         placeholder={placeholder}
         name={name}
-        className="bg-black border rounded-lg border-white text-white p-2.5 max-w-[450px] w-full text-base font-normal font-medium leading-normal tracking-wider transition duration-300 ease-in-out placeholder-grey focus:border-main-primary-color focus:ring-0 focus:outline-none "
+        className="bg-black border rounded-lg border-white text-white p-2.5 max-w-[450px] w-full text-base font-medium leading-normal tracking-wider transition duration-300 ease-in-out placeholder-grey focus:border-main-primary-color focus:ring-0 focus:outline-none "
       />
     </InputWrapper>
   );
@@ -76,31 +76,6 @@ const InputTypeText: React.FC<InputFieldProps> = ({ label, placeholder, name, in
 
 
 // // TODO надо заменить по принципу InputTypeText остальные инпуты
-// const SearchInput: React.FC<SearchInputProps> = ({ label, placeholder, name, onSearch }) => {
-//   return (
-//     <div className="flex flex-col items-start gap-[10px] w-full max-w-[450px]">
-//       {label && (
-//         <label className="text-white text-2xl font-normal font-medium font-normal leading-6 tracking-wider">
-//           {label}
-//         </label>
-//       )}
-//       <div className="relative w-full">
-//         <input
-//           type="text"
-//           placeholder={placeholder}
-//           name={name}
-//           className="bg-black border rounded-lg border-white text-white p-2.5 max-w-[450px] w-full text-base font-normal font-medium leading-normal tracking-wider transition duration-300 ease-in-out placeholder-grey focus:border-main-primary-color focus:ring-0 focus:outline-none"
-//         />
-//         <button
-//           className="material-symbols-outlined search absolute right-0 top-0 bottom-0 bg-main-primary text-white rounded-r-lg p-2.5 font-normal font-medium transition duration-300 ease-in-out hover:text-main-primary-color"
-//           onClick={onSearch}
-//         >
-//           search
-//         </button>
-//       </div>
-//     </div>
-//   );
-// };
 
 const SearchInput: React.FC<SearchInputProps> = ({ label, placeholder, name, onSearch }) => {
   const [isOpen, setIsOpen] = React.useState<boolean>(false);
@@ -169,14 +144,14 @@ const TextArea: React.FC<TextAreaFieldProps> = ({ label, placeholder, name }) =>
   return (
     <div className="flex flex-col items-start gap-[10px] w-full">
       {label && (
-        <label className="text-white text-2xl font-normal font-medium font-normal leading-6 tracking-wider">
+        <label className="text-white text-2xl font-normal leading-6 tracking-wider">
           {label}
         </label>
       )}
       <textarea
         placeholder={placeholder}
         name={name}
-        className="bg-black min-h-[150px] border rounded-lg border-white text-white p-2.5 w-full text-base font-normal font-medium leading-normal tracking-wider transition duration-300 ease-in-out placeholder-grey focus:border-main-primary-color focus:ring-0 focus:outline-none"
+        className="bg-black min-h-[150px] border rounded-lg border-white text-white p-2.5 w-full text-base font-medium leading-normal tracking-wider transition duration-300 ease-in-out placeholder-grey focus:border-main-primary-color focus:ring-0 focus:outline-none"
       />
     </div>
   );
@@ -196,11 +171,13 @@ const FileInput: React.FC<FileInputProps> = ({
       <input accept={accept} name={name} multiple={multiple} type="file" className="hidden" id={id} onChange={(e) => {
 
         if (!e.target.files) return;
-        const file = e.target.files[0];
         const arr = [];
 
-        for (let i = 0, file = e.target.files[i]; i < e.target.files.length; i += 1) arr.push(file.name);
-        file ? setFilePath(arr.join(", ")) : setFilePath("Something wrong...");
+        for (let i = 0; i < e.target.files.length; i += 1) {
+          const f = e.target.files[i];
+          arr.push(f.name);
+        }
+        setFilePath(arr.join(", "));
 
       }} />
       {/* file name */}

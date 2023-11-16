@@ -4,9 +4,10 @@ import SendFormBtn from "../SendFormBtn";
 
 interface FormLayoutProps {
   children?: React.ReactNode[] | React.ReactNode;
+  onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
 }
 
-const FormLayout: React.FC<FormLayoutProps> = ({ children }) => {
+const FormLayout: React.FC<FormLayoutProps> = ({ children, onSubmit }) => {
   const [isModalOpen, setModalOpen] = React.useState(false);
 
   return (
@@ -15,17 +16,9 @@ const FormLayout: React.FC<FormLayoutProps> = ({ children }) => {
       action={"http://admin-panel-backend"}
       encType="multipart/form-data"
       method="POST"
+      onSubmit={onSubmit}
     >
       {children ? children : null}
-      {/* <div className="flex gap-[30px]">
-        <ButtonPrimary onClick={onSendClick} type="submit" className="bg-main-primary-color">
-          Send
-        </ButtonPrimary>
-        <ButtonPrimary onClick={onSendLaterClick} className="border-grey border-[1px]">
-          Send later
-        </ButtonPrimary>
-      </div> */}
-
       <SendFormBtn setModalOpen={setModalOpen} />
 
       <div>

@@ -8,17 +8,27 @@ import itunes from '../../src/icons/itunes.svg'
 import spotify from '../../src/icons/spotify.svg'
 import soundcloud from '../../src/icons/soundcloud.svg'
 import youtubeMusic from '../../src/icons/youtubeMusic.svg'
-import { Popover, Transition } from '@headlessui/react'
 
 export default function Home() {
-  const [fileName, setFileName] = React.useState("Your file...");
-
-
   return (
 
-    <PageLayout title="Members">
-      {/* necessary hidden input */}
-      <input type="hidden" name="page" value="member_page" />
+    <PageLayout onSubmit={(e) => {
+      e.preventDefault();
+      const formElem = document.querySelector("form");
+      if (!formElem) return;
+
+      const formData = new FormData(formElem);
+
+      fetch("http://admin-panel-backend/members", {
+        method: "POST",
+        body: formData
+      })
+        .then(d => d.text())
+        .then(d => console.log(d))
+        .catch((reason) => {
+          console.log(reason);
+        });
+    }} title="Members">
       <SearchInput onSearch={() => {
 
       }} placeholder="Member ID..." label="Member search" name="id" />
