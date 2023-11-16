@@ -15,7 +15,6 @@ const News = () => {
     <PageLayout onSubmit={(e) => {
 
     }} title="News">
-      <input type="hidden" name="page" value="member_page" />
       <SearchInput onSearch={(e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
 
@@ -27,15 +26,13 @@ const News = () => {
         });
 
       }} placeholder="ID news..." label="News id" name="search" />
-      <Dropdown inputsName="music[]" headerText="Links" links={[
-        {
-          platformName: "Spotify",
-          platformIcon: spotify
-        },
-        {
-          platformName: "Itunes",
-          platformIcon: itunes
-        }]} />
+
+      <InputTypeText placeholder="Title text..." label="Title*" name="title" />
+      <InputTypeText placeholder="Subtitle text..." label="Subtitle" name="subtitle" />
+
+      <TextArea label="News content" placeholder="News text..." name="content" />
+
+      <FileInput placeholder="Browse..." accept="image/webp, image/png, image/jpg, image/jpeg" name="preview_picture[]" label="Select preview picture*" id="news-file-input" />
     </PageLayout>
   )
 }
