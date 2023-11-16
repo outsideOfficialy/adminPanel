@@ -2,7 +2,6 @@
 import React from "react";
 import PageLayout from "@/components/PageLayout";
 import Dropdown from "@/components/Dropdown";
-import { SearchInput } from "@/components/Inputs";
 
 import { InputTypeText, SearchInput, FileInput, TextArea } from "@/components/Inputs";
 
