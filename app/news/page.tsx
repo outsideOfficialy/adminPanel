@@ -5,10 +5,15 @@ import Dropdown from "@/components/Dropdown";
 
 import { InputTypeText, SearchInput, FileInput, TextArea } from "@/components/Inputs";
 
+import itunes from '../../src/icons/itunes.svg'
+import spotify from '../../src/icons/spotify.svg'
+import soundcloud from '../../src/icons/soundcloud.svg'
+import youtubeMusic from '../../src/icons/youtubeMusic.svg'
+
 const News = () => {
   return (
     <PageLayout onSubmit={(e) => {
-      
+
     }} title="News">
       <input type="hidden" name="page" value="member_page" />
       <SearchInput onSearch={(e: React.MouseEvent<HTMLButtonElement>) => {
