@@ -7,7 +7,9 @@ import { InputTypeText, SearchInput, FileInput, TextArea } from "@/components/In
 
 const News = () => {
   return (
-    <PageLayout title="News">
+    <PageLayout onSubmit={(e) => {
+      
+    }} title="News">
       <input type="hidden" name="page" value="member_page" />
       <SearchInput onSearch={(e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
