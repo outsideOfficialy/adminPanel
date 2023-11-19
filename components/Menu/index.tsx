@@ -26,10 +26,10 @@ const Menu: React.FC<MenuProps> = ({ list }) => {
       <div
         className={`transform ${
           isMenuOpen ? "translate-x-0" : "-translate-x-[150%]"
-        } absolute top-0 left-0 transition-transform duration-300 ease-in-out bg-black border border-primary-color px-[61px] py-[65px] z-[10]`}
+        } absolute top-0 left-0 transition-transform duration-300 ease-in-out bg-black border border-primary-color px-[30px] py-[40px] z-[10] md:px-[61px] md:py-[65px]`}
       >
         <div className="flex items-start gap-[20px]">
-          <ul className="text-[20px] font-medium flex flex-col gap-[40px] w-[140px]">
+          <ul className="text-[18px] md:text-[20px] font-medium flex flex-col gap-[30px] md:gap-[40px] w-[140px]">
             {list.map((item, index) => (
               <li
                 className="white transition duration-300 ease-in-out hover:text-main-primary-color"
