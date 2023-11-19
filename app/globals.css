@@ -29,8 +29,14 @@
 }
 
 .material-symbols-outlined.shield-person {
-  font-size: 54px;
+  font-size: 42px;
   font-variation-settings: "FILL" 0, "wght" 500, "GRAD" 0, "opsz" 56;
+}
+
+@media (min-width: 768px){
+  .material-symbols-outlined.shield-person {
+    font-size: 54px;
+  }
 }
 
 .material-symbols-outlined.menu {

@@ -52,7 +52,7 @@ const InputWrapper: React.FC<InputWrapperProps> = ({
 }) => {
   return <div className={clsx("flex flex-col items-start gap-[10px] w-full max-w-[450px] ", className ? className : "")}>
     {label && (
-      <label className="text-white text-2xl font-normal leading-6 tracking-wider">
+      <label className="text-white text-[20px] md:text-2xl font-normal leading-6 tracking-wider">
         {label}
       </label>
     )}
@@ -68,7 +68,7 @@ const InputTypeText: React.FC<InputFieldProps> = ({ label, placeholder, name, in
         type="text"
         placeholder={placeholder}
         name={name}
-        className="bg-black border rounded-lg border-white text-white p-2.5 max-w-[450px] w-full text-base font-medium leading-normal tracking-wider transition duration-300 ease-in-out placeholder-grey focus:border-main-primary-color focus:ring-0 focus:outline-none "
+        className="bg-black border rounded-lg border-white text-white p-2.5 max-w-[450px] w-full text-[14px] md:text-base font-normal md:font-medium leading-normal tracking-wider transition duration-300 ease-in-out placeholder-grey focus:border-main-primary-color focus:ring-0 focus:outline-none "
       />
     </InputWrapper>
   );
