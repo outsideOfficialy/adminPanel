@@ -28,18 +28,22 @@ const Dropdown: React.FC<DropdownProps> = ({ headerText, inputsName, links, labe
 
 
         if (isOpen && !isBodyClicked) {
-          dropdownContainer.style.maxHeight = "46px";
+          if (window.innerWidth <= 768) {
+            dropdownContainer.style.maxHeight = "42px";
+          } else {
+            dropdownContainer.style.maxHeight = "46px";
+          }
           setIsOpen(false);
         }
         else if (!isOpen) {
           dropdownContainer.style.maxHeight = dropdownContainer.scrollHeight + "px";
           setIsOpen(true);
         }
-      }} className={clsx("dropdown-container transition-all ease-out duration-300 w-full max-w-[450px] cursor-default overflow-hidden", isOpen ? "" : "max-h-[46px]")}>
+      }} className={clsx("dropdown-container transition-all ease-out duration-300 w-full max-w-[450px] cursor-default overflow-hidden", isOpen ? "" : "max-h-[42px] md:max-h-[46px]")}>
         {/* header */}
         <div
           className={clsx(
-            "dropdown-head relative select-none flex justify-between items-center cursor-pointer py-[10px] px-[15px] text-[14px] rounded-[5px] border-[1px] hover:border-main-primary-color ",
+            "dropdown-head relative select-none flex justify-between items-center cursor-pointer p-[8px] md:p-2.5 text-[14px] rounded-[5px] border-[1px] hover:border-main-primary-color ",
             isOpen ? "border-main-primary-color rounded-b-[0px]" : "border-white"
           )}
         >

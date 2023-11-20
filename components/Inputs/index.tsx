@@ -68,7 +68,7 @@ const InputTypeText: React.FC<InputFieldProps> = ({ label, placeholder, name, in
         type="text"
         placeholder={placeholder}
         name={name}
-        className="bg-black border rounded-lg border-white text-white p-2.5 max-w-[450px] w-full text-[14px] md:text-base font-normal md:font-medium leading-normal tracking-wider transition duration-300 ease-in-out placeholder-grey focus:border-main-primary-color focus:ring-0 focus:outline-none "
+        className="bg-black border rounded-lg border-white text-white p-[8px] md:p-2.5 max-w-[450px] w-full text-[14px] md:text-base font-normal md:font-medium leading-normal tracking-wider transition duration-300 ease-in-out placeholder-grey focus:border-main-primary-color focus:ring-0 focus:outline-none "
       />
     </InputWrapper>
   );
@@ -95,10 +95,10 @@ const SearchInput: React.FC<SearchInputProps> = ({ label, placeholder, name, onS
             type="text"
             placeholder={placeholder}
             name={name}
-            className={clsx("bg-black border rounded-lg text-white p-2.5 max-w-[450px] w-full text-[14px] md:text-base font-normal md:font-medium leading-normal tracking-wider transition duration-200 ease-in-out placeholder-grey focus:border-main-primary-color focus:ring-0 focus:outline-none", isOpen ? "border-main-primary-color rounded-b-[0px]" : "border-white")}
+            className={clsx("bg-black border rounded-lg text-white p-[8px] md:p-2.5 max-w-[450px] w-full text-[14px] md:text-base font-normal md:font-medium leading-normal tracking-wider transition duration-200 ease-in-out placeholder-grey focus:border-main-primary-color focus:ring-0 focus:outline-none", isOpen ? "border-main-primary-color rounded-b-[0px]" : "border-white")}
           />
           <button
-            className="material-symbols-outlined search absolute right-0 top-0 bottom-0 bg-main-primary text-white rounded-r-lg p-2.5 font-medium transition duration-300 ease-in-out hover:text-main-primary-color"
+            className="material-symbols-outlined search absolute right-0 top-0 bottom-0 bg-main-primary text-white rounded-r-lg p-[8px] md:p-2.5 font-medium transition duration-300 ease-in-out hover:text-main-primary-color"
             onClick={onSearch}
           >
             search
@@ -144,14 +144,14 @@ const TextArea: React.FC<TextAreaFieldProps> = ({ label, placeholder, name }) =>
   return (
     <div className="flex flex-col items-start gap-[10px] w-full">
       {label && (
-        <label className="text-white text-2xl font-normal leading-6 tracking-wider">
+        <label className="text-white text-[20px] md:text-2xl font-normal leading-6 tracking-wider">
           {label}
         </label>
       )}
       <textarea
         placeholder={placeholder}
         name={name}
-        className="bg-black min-h-[150px] border rounded-lg border-white text-white p-2.5 w-full text-[14px] md:text-base font-normal md:font-medium leading-normal tracking-wider transition duration-300 ease-in-out placeholder-grey focus:border-main-primary-color focus:ring-0 focus:outline-none"
+        className="bg-black min-h-[150px] border rounded-lg border-white text-white p-[8px] md:p-2.5 w-full text-[14px] md:text-base font-normal md:font-medium leading-normal tracking-wider transition duration-300 ease-in-out placeholder-grey focus:border-main-primary-color focus:ring-0 focus:outline-none"
       />
     </div>
   );
@@ -211,9 +211,9 @@ const SongsInputs: React.FC<{ label: string; name: string; }> = ({
     <InputWrapper label={label} className="gap-[15px] md:gap-[10px]">
       <div className="flex flex-col gap-[15px] md:gap-[25px] w-full">
         {songsCount.map((el, idx) => {
-          return <div key={idx} className="flex gap-[15px] md:gap-[10px] items-start">
+          return <div key={idx} className="flex gap-[15px] md:gap-[10px] items-center">
 
-            <input type="text" className="bg-black border rounded-lg border-white text-white p-2.5 max-w-[450px] w-full text-[14px] md:text-base font-normal md:font-medium leading-normal tracking-wider transition duration-300 ease-in-out placeholder-grey focus:border-main-primary-color focus:ring-0 focus:outline-none" value={el} onChange={(e) => inputChange(e, idx)} name={name} placeholder={`Song name №${idx + 1}`} />
+            <input type="text" className="bg-black border rounded-lg border-white text-white p-[8px] md:p-2.5 max-w-[450px] w-full text-[14px] md:text-base font-normal md:font-medium leading-normal tracking-wider transition duration-300 ease-in-out placeholder-grey focus:border-main-primary-color focus:ring-0 focus:outline-none" value={el} onChange={(e) => inputChange(e, idx)} name={name} placeholder={`Song name №${idx + 1}`} />
 
             <ButtonTemplate border onClick={() => decreaseSongList(idx)}>
               <span className="delete material-symbols-outlined absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
