@@ -20,7 +20,7 @@ const Dropdown: React.FC<DropdownProps> = ({ headerText, inputsName, links, labe
 
   return (
     <div className="flex flex-col gap-[10px]">
-      {label && <h3 className="text-2xl font-normal leading-6 tracking-wider">{label}</h3>}
+      {label && <h3 className="text-[20px] md:text-2xl font-normal leading-6 tracking-wider">{label}</h3>}
       <div onClick={(e) => {
         const curTarget = e.target as HTMLElement; // получаем какой элемент нажали
         const dropdownContainer = curTarget.closest(".dropdown-container") as HTMLDivElement;
@@ -61,9 +61,9 @@ const Dropdown: React.FC<DropdownProps> = ({ headerText, inputsName, links, labe
           {links.map((el, idx) => {
             return (
               <div key={el.platformName + idx}>
-                <h4 className="text-left">{el.platformName}</h4>
-                <div className="flex justify-between items-center px-[5px]">
-                  <Image className="w-[32px] h-[32px]" src={el.platformIcon} alt="logo" />
+                <h4 className="text-[14px] md:text-[16px] mb-[4px] md:mb-0 text-left">{el.platformName}</h4>
+                <div className="flex justify-between items-center gap-[10px] md:gap-0 px-[5px]">
+                  <Image className="w-[28px] h-[28px] md:w-[32px] md:h-[32px]" src={el.platformIcon} alt="logo" />
 
                   <input
                     type="hidden"

@@ -25,8 +25,8 @@ const RadioButton: React.FC<RadioButtonProps> = ({ id, label, name, value }) => 
 const RadioGroup: React.FC<RadioButtonGroupProps> = ({
   group, title
 }) => {
-  return <div className="flex flex-col gap-[10px]">
-    {title && <h3 className="text-white text-2xl font-normal leading-6 tracking-wider">{title}</h3>}
+  return <div className="flex flex-col gap-[15px] md:gap-[10px]">
+    {title && <h3 className="text-white text-[20px] md:text-2xl font-normal leading-6 tracking-wider">{title}</h3>}
     <div className="flex flex-col gap-[10px]">
       {group.map((el, idx) => {
         return <RadioButton key={idx} id={el.id} label={el.label} name={el.name} value={el.value} />
