@@ -33,11 +33,6 @@
   font-variation-settings: "FILL" 0, "wght" 500, "GRAD" 0, "opsz" 56;
 }
 
-@media (max-width: 768px){
-  .material-symbols-outlined.shield-person {
-    font-size: 42px;
-  }
-}
 
 .material-symbols-outlined.menu {
   font-size: 32px;
@@ -57,6 +52,24 @@
 .material-symbols-outlined.search {
   font-size: 20px;
   font-variation-settings: "FILL" 0, "wght" 500, "GRAD" 0, "opsz" 56;
+}
+
+.platform-img {
+  width: 24px;
+  height: 24px;
+}
+
+@media (max-width: 768px){
+  .material-symbols-outlined.shield-person {
+    font-size: 42px;
+  }
+  .material-symbols-outlined.search{
+    font-size: 16px;
+  }
+  .platform-img {
+    width: 20px;
+    height: 20px;
+  }
 }
 
 /* customize the scrollbar Width & Height */

@@ -24,8 +24,8 @@ const ConfirmModal: React.FC<ConfirmModalProps> = ({ isOpened, onSetModal }) => 
         leaveTo="-translate-y-[300%]"
       >
       <div className="relative z-[10]">
-        {<div className={'w-[690px] flex flex-col justify-center items-center gap-[20px] px-[65px] pt-[80px] pb-[50px] bg-black border border-primary-color'}>
-          <div className='w-full'>
+        {<div className={'w-[360px] md:w-[690px] flex flex-col justify-center items-center gap-[30px] md:gap-[50px] p-[15px] md:px-[65px] md:pt-[80px] md:pb-[50px] bg-black border border-primary-color'}>
+          <div className='w-full flex justify-center'>
             <button
               type='button'
               onClick={() => onSetModal(false)}
@@ -33,25 +33,25 @@ const ConfirmModal: React.FC<ConfirmModalProps> = ({ isOpened, onSetModal }) => 
             >
               close
             </button>
-            <h3 className='text-[36px] text-center font-semibold'>Confirmation of sending data</h3>
+            <h3 className='max-w-[215px] md:max-w-none text-[26px] md:text-[36px] text-center font-semibold'>Confirmation of sending data</h3>
           </div>
-          <div className='w-full max-h-[576px] overflow-auto flex flex-col gap-[45px]'>
-            <h4 className='text-[24px] font-medium'>Signle</h4>
+          <div className='w-full max-h-[576px] overflow-auto flex flex-col gap-[45px] pr-[15px]'>
+            <h4 className='text-[20px] md:text-[24px] font-normal md:font-medium'>Signle</h4>
             <div className='flex flex-col gap-[10px]'>
-              <h4 className='text-[24px] font-medium'>Release name:</h4>
+              <h4 className='text-[20px] md:text-[24px] font-normal md:font-medium'>Release name:</h4>
               <div className='pl-[10px]'>Release №1</div>
             </div>
             <div className='flex flex-col gap-[10px]'>
-              <h4 className='text-[24px] font-medium'>Release link's:</h4>
+              <h4 className='text-[20px] md:text-[24px] font-normal md:font-medium'>Release link's:</h4>
               <div className='pl-[10px] flex gap-[15px]'>
-                <span><Image src={spotify} alt="spotify" /></span>
-                <span><Image src={soundcloud} alt="soundcloud" /></span>
-                <span><Image src={itunes} alt="itunes" /></span>
-                <span><Image src={youtubeMusic} alt="youtubeMusic" /></span>
+                <span><Image className='platform-img' src={spotify} alt="spotify" /></span>
+                <span><Image className='platform-img' src={soundcloud} alt="soundcloud" /></span>
+                <span><Image className='platform-img' src={itunes} alt="itunes" /></span>
+                <span><Image className='platform-img' src={youtubeMusic} alt="youtubeMusic" /></span>
               </div>
             </div>
             <div className='flex flex-col gap-[10px]'>
-              <h4 className='text-[24px] font-medium'>Release songs:</h4>
+              <h4 className='text-[20px] md:text-[24px] font-normal md:font-medium'>Release songs:</h4>
               <div className='pl-[10px]'>
                 <div className='flex flex-col gap-[10px]'>
                   <span>Song name №1</span>
@@ -61,13 +61,13 @@ const ConfirmModal: React.FC<ConfirmModalProps> = ({ isOpened, onSetModal }) => 
               </div>
             </div>
             <div className='flex flex-col gap-[10px]'>
-              <h4 className='text-[24px] font-medium'>Single preview:</h4>
-              <div className='self-center flex justify-center items-center w-[450px] h-[300px] border border-primary-color'>
-                <div className='text-[32px] font-bold'>IMG</div>
+              <h4 className='text-[20px] md:text-[24px] font-normal md:font-medium'>Single preview:</h4>
+              <div className='self-center flex justify-center items-center w-full md:w-[450px] h-[200px] md:h-[300px] border border-primary-color'>
+                <div className='text-[32px] font-semibold md:font-bold'>IMG</div>
               </div>
             </div>
             <div className='flex flex-col gap-[10px]'>
-              <h4 className='text-[24px] font-medium'>Dispatch time:</h4>
+              <h4 className='text-[20px] md:text-[24px] font-normal md:font-medium'>Dispatch time:</h4>
               <div>at 21:30; 18.10.2023</div>
             </div>
           </div>
