@@ -12,7 +12,7 @@ const PageLayout: React.FC<PageLayoutProps> = ({ children, title, onSubmit }) =>
   return (
     <>
       {/* here will be menu button calling */}
-      <div className="absolute left-[40px] top-[40px]" >
+      <div className="absolute left-[10px] top-[15px] md:left-[40px] md:top-[40px]" >
         <Menu list={[{ textContent: "Add music", link: "/add-music" },
         { textContent: "News", link: "/news" },
         { textContent: "Add merch", link: "/add-merch" },

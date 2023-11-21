@@ -7,7 +7,7 @@ import Link from "next/link";
 
 export default function Home() {
   return (
-    <PageTemplate title="Login" className="max-w-[443px] pt-[130px]">
+    <PageTemplate title="Login" className="max-w-[443px] pt-[50px]">
       <InputTypeText label="User-name*" placeholder="User-name..." name="user-name"/>
       <InputTypeText label="Password*" placeholder="Password..." name="password" />
 

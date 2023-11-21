@@ -12,7 +12,7 @@ const FormLayout: React.FC<FormLayoutProps> = ({ children, onSubmit }) => {
 
   return (
     <form
-      className="flex flex-col gap-[45px] max-w-[920px]"
+      className="flex flex-col gap-[30px] md:gap-[45px] max-w-[920px]"
       action={"http://admin-panel-backend"}
       encType="multipart/form-data"
       method="POST"

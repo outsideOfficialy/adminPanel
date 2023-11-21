@@ -20,7 +20,7 @@ const Dropdown: React.FC<DropdownProps> = ({ headerText, inputsName, links, labe
 
   return (
     <div className="flex flex-col gap-[10px]">
-      {label && <h3 className="text-2xl font-normal leading-6 tracking-wider">{label}</h3>}
+      {label && <h3 className="text-[20px] md:text-2xl font-normal leading-6 tracking-wider">{label}</h3>}
       <div onClick={(e) => {
         const curTarget = e.target as HTMLElement; // получаем какой элемент нажали
         const dropdownContainer = curTarget.closest(".dropdown-container") as HTMLDivElement;
@@ -28,18 +28,22 @@ const Dropdown: React.FC<DropdownProps> = ({ headerText, inputsName, links, labe
 
 
         if (isOpen && !isBodyClicked) {
-          dropdownContainer.style.maxHeight = "46px";
+          if (window.innerWidth <= 768) {
+            dropdownContainer.style.maxHeight = "42px";
+          } else {
+            dropdownContainer.style.maxHeight = "46px";
+          }
           setIsOpen(false);
         }
         else if (!isOpen) {
           dropdownContainer.style.maxHeight = dropdownContainer.scrollHeight + "px";
           setIsOpen(true);
         }
-      }} className={clsx("dropdown-container transition-all ease-out duration-300 w-full max-w-[450px] cursor-default overflow-hidden", isOpen ? "" : "max-h-[46px]")}>
+      }} className={clsx("dropdown-container transition-all ease-out duration-300 w-full max-w-[450px] cursor-default overflow-hidden", isOpen ? "" : "max-h-[42px] md:max-h-[46px]")}>
         {/* header */}
         <div
           className={clsx(
-            "dropdown-head relative select-none flex justify-between items-center cursor-pointer py-[10px] px-[15px] text-[14px] rounded-[5px] border-[1px] hover:border-main-primary-color ",
+            "dropdown-head relative select-none flex justify-between items-center cursor-pointer p-[8px] md:p-2.5 text-[14px] rounded-[5px] border-[1px] hover:border-main-primary-color ",
             isOpen ? "border-main-primary-color rounded-b-[0px]" : "border-white"
           )}
         >
@@ -61,9 +65,9 @@ const Dropdown: React.FC<DropdownProps> = ({ headerText, inputsName, links, labe
           {links.map((el, idx) => {
             return (
               <div key={el.platformName + idx}>
-                <h4 className="text-left">{el.platformName}</h4>
-                <div className="flex justify-between items-center px-[5px]">
-                  <Image className="w-[32px] h-[32px]" src={el.platformIcon} alt="logo" />
+                <h4 className="text-[14px] md:text-[16px] mb-[4px] md:mb-0 text-left">{el.platformName}</h4>
+                <div className="flex justify-between items-center gap-[10px] md:gap-0 px-[5px]">
+                  <Image className="w-[28px] h-[28px] md:w-[32px] md:h-[32px]" src={el.platformIcon} alt="logo" />
 
                   <input
                     type="hidden"

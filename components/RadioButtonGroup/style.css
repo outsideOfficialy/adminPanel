@@ -26,6 +26,8 @@
   display: inline-block;
   border: 2px solid #ed772f;
 }
+
+
 .radiobutton-input:checked + .custom-radiobutton {
   border: 2px solid #ed772f;
   background-color: #ed772f;
@@ -46,4 +48,11 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+@media (max-width: 768px){
+  .custom-radiobutton {
+    height: 20px;
+    width: 20px;
+  }
 }
