@@ -6,6 +6,7 @@ import spotify from '../../src/icons/spotify.svg'
 import soundcloud from '../../src/icons/soundcloud.svg'
 import youtubeMusic from '../../src/icons/youtubeMusic.svg'
 import { Transition } from '@headlessui/react'
+import Loader from '../Loader'
 
 interface ConfirmModalProps {
   isOpened: boolean
@@ -13,6 +14,8 @@ interface ConfirmModalProps {
 }
 
 const ConfirmModal: React.FC<ConfirmModalProps> = ({ isOpened, onSetModal }) => {
+  const [isSending, setIsSending] = React.useState(false)
+
   return (
       <Transition
         show={isOpened}
@@ -71,10 +74,21 @@ const ConfirmModal: React.FC<ConfirmModalProps> = ({ isOpened, onSetModal }) => 
               <div>at 21:30; 18.10.2023</div>
             </div>
           </div>
-          <div className='w-full flex justify-center'>
-            <ButtonTemplate primary onClick={() => console.log('Sending...')} type="submit" className="bg-main-primary-color">
+          <div className='w-full text-center flex justify-center items-center gap-[25px]'>
+            <ButtonTemplate primary onClick={() => setIsSending(!isSending)} type="button" className="bg-main-primary-color">
               Send
             </ButtonTemplate>
+            <Transition
+              show={isSending}
+              enter="transition-all duration-700 ease-in-out"
+              enterFrom="translate-x-[300%] opacity-0"
+              enterTo="translate-x-0 opacity-100"
+              leave="transition-all duration-700 ease-in-out"
+              leaveFrom="translate-x-0 opacity-100"
+              leaveTo="translate-x-[300%] opacity-0"
+            >
+              <Loader open={isSending}/>
+            </Transition>
           </div>
         </div>}
       </div>
