@@ -25,8 +25,15 @@ const SendFormBtn: React.FC<SendFormBtnProps> = ({ setModalOpen }) => {
     // Обработка события для кнопки "Send"
   };
 
-  const onSendLaterClick = () => {
-    setDatePickerVisible(true);
+  const handleSendLaterClick = () => {
+    // Если форма не заполнена, отображаем DatePicker
+    if (!selectedDate) {
+      setDatePickerVisible(true);
+    } else {
+      // Если форма заполнена, открываем модальное окно и выполняем дополнительные действия
+      setModalOpen(true);
+      onSendClick(); // Вызываем нужные дополнительные действия (если есть)
+    }
   };
 
   return (
@@ -55,13 +62,12 @@ const SendFormBtn: React.FC<SendFormBtnProps> = ({ setModalOpen }) => {
           Send
         </ButtonTemplate>
         <ButtonTemplate
-          onClick={onSendLaterClick}
+          onClick={handleSendLaterClick}
           secondary
-          disabled={selectedDate ? true : false}
           className={
             selectedDate
-              ? "bg-main-primary-color border-main-primary-color hover:shadow-main-primary-color"
-              : ""
+              ? "bg-main-primary-color border-main-primary-color hover:shadow-main-primary-color cursor-pointer"
+              : "cursor-pointer"
           }
         >
           Send later
