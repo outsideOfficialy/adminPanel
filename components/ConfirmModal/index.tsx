@@ -45,7 +45,7 @@ const ConfirmModal: React.FC<ConfirmModalProps> = ({ isOpened, onSetModal }) => 
                 Confirmation of sending data
               </h3>
             </div>
-            <div className="w-full max-h-[380px] md:max-h-[576px] overflow-auto flex flex-col gap-[45px] pr-[15px]">
+            <div className="w-full max-h-[65dvh] md:max-h-[50dvh] overflow-auto flex flex-col gap-[45px] pr-[15px]">
               <h4 className="text-[20px] md:text-[24px] font-normal md:font-medium">Signle</h4>
               <div className="flex flex-col gap-[10px]">
                 <h4 className="text-[20px] md:text-[24px] font-normal md:font-medium">
