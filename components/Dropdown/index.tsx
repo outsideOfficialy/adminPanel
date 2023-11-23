@@ -71,7 +71,7 @@ const Dropdown: React.FC<DropdownProps> = ({ headerText, inputsName, links, labe
 
                   <input
                     type="hidden"
-                    value={el.platformName.toLowerCase().replaceAll(" ", "-")}
+                    value={el.platformName.toLowerCase().replaceAll(" ", "_")}
                     name={`${inputsName}[${idx}][platform]`}
                   />
 

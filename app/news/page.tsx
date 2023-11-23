@@ -31,7 +31,7 @@ const News = () => {
 
       <TextArea label="News content" placeholder="News text..." name="content" />
 
-      <FileInput placeholder="Browse..." accept="image/webp, image/png, image/jpg, image/jpeg" name="preview_picture[]" label="Select preview picture*" id="news-file-input" />
+      <FileInput placeholder="Browse..." accept="image/webp, image/png, image/jpg, image/jpeg" name="preview_picture[]" label="Select review picture*" id="news-file-input" />
     </PageLayout>
   )
 }
