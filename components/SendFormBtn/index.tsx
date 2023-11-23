@@ -12,15 +12,29 @@ const SendFormBtn: React.FC<SendFormBtnProps> = ({ setModalOpen }) => {
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
   const [isDatePickerVisible, setDatePickerVisible] = useState(false);
 
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    // Получаем значение из поля ввода
+    const enteredValue = event.target.value || "";
+    // Оставляем только числа, удаляя все остальные символы
+    const numericValue = enteredValue.replace(/\D/g, "");
+    // Устанавливаем отфильтрованное значение обратно в поле ввода
+    event.target.value = numericValue;
+  };
+
   const onSendClick = () => {
     // Обработка события для кнопки "Send"
   };
 
-  const onSendLaterClick = () => {
-    setDatePickerVisible(true);
+  const handleSendLaterClick = () => {
+    // Если форма не заполнена, отображаем DatePicker
+    if (!selectedDate) {
+      setDatePickerVisible(true);
+    } else {
+      // Если форма заполнена, открываем модальное окно и выполняем дополнительные действия
+      setModalOpen(true);
+      onSendClick(); // Вызываем нужные дополнительные действия (если есть)
+    }
   };
-
-  const isSendLaterDisabled = !selectedDate;
 
   return (
     <div className="flex flex-col max-w-[450px] gap-[45px]">
@@ -30,6 +44,7 @@ const SendFormBtn: React.FC<SendFormBtnProps> = ({ setModalOpen }) => {
           selected={selectedDate}
           onChange={(date: Date | null) => setSelectedDate(date)}
           placeholderText="Выберите дату"
+          onChangeRaw={handleInputChange}
           className="bg-black border rounded-lg border-white text-white p-2.5 w-full text-[14px] md:text-base font-normal md:font-medium leading-normal tracking-wider transition duration-300 ease-in-out placeholder-grey focus:border-main-primary-color focus:ring-0 focus:outline-none"
         />
       )}
@@ -47,10 +62,13 @@ const SendFormBtn: React.FC<SendFormBtnProps> = ({ setModalOpen }) => {
           Send
         </ButtonTemplate>
         <ButtonTemplate
-          onClick={onSendLaterClick}
+          onClick={handleSendLaterClick}
           secondary
-          disabled={selectedDate ? true : false}
-          className={selectedDate ? "bg-main-primary-color border-main-primary-color hover:shadow-main-primary-color" : ""}
+          className={
+            selectedDate
+              ? "bg-main-primary-color border-main-primary-color hover:shadow-main-primary-color cursor-pointer"
+              : "cursor-pointer"
+          }
         >
           Send later
         </ButtonTemplate>
