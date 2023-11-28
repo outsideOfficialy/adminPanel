@@ -20,7 +20,7 @@ const Dropdown: React.FC<DropdownProps> = ({ headerText, inputsName, links, labe
 
   return (
     <div className="flex flex-col gap-[10px]">
-      {label && <h3 className="text-[20px] md:text-2xl font-normal leading-6 tracking-wider">{label}</h3>}
+      {label && <label className="text-[20px] md:text-2xl font-normal leading-6 tracking-wider">{label}</label>}
       <div onClick={(e) => {
         const curTarget = e.target as HTMLElement; // получаем какой элемент нажали
         const dropdownContainer = curTarget.closest(".dropdown-container") as HTMLDivElement;

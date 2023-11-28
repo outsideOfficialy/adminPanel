@@ -82,60 +82,62 @@ const SearchInput: React.FC<SearchInputProps> = ({ label, placeholder, name, onS
   const openToggler = (value: boolean) => setIsOpen(value);
 
   return (
-    <div className="w-full max-w-[450px]">
+    <div className="w-full max-w-[450px] flex flex-col gap-[15px] md:gap-[10px]">
       {/* head */}
-      <div className="cursor-pointer flex flex-col items-start gap-[15px] md:gap-[10px]">
-        {label && (
-          <label className="text-white text-[20px] md:text-2xl font-normal leading-6 tracking-wider">
-            {label}
-          </label>
-        )}
-        <div onClick={() => openToggler(true)} className="relative w-full">
-          <input
-            type="text"
-            placeholder={placeholder}
-            name={name}
-            className={clsx("bg-black border rounded-lg text-white p-[8px] md:p-2.5 max-w-[450px] w-full text-[14px] md:text-base font-normal md:font-medium leading-normal tracking-wider transition duration-200 ease-in-out placeholder-grey focus:border-main-primary-color focus:ring-0 focus:outline-none", isOpen ? "border-main-primary-color rounded-b-[0px]" : "border-white")}
-          />
-          <button
-            className="material-symbols-outlined search absolute right-0 top-0 bottom-0 bg-main-primary text-white rounded-r-lg p-[8px] md:p-2.5 font-medium transition duration-300 ease-in-out hover:text-main-primary-color"
-            onClick={onSearch}
-          >
-            search
-          </button>
+      {label && (
+        <label className="text-white text-[20px] md:text-2xl font-normal leading-6 tracking-wider">
+          {label}
+        </label>
+      )}
+      <div>
+        <div className="cursor-pointer flex flex-col items-start">
+          <div onClick={() => openToggler(true)} className="relative w-full">
+            <input
+              type="text"
+              placeholder={placeholder}
+              name={name}
+              className={clsx("bg-black border rounded-lg text-white p-[8px] md:p-2.5 max-w-[450px] w-full text-[14px] md:text-base font-normal md:font-medium leading-normal tracking-wider transition duration-200 ease-in-out placeholder-grey focus:border-main-primary-color focus:ring-0 focus:outline-none", isOpen ? "border-main-primary-color rounded-b-[0px]" : "border-white")}
+            />
+            <button
+              className="material-symbols-outlined search absolute right-0 top-0 bottom-0 bg-main-primary text-white rounded-r-lg p-[8px] md:p-2.5 font-medium transition duration-300 ease-in-out hover:text-main-primary-color"
+              onClick={onSearch}
+            >
+              search
+            </button>
+          </div>
         </div>
+        {/* body */}
+        <Transition
+          show={isOpen}
+          enter="transition origin-top duration-200 transform"
+          enterFrom="opacity-0 scale-y-0"
+          enterTo="opacity-100 scale-y-1"
+          leave="transition origin-top duration-200 transform"
+          leaveFrom="opacity-100 scale-y-0"
+          leaveTo="opacity-0 scale-y-0"
+        >
+        <div className="border-[1px] border-main-primary-color pl-[15px] pr-[5px] py-[10px] rounded-b-[5px]">
+          <ul className="max-h-[319px] overflow-scroll pr-[10px] flex flex-col gap-[15px]">
+            {testInfo.map((item) => {
+              return (
+                <li onClick={() => openToggler(false)} className="relative pb-[10px] border-b-[1px] border-grey cursor-pointer" key={item.id}>
+                  <div className="flex flex-col gap-[5px]">
+                    <p className="leading-[17px] text-[12px]">ID {item.id}</p>
+                    <p className="leading-[17px] text-[14px]">Title: {item.title}</p>
+                    <p className="leading-[17px] text-[12px]">News text: <span className="text-grey">{item.text}</span></p>
+                  </div>
+                  <button
+                  className="material-symbols-outlined delete absolute right-0 top-0 text-grey transition duration-300 ease-in-out hover:text-main-primary-color"
+                  onClick={onSearch}>
+                    delete
+                </button>
+                </li>
+              )
+            })}
+          </ul>
+        </div>
+        </Transition>
       </div>
-      {/* body */}
-      <Transition
-        show={isOpen}
-        enter="transition origin-top duration-200 transform"
-        enterFrom="opacity-0 scale-y-0"
-        enterTo="opacity-100 scale-y-1"
-        leave="transition origin-top duration-200 transform"
-        leaveFrom="opacity-100 scale-y-0"
-        leaveTo="opacity-0 scale-y-0"
-      >
-      <div className="border-[1px] border-main-primary-color pl-[15px] pr-[5px] py-[10px] rounded-b-[5px]">
-        <ul className="max-h-[319px] overflow-scroll pr-[10px] flex flex-col gap-[15px]">
-          {testInfo.map((item) => {
-            return (
-              <li onClick={() => openToggler(false)} className="relative pb-[10px] border-b-[1px] border-grey cursor-pointer" key={item.id}>
-                <div className="flex flex-col gap-[5px]">
-                  <p className="leading-[17px] text-[12px]">ID {item.id}</p>
-                  <p className="leading-[17px] text-[14px]">Title: {item.title}</p>
-                  <p className="leading-[17px] text-[12px]">News text: <span className="text-grey">{item.text}</span></p>
-                </div>
-                <button
-                className="material-symbols-outlined delete absolute right-0 top-0 text-grey transition duration-300 ease-in-out hover:text-main-primary-color"
-                onClick={onSearch}>
-                  delete
-              </button>
-              </li>
-            )
-          })}
-        </ul>
-      </div>
-      </Transition>
     </div>
   );
 };
@@ -213,7 +215,7 @@ const SongsInputs: React.FC<{ label: string; name: string; }> = ({
         {songsCount.map((el, idx) => {
           return <div key={idx} className="flex gap-[15px] md:gap-[10px] items-center">
 
-            <input type="text" className="bg-black border rounded-lg border-white text-white p-[8px] md:p-2.5 max-w-[450px] w-full text-[14px] md:text-base font-normal md:font-medium leading-normal tracking-wider transition duration-300 ease-in-out placeholder-grey focus:border-main-primary-color focus:ring-0 focus:outline-none" value={el} onChange={(e) => inputChange(e, idx)} name={name} placeholder={`Song name №${idx + 1}`} />
+            <input data-song-count={idx} type="text" className="bg-black border rounded-lg border-white text-white p-[8px] md:p-2.5 max-w-[450px] w-full text-[14px] md:text-base font-normal md:font-medium leading-normal tracking-wider transition duration-300 ease-in-out placeholder-grey focus:border-main-primary-color focus:ring-0 focus:outline-none" value={el} onChange={(e) => inputChange(e, idx)} name={name} placeholder={`Song name №${idx + 1}`} />
 
             <ButtonTemplate border onClick={() => decreaseSongList(idx)}>
               <span className="delete material-symbols-outlined absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
