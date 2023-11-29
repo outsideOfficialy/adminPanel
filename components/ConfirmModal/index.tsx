@@ -30,10 +30,13 @@ interface ModalListItemProps {
   column?: boolean;
 }
 
+interface ConfirmModalImgSliderProps {
 
-const RenderConfirmBody: React.FC = ({}) => {
+}
+
+
+const RenderConfirmBody: React.FC = ({ }) => {
   const allContainers = document.querySelectorAll("form > div");
-  console.log(allContainers);
   const mapedEl: React.ReactNode[] = [];
 
   const createTextInputConfirm = (el: HTMLInputElement | HTMLTextAreaElement, label: string) => {
@@ -51,12 +54,7 @@ const RenderConfirmBody: React.FC = ({}) => {
       const input = allPlatforms[num] as HTMLInputElement;
       const currentLink = (allLinks[num] as HTMLInputElement).value;
 
-      switch (input.value) {
-        case "spotify":
-          return <Image title={currentLink === "" ? "No link" : currentLink} className="platform-img cursor-pointer" src={spotify} alt="spotify" />
-        case "apple_music":
-          return <Image title={currentLink === "" ? "No link" : currentLink} className="platform-img cursor-pointer" src={apple_music} alt="apple_music" />
-      }
+      return <Image title={currentLink === "" ? "No link" : currentLink} className="platform-img cursor-pointer" src={icons[input.value]} alt={input.value} />
     }
 
     mapedEl.push(<ModalListItem title="Links:">
@@ -72,8 +70,6 @@ const RenderConfirmBody: React.FC = ({}) => {
     const label = el.querySelector("label");
     if (!label) return;
     const inputs = el.querySelectorAll("input, textarea") as NodeListOf<HTMLInputElement | HTMLTextAreaElement>;
-
-    console.log(el);
 
     if (inputs.length >= 2) {
       inputs.forEach((input, index) => {
@@ -111,22 +107,27 @@ const RenderConfirmBody: React.FC = ({}) => {
     }
     else {
 
-      if (inputs[0].name.includes("preview_picture")) {
-        const fileInput = inputs[0] as HTMLInputElement;
-
-        if (!fileInput.files) return;
-        for (let i = 0; i < fileInput.files?.length; i++) {
-          const file = fileInput.files[i];
-          //! реализовать компоненту со слайдером
-          mapedEl.push(<ModalListItem title="Picture(s) preview:">
-            <img className="max-h-[500px] block mx-auto" key={idx} src={URL.createObjectURL(file)} alt="Preview picture" />
-          </ModalListItem>);
+      if (!inputs[0].name.includes("id")) {
+        if (inputs[0].name.includes("preview_picture")) {
+          console.log(inputs);
+          const fileInput = inputs[0] as HTMLInputElement;
+  
+          if (!fileInput.files) return;
+  
+  
+          for (let i = 0; i < fileInput.files?.length; i++) {
+            const file = fileInput.files[i];
+            //! реализовать компоненту со слайдером
+            mapedEl.push(<ModalListItem title="Picture(s) preview:">
+              <img className="max-h-[500px] block mx-auto" key={idx} src={URL.createObjectURL(file)} alt="Preview picture" />
+            </ModalListItem>);
+          }
+  
+  
         }
-      }
-      // else if (inputs[0].name.includes("")) {
-      // }
-      else {
-        createTextInputConfirm(inputs[0], label.textContent?.replaceAll("*", "") as string);
+        else {
+          createTextInputConfirm(inputs[0], label.textContent?.replaceAll("*", "") as string);
+        }
       }
     }
   });
@@ -197,6 +198,10 @@ const ModalListItem: React.FC<ModalListItemProps> = ({
       {children}
     </div>
   </div>
+}
+
+const ConfirmModalImgSlider: React.FC<ConfirmModalImgSliderProps> = ({ }) => {
+  return <></>;
 }
 
 // const ModalBodySlider: React.FC<urls: string[]>
