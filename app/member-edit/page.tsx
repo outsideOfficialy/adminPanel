@@ -31,6 +31,7 @@ export default function Home() {
         });
     }} title="Members">
       <SearchInput onSearch={(e) => {
+<<<<<<< HEAD
 
         e.preventDefault();
 
@@ -39,7 +40,15 @@ export default function Home() {
         fetch(`http://admin-panel-backend/members/${val}`, { method: "GET" }).then(d => d.json()).then(d => {
           console.log(d);
         });
+=======
+        e.preventDefault();
+>>>>>>> main
 
+        const val = (e.currentTarget.previousElementSibling as HTMLInputElement).value;
+
+        fetch(`http://admin-panel-backend/members/${val}`, { method: "GET" }).then(d => d.json()).then(d => {
+          console.log(d);
+        });
       }} placeholder="Member ID..." label="Member search" name="id" />
       <InputTypeText placeholder="Member nickname" label="Member Nickname*" name="nickname" />
       <InputTypeText placeholder="Member birthday..." label="Member birthday*" name="birthdate" />
