@@ -105,3 +105,9 @@
 .react-datepicker__tab-loop {
   position: absolute;
 }
+
+.inputNum::-webkit-outer-spin-button,
+.inputNum::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
