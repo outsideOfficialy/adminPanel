@@ -30,8 +30,14 @@ export default function Home() {
           console.log(reason);
         });
     }} title="Members">
-      <SearchInput onSearch={() => {
+      <SearchInput onSearch={(e) => {
+        e.preventDefault();
 
+        const val = (e.currentTarget.previousElementSibling as HTMLInputElement).value;
+
+        fetch(`http://admin-panel-backend/members/${val}`, { method: "GET" }).then(d => d.json()).then(d => {
+          console.log(d);
+        });
       }} placeholder="Member ID..." label="Member search" name="id" />
       <InputTypeText placeholder="Member nickname" label="Member Nickname*" name="nickname" />
       <InputTypeText placeholder="Member birthday..." label="Member birthday*" name="birthdate" />
