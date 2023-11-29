@@ -20,8 +20,8 @@ const icons: {
 }
 
 interface ConfirmModalProps {
-  isOpened: boolean
-  onSetModal: (value: boolean) => void
+  isOpened: boolean;
+  onSetModal: (value: boolean) => void;
 }
 
 interface ModalListItemProps {
@@ -182,11 +182,11 @@ const ConfirmModal: React.FC<ConfirmModalProps> = ({ isOpened, onSetModal }) => 
               <Loader open={isSending} />
             </Transition>
           </div>
-        </div>}
+        </div>
       </div>
     </Transition>
-  )
-}
+  );
+};
 
 const ModalListItem: React.FC<ModalListItemProps> = ({
   children, title, column = false
@@ -206,4 +206,4 @@ const ConfirmModalImgSlider: React.FC<ConfirmModalImgSliderProps> = ({ }) => {
 
 // const ModalBodySlider: React.FC<urls: string[]>
 
-export default ConfirmModal
+export default ConfirmModal;
