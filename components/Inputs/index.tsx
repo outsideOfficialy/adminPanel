@@ -190,10 +190,14 @@ const SearchInput: React.FC<SearchInputProps> = ({ label, placeholder, name, onS
                   key={item.id}
                 >
                   <div className="flex flex-col gap-[5px]">
-                    <p className="leading-[17px] text-[12px]">ID {item.id}</p>
-                    <p className="leading-[17px] text-[14px]">Nickname: {item.nickname}</p>
-                    <p className="leading-[17px] text-[12px]">
-                      Role: <span className="text-grey">{item.role}</span>
+                    <p className="leading-[17px] text-[12px] text-grey">
+                      ID: <span className="text-white">{item.id}</span>{" "}
+                    </p>
+                    <p className="leading-[17px] text-[14px] text-grey">
+                      Nickname: <span className="text-white">{item.nickname}</span>{" "}
+                    </p>
+                    <p className="leading-[17px] text-[12px] text-grey">
+                      Role: <span className="text-white">{item.role}</span>
                     </p>
                   </div>
                   {/* Add other details as needed */}
