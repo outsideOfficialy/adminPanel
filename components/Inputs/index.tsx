@@ -1,31 +1,7 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import ButtonTemplate from "../ButtonTemplate";
 import clsx from "clsx";
 import { Transition } from "@headlessui/react";
-
-// Тест array для SearchInput
-const testInfo = [
-  {
-    id: "258789",
-    title: "New release is coming out",
-    text: " Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sagittis massa non nunc aliquet..."
-  },
-  {
-    id: "258789",
-    title: "New release is coming out",
-    text: " Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sagittis massa non nunc aliquet..."
-  },
-  {
-    id: "258789",
-    title: "New release is coming out",
-    text: " Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sagittis massa non nunc aliquet..."
-  },
-  {
-    id: "258789",
-    title: "New release is coming out",
-    text: " Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sagittis massa non nunc aliquet..."
-  }
-];
 
 interface InputWrapperProps {
   label?: string;
@@ -123,9 +99,48 @@ const InputTypeNum: React.FC<InputFieldProps> = ({
   );
 };
 
+// // Тест array для SearchInput
+// const testInfo = [
+//   {
+//     id: "258789",
+//     title: "New release is coming out",
+//     text: " Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sagittis massa non nunc aliquet..."
+//   },
+//   {
+//     id: "258789",
+//     title: "New release is coming out",
+//     text: " Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sagittis massa non nunc aliquet..."
+//   },
+//   {
+//     id: "258789",
+//     title: "New release is coming out",
+//     text: " Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sagittis massa non nunc aliquet..."
+//   },
+//   {
+//     id: "258789",
+//     title: "New release is coming out",
+//     text: " Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sagittis massa non nunc aliquet..."
+//   }
+// ];
+
 const SearchInput: React.FC<SearchInputProps> = ({ label, placeholder, name, onSearch }) => {
-  const [isOpen, setIsOpen] = React.useState<boolean>(false);
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [searchResults, setSearchResults] = useState<any[]>([]);
+
   const openToggler = (value: boolean) => setIsOpen(value);
+
+  const handleSearch = (val: string) => {
+    fetch(`http://admin-panel-backend/members/${val}`, { method: "GET" })
+      .then((d) => d.json())
+      .then((d) => {
+        setSearchResults(d);
+        openToggler(true);
+      });
+  };
+
+  useEffect(() => {
+    setIsOpen(searchResults.length > 0);
+  }, [searchResults]);
 
   return (
     <div className="w-full max-w-[450px] flex flex-col gap-[15px] md:gap-[10px]">
@@ -146,6 +161,7 @@ const SearchInput: React.FC<SearchInputProps> = ({ label, placeholder, name, onS
                 "bg-black border rounded-lg text-white p-[8px] md:p-2.5 max-w-[450px] w-full text-[14px] md:text-base font-normal md:font-medium leading-normal tracking-wider transition duration-200 ease-in-out placeholder-grey focus:border-main-primary-color focus:ring-0 focus:outline-none",
                 isOpen ? "border-main-primary-color rounded-b-[0px]" : "border-white"
               )}
+              onChange={(e) => handleSearch(e.target.value)} // Вызываем fetchData при изменении значения в поле ввода
             />
             <button
               className="material-symbols-outlined search absolute right-0 top-0 bottom-0 bg-main-primary text-white rounded-r-lg p-[8px] md:p-2.5 font-medium transition duration-300 ease-in-out hover:text-main-primary-color"
@@ -167,29 +183,31 @@ const SearchInput: React.FC<SearchInputProps> = ({ label, placeholder, name, onS
         >
           <div className="border-[1px] border-main-primary-color pl-[15px] pr-[5px] py-[10px] rounded-b-[5px]">
             <ul className="max-h-[319px] overflow-scroll pr-[10px] flex flex-col gap-[15px]">
-              {testInfo.map((item) => {
-                return (
-                  <li
-                    onClick={() => openToggler(false)}
-                    className="relative pb-[10px] border-b-[1px] border-grey cursor-pointer"
-                    key={item.id}
+              {searchResults.map((item) => (
+                <li
+                  onClick={() => openToggler(false)}
+                  className="relative pb-[10px] border-b-[1px] border-grey cursor-pointer"
+                  key={item.id}
+                >
+                  <div className="flex flex-col gap-[5px]">
+                    <p className="leading-[17px] text-[12px] text-grey">
+                      ID: <span className="text-white">{item.id}</span>
+                    </p>
+                    <p className="leading-[17px] text-[14px] text-grey">
+                      Nickname: <span className="text-white">{item.nickname}</span>
+                    </p>
+                    <p className="leading-[17px] text-[12px] text-grey">
+                      Role: <span className="text-white">{item.role}</span>
+                    </p>
+                  </div>
+                  <button
+                    className="material-symbols-outlined delete absolute right-0 top-0 text-grey transition duration-300 ease-in-out hover:text-main-primary-color"
+                    onClick={onSearch}
                   >
-                    <div className="flex flex-col gap-[5px]">
-                      <p className="leading-[17px] text-[12px]">ID {item.id}</p>
-                      <p className="leading-[17px] text-[14px]">Title: {item.title}</p>
-                      <p className="leading-[17px] text-[12px]">
-                        News text: <span className="text-grey">{item.text}</span>
-                      </p>
-                    </div>
-                    <button
-                      className="material-symbols-outlined delete absolute right-0 top-0 text-grey transition duration-300 ease-in-out hover:text-main-primary-color"
-                      onClick={onSearch}
-                    >
-                      delete
-                    </button>
-                  </li>
-                );
-              })}
+                    delete
+                  </button>
+                </li>
+              ))}
             </ul>
           </div>
         </Transition>
