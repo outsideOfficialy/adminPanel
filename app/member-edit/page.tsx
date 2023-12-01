@@ -11,45 +11,21 @@ import soundcloud from "../../src/icons/soundcloud.svg";
 import youtubeMusic from "../../src/icons/youtubeMusic.svg";
 
 export default function Home() {
+  const page = "members";
+
   return (
     <PageLayout
-      onSubmit={(e) => {
-        e.preventDefault();
-        const formElem = document.querySelector("form");
-        if (!formElem) return;
-
-        const formData = new FormData(formElem);
-
-        fetch("http://admin-panel-backend/members", {
-          method: "POST",
-          body: formData
-        })
-          .then((d) => d.text())
-          .then((d) => console.log(d))
-          .catch((reason) => {
-            console.log(reason);
-          });
-      }}
+      pageSubmit={page}
       title="Members"
     >
       <SearchInput
-        onSearch={(e) => {
-          e.preventDefault();
-
-          const val = (e.currentTarget.previousElementSibling as HTMLInputElement).value;
-
-          fetch(`http://admin-panel-backend/members/${val}`, { method: "GET" })
-            .then((d) => d.json())
-            .then((d) => {
-              console.log(d);
-            });
-        }}
+        pageSearch={page}
         placeholder="Member ID..."
         label="Member search"
         name="id"
       />
       <InputTypeText placeholder="Member nickname" label="Member Nickname*" name="nickname" />
-      <InputTypeNum placeholder="Member birthday..." label="Member birthday*" name="birthdate" />
+      <InputTypeText placeholder="Member birthday..." label="Member birthday*" name="birthdate" />
       <InputTypeText placeholder="Member role..." label="Member role*" name="role" />
       <InputTypeText placeholder="About member..." label="About member*" name="about" />
 

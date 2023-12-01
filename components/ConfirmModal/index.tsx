@@ -128,7 +128,6 @@ const RenderConfirmBody: React.FC = ({}) => {
     } else {
       if (!inputs[0].name.includes("id")) {
         if (inputs[0].name.includes("preview_picture")) {
-          console.log(inputs);
           const fileInput = inputs[0] as HTMLInputElement;
 
           if (!fileInput.files) return;
@@ -195,7 +194,7 @@ const ConfirmModal: React.FC<ConfirmModalProps> = ({ isOpened, onSetModal }) => 
             <ButtonTemplate
               primary
               onClick={() => setIsSending(!isSending)}
-              type="button"
+              type="submit"
               className="bg-main-primary-color"
             >
               Send

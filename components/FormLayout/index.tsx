@@ -4,10 +4,10 @@ import SendFormBtn from "../SendFormBtn";
 
 interface FormLayoutProps {
   children?: React.ReactNode[] | React.ReactNode;
-  onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
+  pageSubmit: string;
 }
 
-const FormLayout: React.FC<FormLayoutProps> = ({ children, onSubmit }) => {
+const FormLayout: React.FC<FormLayoutProps> = ({ children, pageSubmit }) => {
   const [isModalOpen, setModalOpen] = React.useState(false);
 
   const handleModalOpen = (value: boolean) => {
@@ -22,7 +22,25 @@ const FormLayout: React.FC<FormLayoutProps> = ({ children, onSubmit }) => {
       action={"http://admin-panel-backend"}
       encType="multipart/form-data"
       method="POST"
-      onSubmit={onSubmit}
+      onSubmit={(e) => {
+        e.preventDefault();
+        const formElem = document.querySelector("form");
+        if (!formElem) return;
+
+        const formData = new FormData(formElem);
+
+        console.log("sending data...");
+
+        fetch(`http://admin-panel-backend/${pageSubmit}`, {
+          method: "POST",
+          body: formData
+        })
+          .then((d) => d.text())
+          .then((d) => console.log(d))
+          .catch((reason) => {
+            console.log(reason);
+          });
+      }}
     >
       {children ? children : null}
       <SendFormBtn setModalOpen={handleModalOpen} />
@@ -30,9 +48,8 @@ const FormLayout: React.FC<FormLayoutProps> = ({ children, onSubmit }) => {
       <div>
         {/* shadow bg for confirmModal */}
         <div
-          className={`${
-            isModalOpen ? "block" : "hidden"
-          } fixed top-0 left-0 w-full h-full bg-black bg-opacity-80 z-[7]`}
+          className={`${isModalOpen ? "block" : "hidden"
+            } fixed top-0 left-0 w-full h-full bg-black bg-opacity-80 z-[7]`}
           onClick={() => handleModalOpen(false)}
         ></div>
 

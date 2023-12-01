@@ -21,7 +21,8 @@ interface SearchInputProps {
   label?: string;
   placeholder: string;
   name: string;
-  onSearch: (e: React.MouseEvent<HTMLButtonElement>) => void; // Функция обработчика поиска
+  pageSearch: string;
+  // onSearch: (e: React.MouseEvent<HTMLButtonElement>) => void; // Функция обработчика поиска
 }
 
 interface TextAreaFieldProps {
@@ -99,38 +100,14 @@ const InputTypeNum: React.FC<InputFieldProps> = ({
   );
 };
 
-// // Тест array для SearchInput
-// const testInfo = [
-//   {
-//     id: "258789",
-//     title: "New release is coming out",
-//     text: " Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sagittis massa non nunc aliquet..."
-//   },
-//   {
-//     id: "258789",
-//     title: "New release is coming out",
-//     text: " Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sagittis massa non nunc aliquet..."
-//   },
-//   {
-//     id: "258789",
-//     title: "New release is coming out",
-//     text: " Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sagittis massa non nunc aliquet..."
-//   },
-//   {
-//     id: "258789",
-//     title: "New release is coming out",
-//     text: " Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sagittis massa non nunc aliquet..."
-//   }
-// ];
-
-const SearchInput: React.FC<SearchInputProps> = ({ label, placeholder, name, onSearch }) => {
+const SearchInput: React.FC<SearchInputProps> = ({ label, placeholder, name, pageSearch }) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [searchResults, setSearchResults] = useState<any[]>([]);
 
   const openToggler = (value: boolean) => setIsOpen(value);
 
   const handleSearch = (val: string) => {
-    fetch(`http://admin-panel-backend/members/${val}`, { method: "GET" })
+    fetch(`http://admin-panel-backend/${pageSearch}/${val}`, { method: "GET" })
       .then((d) => d.json())
       .then((d) => {
         setSearchResults(d);
@@ -165,7 +142,7 @@ const SearchInput: React.FC<SearchInputProps> = ({ label, placeholder, name, onS
             />
             <button
               className="material-symbols-outlined search absolute right-0 top-0 bottom-0 bg-main-primary text-white rounded-r-lg p-[8px] md:p-2.5 font-medium transition duration-300 ease-in-out hover:text-main-primary-color"
-              onClick={onSearch}
+              // onClick={onSearch}
             >
               search
             </button>

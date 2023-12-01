@@ -11,20 +11,11 @@ import soundcloud from '../../src/icons/soundcloud.svg'
 import youtubeMusic from '../../src/icons/youtubeMusic.svg'
 
 const News = () => {
+  const page = "news";
+
   return (
-    <PageLayout onSubmit={(e) => {
-
-    }} title="News">
-      <SearchInput onSearch={(e: React.MouseEvent<HTMLButtonElement>) => {
-        e.preventDefault();
-
-        const val = (e.currentTarget.previousElementSibling as HTMLInputElement).value;
-
-        fetch(`http://admin-panel-backend/news/${val}`, { method: "GET" }).then(d => d.json()).then(d => {
-          console.log(d);
-        });
-
-      }} placeholder="ID news..." label="News id" name="search" />
+    <PageLayout pageSubmit={page} title="News">
+      <SearchInput pageSearch={page} placeholder="ID news..." label="News id" name="search" />
 
       <InputTypeText placeholder="Title text..." label="Title*" name="title" />
       <InputTypeText placeholder="Subtitle text..." label="Subtitle" name="subtitle" />

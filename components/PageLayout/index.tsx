@@ -5,10 +5,13 @@ import PageTemplate from "../PageTemplate";
 interface PageLayoutProps {
   children?: React.ReactNode[] | React.ReactNode;
   title: string;
-  onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
+  pageSubmit: string;
 }
 
-const PageLayout: React.FC<PageLayoutProps> = ({ children, title, onSubmit }) => {
+
+
+const PageLayout: React.FC<PageLayoutProps> = ({ children, title, pageSubmit }) => {
+
   return (
     <>
       {/* here will be menu button calling */}
@@ -20,7 +23,7 @@ const PageLayout: React.FC<PageLayoutProps> = ({ children, title, onSubmit }) =>
       </div>
 
       <PageTemplate title={title}>
-        <FormLayout onSubmit={onSubmit}>{children ? children : null}</FormLayout>
+        <FormLayout pageSubmit={pageSubmit}>{children ? children : null}</FormLayout>
       </PageTemplate>
     </>
   );
