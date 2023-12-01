@@ -33,9 +33,11 @@ interface ModalListItemProps {
   column?: boolean;
 }
 
-interface ConfirmModalImgSliderProps {}
+interface ModalBodySliderProps {
+  files: FileList;
+}
 
-const RenderConfirmBody: React.FC = ({}) => {
+const RenderConfirmBody: React.FC = React.memo(({ }) => {
   const allContainers = document.querySelectorAll("form > div");
   const mapedEl: React.ReactNode[] = [];
 
@@ -82,9 +84,7 @@ const RenderConfirmBody: React.FC = ({}) => {
   allContainers.forEach((el, idx) => {
     const label = el.querySelector("label");
     if (!label) return;
-    const inputs = el.querySelectorAll("input, textarea") as NodeListOf<
-      HTMLInputElement | HTMLTextAreaElement
-    >;
+    const inputs = el.querySelectorAll("input, textarea") as NodeListOf<HTMLInputElement | HTMLTextAreaElement>;
 
     if (inputs.length >= 2) {
       inputs.forEach((input, index) => {
@@ -128,25 +128,15 @@ const RenderConfirmBody: React.FC = ({}) => {
     } else {
       if (!inputs[0].name.includes("id")) {
         if (inputs[0].name.includes("preview_picture")) {
-          console.log(inputs);
           const fileInput = inputs[0] as HTMLInputElement;
 
           if (!fileInput.files) return;
 
-          for (let i = 0; i < fileInput.files?.length; i++) {
-            const file = fileInput.files[i];
-            //! реализовать компоненту со слайдером
-            mapedEl.push(
-              <ModalListItem title="Picture(s) preview:">
-                <img
-                  className="max-h-[500px] block mx-auto"
-                  key={idx}
-                  src={URL.createObjectURL(file)}
-                  alt="Preview picture"
-                />
-              </ModalListItem>
-            );
-          }
+          mapedEl.push(
+            <ModalListItem title="Picture(s) preview:">
+              <ModalBodySlider files={fileInput.files} />
+            </ModalListItem>
+          );
         } else {
           createTextInputConfirm(inputs[0], label.textContent?.replaceAll("*", "") as string);
         }
@@ -155,7 +145,7 @@ const RenderConfirmBody: React.FC = ({}) => {
   });
 
   return <>{mapedEl.map((el) => el)}</>;
-};
+});
 
 const ConfirmModal: React.FC<ConfirmModalProps> = ({ isOpened, onSetModal }) => {
   const [isSending, setIsSending] = React.useState(false);
@@ -227,8 +217,31 @@ const ModalListItem: React.FC<ModalListItemProps> = ({ children, title, column =
   );
 };
 
-const ConfirmModalImgSlider: React.FC<ConfirmModalImgSliderProps> = ({}) => {
-  return <></>;
+const ModalBodySlider: React.FC<ModalBodySliderProps> = ({
+  files
+}) => {
+  // for (let i = 0; i < fileInput.files?.length; i++) {
+  //   const file = fileInput.files[i];
+  //   //! реализовать компоненту со слайдером
+  // }
+  const [currentSlide, setCurrentSlide] = React.useState(0);
+
+  const increaseSlide = () => {
+    if (currentSlide + 1 > files.length) return;
+    setCurrentSlide(currentSlide + 1);
+  };
+  const decreaseSlide = () => {
+    if (currentSlide - 1 <= 0) return;
+    setCurrentSlide(currentSlide -1);
+  };
+
+  return <div className="relative w-full h-[500px] border-[1px] border-main-primary-color">
+    <div onClick={decreaseSlide} className="w-[30px] h-[30px] border-[1px] left-0 cursor-pointer border-primary-color absolute -translate-x-1/2 top-1/2">{"<"}</div>
+    <div onClick={increaseSlide} className="w-[30px] h-[30px] border-[1px] right-0 cursor-pointer border-primary-color absolute -translate-x-1/2 top-1/2">{">"}</div>
+    {function() {
+      return <Image width={100} height={200} className="w-full h-auto" src={URL.createObjectURL(files[currentSlide])} alt="preview_image" />;
+    }()}
+  </div>;
 };
 
 // const ModalBodySlider: React.FC<urls: string[]>

@@ -31,18 +31,7 @@ export default function Home() {
         });
     }} title="Members">
       <SearchInput onSearch={(e) => {
-<<<<<<< HEAD
-
         e.preventDefault();
-
-        const val = (e.currentTarget.previousElementSibling as HTMLInputElement).value;
-
-        fetch(`http://admin-panel-backend/members/${val}`, { method: "GET" }).then(d => d.json()).then(d => {
-          console.log(d);
-        });
-=======
-        e.preventDefault();
->>>>>>> main
 
         const val = (e.currentTarget.previousElementSibling as HTMLInputElement).value;
 
