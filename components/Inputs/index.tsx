@@ -152,7 +152,7 @@ const SearchInput: React.FC<SearchInputProps> = ({ label, placeholder, name, onS
       )}
       <div>
         <div className="cursor-pointer flex flex-col items-start">
-          <div onClick={() => openToggler(true)} className="relative w-full">
+          <div className="relative w-full">
             <input
               type="text"
               placeholder={placeholder}
@@ -161,7 +161,7 @@ const SearchInput: React.FC<SearchInputProps> = ({ label, placeholder, name, onS
                 "bg-black border rounded-lg text-white p-[8px] md:p-2.5 max-w-[450px] w-full text-[14px] md:text-base font-normal md:font-medium leading-normal tracking-wider transition duration-200 ease-in-out placeholder-grey focus:border-main-primary-color focus:ring-0 focus:outline-none",
                 isOpen ? "border-main-primary-color rounded-b-[0px]" : "border-white"
               )}
-              onChange={(e) => handleSearch(e.target.value)} // Вызываем fetchData при изменении значения в поле ввода
+              onChange={(e) => handleSearch(e.target.value)}
             />
             <button
               className="material-symbols-outlined search absolute right-0 top-0 bottom-0 bg-main-primary text-white rounded-r-lg p-[8px] md:p-2.5 font-medium transition duration-300 ease-in-out hover:text-main-primary-color"
@@ -173,7 +173,7 @@ const SearchInput: React.FC<SearchInputProps> = ({ label, placeholder, name, onS
         </div>
         {/* body */}
         <Transition
-          show={isOpen}
+          show={isOpen} // Add the show prop
           enter="transition origin-top duration-200 transform"
           enterFrom="opacity-0 scale-y-0"
           enterTo="opacity-100 scale-y-1"
@@ -190,22 +190,13 @@ const SearchInput: React.FC<SearchInputProps> = ({ label, placeholder, name, onS
                   key={item.id}
                 >
                   <div className="flex flex-col gap-[5px]">
-                    <p className="leading-[17px] text-[12px] text-grey">
-                      ID: <span className="text-white">{item.id}</span>
-                    </p>
-                    <p className="leading-[17px] text-[14px] text-grey">
-                      Nickname: <span className="text-white">{item.nickname}</span>
-                    </p>
-                    <p className="leading-[17px] text-[12px] text-grey">
-                      Role: <span className="text-white">{item.role}</span>
+                    <p className="leading-[17px] text-[12px]">ID {item.id}</p>
+                    <p className="leading-[17px] text-[14px]">Nickname: {item.nickname}</p>
+                    <p className="leading-[17px] text-[12px]">
+                      Role: <span className="text-grey">{item.role}</span>
                     </p>
                   </div>
-                  <button
-                    className="material-symbols-outlined delete absolute right-0 top-0 text-grey transition duration-300 ease-in-out hover:text-main-primary-color"
-                    onClick={onSearch}
-                  >
-                    delete
-                  </button>
+                  {/* Add other details as needed */}
                 </li>
               ))}
             </ul>
