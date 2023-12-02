@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import ButtonTemplate from "../ButtonTemplate";
 import clsx from "clsx";
 import { Transition } from "@headlessui/react";
+import InputMask from "react-input-mask";
 
 interface InputWrapperProps {
   label?: string;
@@ -70,6 +71,27 @@ const InputTypeText: React.FC<InputFieldProps> = ({
       <input
         onChange={onChange ? onChange : undefined}
         type="text"
+        placeholder={placeholder}
+        name={name}
+        className="bg-black border rounded-lg border-white text-white p-[8px] md:p-2.5 max-w-[450px] w-full text-[14px] md:text-base font-normal md:font-medium leading-normal tracking-wider transition duration-300 ease-in-out placeholder-grey focus:border-main-primary-color focus:ring-0 focus:outline-none "
+      />
+    </InputWrapper>
+  );
+};
+
+const InputTypeData: React.FC<InputFieldProps> = ({
+  label,
+  placeholder,
+  name,
+  inputClassName,
+  onChange
+}) => {
+  return (
+    <InputWrapper label={label} className={inputClassName}>
+      <InputMask
+        mask="99/99/9999"
+        onChange={onChange ? onChange : undefined}
+        type="text" // Изменил тип на "text"
         placeholder={placeholder}
         name={name}
         className="bg-black border rounded-lg border-white text-white p-[8px] md:p-2.5 max-w-[450px] w-full text-[14px] md:text-base font-normal md:font-medium leading-normal tracking-wider transition duration-300 ease-in-out placeholder-grey focus:border-main-primary-color focus:ring-0 focus:outline-none "
@@ -298,4 +320,12 @@ const SongsInputs: React.FC<{ label: string; name: string }> = ({ label, name })
   );
 };
 
-export { InputTypeText, SearchInput, TextArea, FileInput, SongsInputs, InputTypeNum };
+export {
+  InputTypeText,
+  SearchInput,
+  TextArea,
+  FileInput,
+  SongsInputs,
+  InputTypeNum,
+  InputTypeData
+};
