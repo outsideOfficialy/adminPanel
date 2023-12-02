@@ -24,6 +24,7 @@ const icons: {
 
 interface ConfirmModalProps {
   isOpened: boolean;
+  successSending: boolean;
   onSetModal: (value: boolean) => void;
 }
 
@@ -132,8 +133,6 @@ const RenderConfirmBody: React.FC = React.memo(({ }) => {
 
           if (!fileInput.files) return;
 
-          console.log(label);
-
           mapedEl.push(
             <ModalListItem title={`${label.textContent?.replaceAll("*", "")}:`}>
               <ModalBodySlider files={fileInput.files} />
@@ -149,7 +148,7 @@ const RenderConfirmBody: React.FC = React.memo(({ }) => {
   return <>{mapedEl.map((el) => el)}</>;
 });
 
-const ConfirmModal: React.FC<ConfirmModalProps> = ({ isOpened, onSetModal }) => {
+const ConfirmModal: React.FC<ConfirmModalProps> = ({ isOpened, onSetModal, successSending }) => {
   const [isSending, setIsSending] = React.useState(false);
 
   return (
@@ -171,7 +170,10 @@ const ConfirmModal: React.FC<ConfirmModalProps> = ({ isOpened, onSetModal }) => 
           <div className="w-full flex justify-center">
             <button
               type="button"
-              onClick={() => onSetModal(false)}
+              onClick={() => {
+                onSetModal(false)
+                setIsSending(false);
+              }}
               className="close absolute top-[20px] right-[20px] w-[24px] h-[24px] hover:text-main-primary-color material-symbols-outlined"
             >
               close
@@ -186,14 +188,14 @@ const ConfirmModal: React.FC<ConfirmModalProps> = ({ isOpened, onSetModal }) => 
           <div className="w-full text-center flex justify-center items-center gap-[25px]">
             <ButtonTemplate
               primary
-              onClick={() => setIsSending(!isSending)}
+              onClick={() => setIsSending(true)}
               type="submit"
               className="bg-main-primary-color"
             >
               Send
             </ButtonTemplate>
             <Transition
-              show={isSending}
+              show={isSending && !successSending}
               enter="transition-all duration-700 ease-in-out"
               enterFrom="translate-x-[300%] opacity-0"
               enterTo="translate-x-0 opacity-100"
@@ -201,7 +203,7 @@ const ConfirmModal: React.FC<ConfirmModalProps> = ({ isOpened, onSetModal }) => 
               leaveFrom="translate-x-0 opacity-100"
               leaveTo="translate-x-[300%] opacity-0"
             >
-              <Loader open={isSending} />
+              <Loader open={isSending && !successSending} />
             </Transition>
           </div>
         </div>
