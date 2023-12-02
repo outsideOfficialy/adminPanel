@@ -14,18 +14,10 @@ export default function Home() {
   const page = "members";
 
   return (
-    <PageLayout
-      pageSubmit={page}
-      title="Members"
-    >
-      <SearchInput
-        pageSearch={page}
-        placeholder="Member ID..."
-        label="Member search"
-        name="id"
-      />
+    <PageLayout pageSubmit={page} title="Members">
+      <SearchInput pageSearch={page} placeholder="Member ID..." label="Member search" name="id" />
       <InputTypeText placeholder="Member nickname" label="Member Nickname*" name="nickname" />
-      <InputTypeText placeholder="Member birthday..." label="Member birthday*" name="birthdate" />
+      <InputTypeNum placeholder="Member birthday..." label="Member birthday*" name="birthdate" />
       <InputTypeText placeholder="Member role..." label="Member role*" name="role" />
       <InputTypeText placeholder="About member..." label="About member*" name="about" />
 
