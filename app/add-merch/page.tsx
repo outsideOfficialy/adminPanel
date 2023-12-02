@@ -19,7 +19,7 @@ export default function Home() {
         placeholder="Browse..."
         accept="image/webp, image/png, image/jpg, image/jpeg"
         name="preview_picture[]"
-        label="Select preview picture's*"
+        label="Merch preview picture(s)*"
         id="merch-file-input"
         multiple
       />

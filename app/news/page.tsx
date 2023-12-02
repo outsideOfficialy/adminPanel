@@ -27,7 +27,7 @@ const News = () => {
         placeholder="Browse..."
         accept="image/webp, image/png, image/jpg, image/jpeg"
         name="preview_picture[]"
-        label="Select review picture*"
+        label="News preview picture*"
         id="news-file-input"
       />
     </PageLayout>

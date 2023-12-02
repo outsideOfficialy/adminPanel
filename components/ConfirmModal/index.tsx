@@ -132,8 +132,10 @@ const RenderConfirmBody: React.FC = React.memo(({ }) => {
 
           if (!fileInput.files) return;
 
+          console.log(label);
+
           mapedEl.push(
-            <ModalListItem title="Picture(s) preview:">
+            <ModalListItem title={`${label.textContent?.replaceAll("*", "")}:`}>
               <ModalBodySlider files={fileInput.files} />
             </ModalListItem>
           );

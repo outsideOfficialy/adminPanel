@@ -64,7 +64,7 @@ export default function Home() {
       <FileInput
         placeholder="Browse..."
         name="preview_picture[]"
-        label="Select single\album picture*"
+        label="Single\album preview*"
         id="preview_picture"
         accept="image/webp, image/png, image/jpg, image/jpeg"
       />

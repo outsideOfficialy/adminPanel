@@ -40,7 +40,7 @@ export default function Home() {
         accept="image/webp, image/png, image/jpg, image/jpeg"
         placeholder="Browse..."
         name="preview_picture[]"
-        label="Select preview picture*"
+        label="Member photo picture*"
         id="member-file-input"
       />
     </PageLayout>
