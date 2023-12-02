@@ -8,18 +8,20 @@ interface PageLayoutProps {
   pageSubmit: string;
 }
 
-
-
 const PageLayout: React.FC<PageLayoutProps> = ({ children, title, pageSubmit }) => {
-
   return (
     <>
       {/* here will be menu button calling */}
-      <div className="absolute left-[10px] top-[15px] md:left-[40px] md:top-[40px]" >
-        <Menu list={[{ textContent: "Add music", link: "/add-music" },
-        { textContent: "News", link: "/news" },
-        { textContent: "Add merch", link: "/add-merch" },
-        { textContent: "Member info", link: "/member-edit" }]} />
+      <div className="absolute left-[10px] top-[15px] md:left-[40px] md:top-[40px]">
+        <Menu
+          list={[
+            { textContent: "Music", link: "/add-music" },
+            { textContent: "News", link: "/news" },
+            { textContent: "Merch", link: "/add-merch" },
+            { textContent: "Members", link: "/member-edit" },
+            { textContent: "Slider", link: "/#" }
+          ]}
+        />
       </div>
 
       <PageTemplate title={title}>
