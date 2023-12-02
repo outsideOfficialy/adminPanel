@@ -23,23 +23,20 @@ const Dropdown: React.FC<DropdownProps> = ({ headerText, inputsName, links, labe
       {label && <label className="text-[20px] md:text-2xl font-normal leading-6 tracking-wider">{label}</label>}
       <div onClick={(e) => {
         const curTarget = e.target as HTMLElement; // получаем какой элемент нажали
+        const dropdownHead = curTarget.closest(".dropdown-head") as HTMLDivElement;
         const dropdownContainer = curTarget.closest(".dropdown-container") as HTMLDivElement;
         const isBodyClicked = (curTarget.closest(".dropdown-body") as HTMLDivElement)?.classList.contains("dropdown-body");
 
 
         if (isOpen && !isBodyClicked) {
-          if (window.innerWidth <= 768) {
-            dropdownContainer.style.maxHeight = "42px";
-          } else {
-            dropdownContainer.style.maxHeight = "46px";
-          }
+          dropdownContainer.style.maxHeight = window.getComputedStyle(dropdownHead).height;
           setIsOpen(false);
         }
         else if (!isOpen) {
-          dropdownContainer.style.maxHeight = dropdownContainer.scrollHeight + "px";
+          dropdownContainer.style.maxHeight = dropdownContainer.scrollHeight + 1 + "px";
           setIsOpen(true);
         }
-      }} className={clsx("dropdown-container transition-all ease-out duration-300 w-full max-w-[450px] cursor-default overflow-hidden", isOpen ? "" : "max-h-[42px] md:max-h-[46px]")}>
+      }} className={clsx("dropdown-container transition-all ease-out duration-300 w-full max-w-[450px] cursor-default overflow-hidden", isOpen ? "" : "max-h-[43px] md:max-h-[47px]")}>
         {/* header */}
         <div
           className={clsx(
