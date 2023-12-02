@@ -24,8 +24,10 @@ const icons: {
 
 interface ConfirmModalProps {
   isOpened: boolean;
+  isSending: boolean;
   successSending: boolean;
   onSetModal: (value: boolean) => void;
+  setIsSending: (value: boolean) => void;
 }
 
 interface ModalListItemProps {
@@ -148,8 +150,8 @@ const RenderConfirmBody: React.FC = React.memo(({ }) => {
   return <>{mapedEl.map((el) => el)}</>;
 });
 
-const ConfirmModal: React.FC<ConfirmModalProps> = ({ isOpened, onSetModal, successSending }) => {
-  const [isSending, setIsSending] = React.useState(false);
+const ConfirmModal: React.FC<ConfirmModalProps> = ({ isOpened, onSetModal, successSending, isSending, setIsSending }) => {
+  // const [isSending, setIsSending] = React.useState(false);
 
   return (
     <Transition
@@ -259,7 +261,5 @@ const ModalBodySlider: React.FC<ModalBodySliderProps> = ({
     }()}
   </div>;
 };
-
-// const ModalBodySlider: React.FC<urls: string[]>
 
 export default ConfirmModal;

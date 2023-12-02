@@ -10,6 +10,7 @@ interface FormLayoutProps {
 const FormLayout: React.FC<FormLayoutProps> = ({ children, pageSubmit }) => {
   const [isModalOpen, setModalOpen] = React.useState(false);
   const [successSending, setSuccessSending] = React.useState(false);
+  const [isSending, setIsSending] = React.useState(false);
 
   const handleModalOpen = (value: boolean) => {
     // togle body scroll
@@ -62,11 +63,14 @@ const FormLayout: React.FC<FormLayoutProps> = ({ children, pageSubmit }) => {
         <div
           className={`${isModalOpen ? "block" : "hidden"
             } fixed top-0 left-0 w-full h-full bg-black bg-opacity-80 z-[7]`}
-          onClick={() => handleModalOpen(false)}
+          onClick={() => {
+            setIsSending(false);
+            handleModalOpen(false)
+          }}
         ></div>
 
         <div className="fixed top-1/2 left-1/2 z-[10] transform -translate-x-1/2 -translate-y-1/2">
-          <ConfirmModal successSending={successSending} isOpened={isModalOpen} onSetModal={handleModalOpen} />
+          <ConfirmModal isSending={isSending} setIsSending={setIsSending} successSending={successSending} isOpened={isModalOpen} onSetModal={handleModalOpen} />
         </div>
       </div>
     </form>
