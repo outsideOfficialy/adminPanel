@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { SearchInput, InputTypeText, FileInput, InputTypeNum } from "@/components/Inputs";
+import { SearchInput, InputTypeText, FileInput, InputTypeData } from "@/components/Inputs";
 import PageLayout from "@/components/PageLayout";
 import Dropdown from "@/components/Dropdown";
 
@@ -17,7 +17,7 @@ export default function Home() {
     <PageLayout pageSubmit={page} title="Members">
       <SearchInput pageSearch={page} placeholder="Member ID..." label="Member search" name="id" />
       <InputTypeText placeholder="Member nickname" label="Member Nickname*" name="nickname" />
-      <InputTypeNum placeholder="Member birthday..." label="Member birthday*" name="birthdate" />
+      <InputTypeData placeholder="Member birthday..." label="Member birthday*" name="birthdate" />
       <InputTypeText placeholder="Member role..." label="Member role*" name="role" />
       <InputTypeText placeholder="About member..." label="About member*" name="about" />
 
