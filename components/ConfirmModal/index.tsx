@@ -188,7 +188,7 @@ const ConfirmModal: React.FC<ConfirmModalProps> = ({ isOpened, onSetModal, succe
           <div className="w-full text-center flex justify-center items-center gap-[25px]">
             <ButtonTemplate
               primary
-              onClick={() => setIsSending(true)}
+              onClick={() =>setIsSending(true)}
               type="submit"
               className="bg-main-primary-color"
             >
