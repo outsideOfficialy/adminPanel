@@ -6,28 +6,14 @@ import PageLayout from "@/components/PageLayout";
 import { InputTypeText, SearchInput, FileInput, TextArea, InputTypeNum } from "@/components/Inputs";
 
 export default function Home() {
+  const page = "merch";
+
   return (
     <PageLayout
-      onSubmit={(e) => {
-        e.preventDefault();
-        const formElem = document.querySelector("form");
-        if (!formElem) return;
-
-        const formData = new FormData(formElem);
-
-        fetch("http://admin-panel-backend/merch", {
-          method: "POST",
-          body: formData
-        })
-          .then((d) => d.text())
-          .then((d) => console.log(d))
-          .catch((reason) => {
-            console.log(reason);
-          });
-      }}
+      pageSubmit={page}
       title="Merch"
     >
-      <SearchInput onSearch={() => {}} placeholder="ID merch...." label="ID Merch" name="id" />
+      <SearchInput pageSearch={page} placeholder="ID merch...." label="ID Merch" name="id" />
 
       <FileInput
         placeholder="Browse..."

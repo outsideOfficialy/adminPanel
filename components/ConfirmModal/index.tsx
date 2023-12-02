@@ -185,7 +185,7 @@ const ConfirmModal: React.FC<ConfirmModalProps> = ({ isOpened, onSetModal }) => 
             <ButtonTemplate
               primary
               onClick={() => setIsSending(!isSending)}
-              type="button"
+              type="submit"
               className="bg-main-primary-color"
             >
               Send

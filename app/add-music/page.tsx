@@ -11,29 +11,15 @@ import soundcloud from '../../src/icons/soundcloud.svg'
 import youtubeMusic from '../../src/icons/youtubeMusic.svg'
 
 export default function Home() {
+  const page = "music";
+
   return (
     <PageLayout
-      onSubmit={(e) => {
-        e.preventDefault();
-        const formElem = document.querySelector("form");
-        if (!formElem) return;
-
-        const formData = new FormData(formElem);
-
-        fetch("http://admin-panel-backend/music", {
-          method: "POST",
-          body: formData
-        })
-          .then(d => d.text())
-          .then(d => console.log(d))
-          .catch((reason) => {
-            console.log(reason);
-          });
-      }} title="Add music">
+      pageSubmit={page}
+      title="Add music">
       <SearchInput
-        onSearch={() => {
-
-        }} placeholder="Search" label="Music id" name="id" />
+        pageSearch={page}
+        placeholder="Search" label="Music id" name="id" />
       <RadioGroup
         title="Release type"
         group={[
