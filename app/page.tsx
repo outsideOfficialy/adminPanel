@@ -23,7 +23,7 @@ export default function Home() {
 
       <ButtonTemplate
         primary
-        onClick={showPassword ? () => (window.location.href = "/news") : handleLoginClick}
+        onClick={showPassword ? () => (window.location.href += "/news") : handleLoginClick}
         className="max-w-none"
       >
         Login
