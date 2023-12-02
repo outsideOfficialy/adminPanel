@@ -20,8 +20,6 @@ const Slider = () => {
       <InputTypeText placeholder="Slider title...." label="Slider Title" name="title" />
       <InputTypeText placeholder="Slider link...." label="Slider Link*" name="subtitle" />
 
-      <TextArea label="News content" placeholder="News text..." name="content" />
-
       <FileInput
         placeholder="Browse..."
         accept="image/webp, image/png, image/jpg, image/jpeg"
