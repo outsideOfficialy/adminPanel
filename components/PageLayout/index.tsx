@@ -19,7 +19,7 @@ const PageLayout: React.FC<PageLayoutProps> = ({ children, title, pageSubmit }) 
             { textContent: "News", link: "/news" },
             { textContent: "Merch", link: "/add-merch" },
             { textContent: "Members", link: "/member-edit" },
-            { textContent: "Slider", link: "/#" }
+            { textContent: "Slider", link: "/slider" }
           ]}
         />
       </div>
