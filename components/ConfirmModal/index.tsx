@@ -220,26 +220,38 @@ const ModalListItem: React.FC<ModalListItemProps> = ({ children, title, column =
 const ModalBodySlider: React.FC<ModalBodySliderProps> = ({
   files
 }) => {
-  // for (let i = 0; i < fileInput.files?.length; i++) {
-  //   const file = fileInput.files[i];
-  //   //! реализовать компоненту со слайдером
-  // }
   const [currentSlide, setCurrentSlide] = React.useState(0);
 
   const increaseSlide = () => {
-    if (currentSlide + 1 > files.length) return;
-    setCurrentSlide(currentSlide + 1);
+    if (currentSlide + 1 >= files.length) setCurrentSlide(0);
+    else setCurrentSlide(currentSlide + 1);
+    
   };
   const decreaseSlide = () => {
-    if (currentSlide - 1 <= 0) return;
-    setCurrentSlide(currentSlide -1);
+    if (currentSlide - 1 < 0) setCurrentSlide(files.length - 1);
+    else setCurrentSlide(currentSlide - 1);
   };
 
-  return <div className="relative w-full h-[500px] border-[1px] border-main-primary-color">
-    <div onClick={decreaseSlide} className="w-[30px] h-[30px] border-[1px] left-0 cursor-pointer border-primary-color absolute -translate-x-1/2 top-1/2">{"<"}</div>
-    <div onClick={increaseSlide} className="w-[30px] h-[30px] border-[1px] right-0 cursor-pointer border-primary-color absolute -translate-x-1/2 top-1/2">{">"}</div>
-    {function() {
-      return <Image width={100} height={200} className="w-full h-auto" src={URL.createObjectURL(files[currentSlide])} alt="preview_image" />;
+  return <div className="relative w-full">
+
+    {files.length > 1 ? <><div className="absolute h-full w-[10%] left-0 cursor-pointer" title="Flip the image" onClick={decreaseSlide}></div>
+
+      <div className="absolute h-full w-[10%] right-0 cursor-pointer" title="Flip the image" onClick={increaseSlide}></div></> : null}
+    
+    {function () {
+      const imgArray = [];
+      for (let i = 0; i < files.length; i++) imgArray.push(<img className="border-[1px] border-main-primary-color w-full h-auto" src={URL.createObjectURL(files[i])} alt="preview_image" />);
+      return <>{imgArray[currentSlide]}</>
+    }()}
+    {function () {
+      if (files.length <= 1) return <></>;
+      
+      return <div className="absolute bottom-[20px] left-[20px] flex gap-[20px]">
+        {Array.from(files).map((el, idx) => {
+          return <div className={`w-[20px] h-[20px] rounded-full border-[1px] border-white cursor-pointer ${idx === currentSlide ? "bg-white" : ""}`}
+          onClick={() => setCurrentSlide(idx)}></div>;
+        })}
+      </div>
     }()}
   </div>;
 };
