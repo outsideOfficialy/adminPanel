@@ -54,22 +54,33 @@ export const SearchInput: React.FC<SearchInputProps> = ({ label, placeholder, na
         </div>
         {/* body */}
         <Transition
-          show={isOpen} // Add the show prop
+          show={isOpen}
           enter="transition origin-top duration-200 transform"
           enterFrom="opacity-0 scale-y-0"
           enterTo="opacity-100 scale-y-1"
           leave="transition origin-top duration-200 transform"
           leaveFrom="opacity-100 scale-y-0"
-          leaveTo="opacity-0 scale-y-0"
-        >
+          leaveTo="opacity-0 scale-y-0">
           <div className="border-[1px] border-main-primary-color pl-[15px] pr-[5px] py-[10px] rounded-b-[5px]">
             <ul className="max-h-[319px] overflow-scroll pr-[10px] flex flex-col gap-[15px]">
-              {searchResults.map((item) => (
+              {searchResults && searchResults.map((item) => (
                 <li
-                  onClick={() => openToggler(false)}
+                  onClick={() => {
+                    openToggler(false);
+
+                    for (const key in item) {
+                      const elementInDom = document.querySelector(`form [name^=${key}]`);
+                      if (!elementInDom) continue;
+                      if (key === "preview_picture") {
+                        // console.log(item[key]);
+                        continue;
+                      }
+
+                      elementInDom.value = item[key];
+                    }
+                  }}
                   className="relative pb-[10px] border-b-[1px] border-grey cursor-pointer"
-                  key={item.id}
-                >
+                  key={item.id}>
                   <div className="flex flex-col gap-[5px]">
                     <p className="leading-[17px] text-[12px] text-grey">
                       ID: <span className="text-white">{item.id}</span>{" "}
