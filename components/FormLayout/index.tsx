@@ -31,8 +31,8 @@ const FormLayout: React.FC<FormLayoutProps> = ({ children, pageSubmit }) => {
 
         const formData = new FormData(formElem);
 
-        console.log("sending data...");
-
+        console.log("fetching to ", `http://admin-panel-backend/${pageSubmit}`);
+        setSuccessSending(false);
         fetch(`http://admin-panel-backend/${pageSubmit}`, {
           method: "POST",
           body: formData
@@ -46,7 +46,10 @@ const FormLayout: React.FC<FormLayoutProps> = ({ children, pageSubmit }) => {
             return d.text();
           })
           .then((d) => {
-            setSuccessSending(true);
+            setTimeout(() => {
+              setSuccessSending(true);
+              setModalOpen(false);
+            }, 3000);
             console.log(d);
           })
           .catch((reason) => {

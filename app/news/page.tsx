@@ -16,7 +16,7 @@ const News = () => {
 
   return (
     <PageLayout pageSubmit={page} title="News">
-      <SearchInput pageSearch={page} placeholder="ID news..." label="News id" name="search" />
+      <SearchInput pageSearch={page} placeholder="ID news..." label="News id" name="id" />
 
       <InputTypeText placeholder="Title text..." label="Title*" name="title" />
       <InputTypeText placeholder="Subtitle text..." label="Subtitle" name="subtitle" />

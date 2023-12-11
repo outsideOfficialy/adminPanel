@@ -184,7 +184,7 @@ const ConfirmModal: React.FC<ConfirmModalProps> = ({ isOpened, onSetModal, succe
               Confirmation of sending data
             </h3>
           </div>
-          <div className="w-full max-h-[576px] overflow-auto flex flex-col gap-[45px] pr-[15px]">
+          <div className="w-full max-h-[576px] overflow-auto flex flex-col gap-[45px] pr-[15px] pb-[10px]">
             <RenderConfirmBody />
           </div>
           <div className="w-full text-center flex justify-center items-center gap-[25px]">

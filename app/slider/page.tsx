@@ -14,7 +14,7 @@ const Slider = () => {
         pageSearch={page}
         placeholder="ID slider..."
         label="Slider search"
-        name="search"
+        name="id"
       />
 
       <InputTypeText placeholder="Slider title...." label="Slider Title" name="title" />
