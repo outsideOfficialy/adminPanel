@@ -24,7 +24,10 @@ const icons: {
 
 interface ConfirmModalProps {
   isOpened: boolean;
+  isSending: boolean;
+  successSending: boolean | undefined;
   onSetModal: (value: boolean) => void;
+  setIsSending: (value: boolean) => void;
 }
 
 interface ModalListItemProps {
@@ -132,8 +135,6 @@ const RenderConfirmBody: React.FC = React.memo(({ }) => {
 
           if (!fileInput.files) return;
 
-          console.log(label);
-
           mapedEl.push(
             <ModalListItem title={`${label.textContent?.replaceAll("*", "")}:`}>
               <ModalBodySlider files={fileInput.files} />
@@ -149,8 +150,8 @@ const RenderConfirmBody: React.FC = React.memo(({ }) => {
   return <>{mapedEl.map((el) => el)}</>;
 });
 
-const ConfirmModal: React.FC<ConfirmModalProps> = ({ isOpened, onSetModal }) => {
-  const [isSending, setIsSending] = React.useState(false);
+const ConfirmModal: React.FC<ConfirmModalProps> = ({ isOpened, onSetModal, successSending, isSending, setIsSending }) => {
+  // const [isSending, setIsSending] = React.useState(false);
 
   return (
     <Transition
@@ -171,7 +172,10 @@ const ConfirmModal: React.FC<ConfirmModalProps> = ({ isOpened, onSetModal }) => 
           <div className="w-full flex justify-center">
             <button
               type="button"
-              onClick={() => onSetModal(false)}
+              onClick={() => {
+                onSetModal(false)
+                setIsSending(false);
+              }}
               className="close absolute top-[20px] right-[20px] w-[24px] h-[24px] hover:text-main-primary-color material-symbols-outlined"
             >
               close
@@ -180,20 +184,20 @@ const ConfirmModal: React.FC<ConfirmModalProps> = ({ isOpened, onSetModal }) => 
               Confirmation of sending data
             </h3>
           </div>
-          <div className="w-full max-h-[576px] overflow-auto flex flex-col gap-[45px] pr-[15px]">
+          <div className="w-full max-h-[576px] overflow-auto flex flex-col gap-[45px] pr-[15px] pb-[10px]">
             <RenderConfirmBody />
           </div>
           <div className="w-full text-center flex justify-center items-center gap-[25px]">
             <ButtonTemplate
               primary
-              onClick={() => setIsSending(!isSending)}
+              onClick={() => setIsSending(true)}
               type="submit"
               className="bg-main-primary-color"
             >
               Send
             </ButtonTemplate>
             <Transition
-              show={isSending}
+              show={isSending && successSending === undefined}
               enter="transition-all duration-700 ease-in-out"
               enterFrom="translate-x-[300%] opacity-0"
               enterTo="translate-x-0 opacity-100"
@@ -201,8 +205,14 @@ const ConfirmModal: React.FC<ConfirmModalProps> = ({ isOpened, onSetModal }) => 
               leaveFrom="translate-x-0 opacity-100"
               leaveTo="translate-x-[300%] opacity-0"
             >
-              <Loader open={isSending} />
+              <Loader open={isSending && successSending === undefined} />
             </Transition>
+            {successSending === false && <>
+              {/* Тут если отправка не удалась то вызвать модалку об неудачном отправлении */}
+            </>}
+            {successSending === true && <>
+              {/* Тут если отправка не удалась то вызвать модалку об успешном отправлении */}
+            </>}
           </div>
         </div>
       </div>
@@ -227,7 +237,7 @@ const ModalBodySlider: React.FC<ModalBodySliderProps> = ({
   const increaseSlide = () => {
     if (currentSlide + 1 >= files.length) setCurrentSlide(0);
     else setCurrentSlide(currentSlide + 1);
-    
+
   };
   const decreaseSlide = () => {
     if (currentSlide - 1 < 0) setCurrentSlide(files.length - 1);
@@ -239,7 +249,7 @@ const ModalBodySlider: React.FC<ModalBodySliderProps> = ({
     {files.length > 1 ? <><div className="absolute h-full w-[10%] left-0 cursor-pointer" title="Flip the image" onClick={decreaseSlide}></div>
 
       <div className="absolute h-full w-[10%] right-0 cursor-pointer" title="Flip the image" onClick={increaseSlide}></div></> : null}
-    
+
     {function () {
       const imgArray = [];
       for (let i = 0; i < files.length; i++) imgArray.push(<img className="border-[1px] border-main-primary-color w-full h-auto" src={URL.createObjectURL(files[i])} alt="preview_image" />);
@@ -247,17 +257,15 @@ const ModalBodySlider: React.FC<ModalBodySliderProps> = ({
     }()}
     {function () {
       if (files.length <= 1) return <></>;
-      
+
       return <div className="absolute bottom-[20px] left-[20px] flex gap-[20px]">
         {Array.from(files).map((el, idx) => {
           return <div className={`w-[20px] h-[20px] rounded-full border-[1px] border-white cursor-pointer ${idx === currentSlide ? "bg-white" : ""}`}
-          onClick={() => setCurrentSlide(idx)}></div>;
+            onClick={() => setCurrentSlide(idx)}></div>;
         })}
       </div>
     }()}
   </div>;
 };
-
-// const ModalBodySlider: React.FC<urls: string[]>
 
 export default ConfirmModal;

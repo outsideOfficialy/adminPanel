@@ -9,6 +9,8 @@ interface FormLayoutProps {
 
 const FormLayout: React.FC<FormLayoutProps> = ({ children, pageSubmit }) => {
   const [isModalOpen, setModalOpen] = React.useState(false);
+  const [successSending, setSuccessSending] = React.useState<undefined | boolean>(undefined);
+  const [isSending, setIsSending] = React.useState(false);
 
   const handleModalOpen = (value: boolean) => {
     // togle body scroll
@@ -29,15 +31,26 @@ const FormLayout: React.FC<FormLayoutProps> = ({ children, pageSubmit }) => {
 
         const formData = new FormData(formElem);
 
-        console.log("sending data...");
-
+        setSuccessSending(undefined);
         fetch(`http://admin-panel-backend/${pageSubmit}`, {
           method: "POST",
           body: formData
         })
-          .then((d) => d.text())
-          .then((d) => console.log(d))
+          .then((d) => {
+            if (!d.ok) {
+              return d.text().then(errorData => {
+                throw new Error(errorData || 'Произошла ошибка запроса');
+              });
+            }
+            return d.text();
+          })
+          .then((d) => {
+            setSuccessSending(true);
+            setModalOpen(false);
+            console.log(d);
+          })
           .catch((reason) => {
+            setSuccessSending(false);
             console.log(reason);
           });
       }}
@@ -50,11 +63,14 @@ const FormLayout: React.FC<FormLayoutProps> = ({ children, pageSubmit }) => {
         <div
           className={`${isModalOpen ? "block" : "hidden"
             } fixed top-0 left-0 w-full h-full bg-black bg-opacity-80 z-[7]`}
-          onClick={() => handleModalOpen(false)}
+          onClick={() => {
+            setIsSending(false);
+            handleModalOpen(false)
+          }}
         ></div>
 
         <div className="fixed top-1/2 left-1/2 z-[10] transform -translate-x-1/2 -translate-y-1/2">
-          <ConfirmModal isOpened={isModalOpen} onSetModal={handleModalOpen} />
+          <ConfirmModal isSending={isSending} setIsSending={setIsSending} successSending={successSending} isOpened={isModalOpen} onSetModal={handleModalOpen} />
         </div>
       </div>
     </form>
