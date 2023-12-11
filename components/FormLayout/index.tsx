@@ -9,7 +9,7 @@ interface FormLayoutProps {
 
 const FormLayout: React.FC<FormLayoutProps> = ({ children, pageSubmit }) => {
   const [isModalOpen, setModalOpen] = React.useState(false);
-  const [successSending, setSuccessSending] = React.useState(false);
+  const [successSending, setSuccessSending] = React.useState<undefined | boolean>(undefined);
   const [isSending, setIsSending] = React.useState(false);
 
   const handleModalOpen = (value: boolean) => {
@@ -31,8 +31,7 @@ const FormLayout: React.FC<FormLayoutProps> = ({ children, pageSubmit }) => {
 
         const formData = new FormData(formElem);
 
-        console.log("fetching to ", `http://admin-panel-backend/${pageSubmit}`);
-        setSuccessSending(false);
+        setSuccessSending(undefined);
         fetch(`http://admin-panel-backend/${pageSubmit}`, {
           method: "POST",
           body: formData
@@ -46,10 +45,8 @@ const FormLayout: React.FC<FormLayoutProps> = ({ children, pageSubmit }) => {
             return d.text();
           })
           .then((d) => {
-            setTimeout(() => {
-              setSuccessSending(true);
-              setModalOpen(false);
-            }, 3000);
+            setSuccessSending(true);
+            setModalOpen(false);
             console.log(d);
           })
           .catch((reason) => {
