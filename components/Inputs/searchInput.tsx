@@ -69,14 +69,41 @@ export const SearchInput: React.FC<SearchInputProps> = ({ label, placeholder, na
                     openToggler(false);
 
                     for (const key in item) {
-                      const elementInDom = document.querySelector(`form [name^=${key}]`);
+                      const elementInDom = document.querySelector(`form [name^=${key}]`) as HTMLInputElement | HTMLTextAreaElement;
                       if (!elementInDom) continue;
+
                       if (key === "preview_picture") {
                         // console.log(item[key]);
-                        continue;
                       }
+                      else if (key === "social_media_links") {
+                        const socialLinks = JSON.parse(item[key]);
 
-                      elementInDom.value = item[key];
+                        for (let i = 0; i < socialLinks.length; i++) {
+                          const linkInput = document.querySelector(`form [value=${socialLinks[i].platform}`) as HTMLInputElement;
+                          (linkInput.nextElementSibling as HTMLInputElement).value = socialLinks[i].link;
+                        }
+                      }
+                      else if (key === "music_type") {
+                        (elementInDom as HTMLInputElement).checked = true;
+                      }
+                      else if (key === "release_songs" && JSON.parse(item[key]).length !== 1) {
+                        const addBtn = elementInDom.closest("div")?.nextElementSibling as HTMLButtonElement;
+                        const songsList = JSON.parse(item[key]);
+
+                        for (let i = 0; i < songsList.length; i++) addBtn.click();
+
+                        setTimeout(() => {
+                          const songInputs = document.querySelectorAll(`form [name^="release_songs[]"]`);
+                          for (let i = 0; i < songsList.length; i++) {
+                            (songInputs[i] as HTMLInputElement).value = songsList[i];
+                          }
+                        }, 10);
+
+
+                      }
+                      else {
+                        elementInDom.value = item[key];
+                      }
                     }
                   }}
                   className="relative pb-[10px] border-b-[1px] border-grey cursor-pointer"
