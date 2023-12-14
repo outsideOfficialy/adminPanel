@@ -12,10 +12,20 @@ export const SearchInput: React.FC<SearchInputProps> = ({ label, placeholder, na
 
   const handleSearch = (val: string) => {
     fetch(`http://admin-panel-backend/${pageSearch}/${val}`, { method: "GET" })
-      .then((d) => d.json())
+      .then((d) => {
+        if (d.ok) {
+          return d.json();
+        }
+        return d.text().then(errorData => {
+          throw new Error(errorData || 'Произошла ошибка запроса');
+        });
+      })
       .then((d) => {
         setSearchResults(d);
         openToggler(true);
+      })
+      .catch((reason) => {
+        console.log(reason);
       });
   };
 
@@ -42,12 +52,9 @@ export const SearchInput: React.FC<SearchInputProps> = ({ label, placeholder, na
                 "bg-black border rounded-lg text-white p-[8px] md:p-2.5 max-w-[450px] w-full text-[14px] md:text-base font-normal md:font-medium leading-normal tracking-wider transition duration-200 ease-in-out placeholder-grey focus:border-main-primary-color focus:ring-0 focus:outline-none",
                 isOpen ? "border-main-primary-color rounded-b-[0px]" : "border-white"
               )}
-              onChange={(e) => handleSearch(e.target.value)}
-            />
+              onChange={(e) => handleSearch(e.target.value)} />
             <button
-              className="material-symbols-outlined search absolute right-0 top-0 bottom-0 bg-main-primary text-white rounded-r-lg p-[8px] md:p-2.5 font-medium transition duration-300 ease-in-out hover:text-main-primary-color"
-            // onClick={onSearch}
-            >
+              className="material-symbols-outlined search absolute right-0 top-0 bottom-0 bg-main-primary text-white rounded-r-lg p-[8px] md:p-2.5 font-medium transition duration-300 ease-in-out hover:text-main-primary-color">
               search
             </button>
           </div>
@@ -110,10 +117,10 @@ export const SearchInput: React.FC<SearchInputProps> = ({ label, placeholder, na
                   key={item.id}>
                   <div className="flex flex-col gap-[5px]">
                     <p className="leading-[17px] text-[12px] text-grey">
-                      ID: <span className="text-white">{item.id}</span>{" "}
+                      ID: <span className="text-white">{item.id}</span>
                     </p>
                     <p className="leading-[17px] text-[14px] text-grey">
-                      Nickname: <span className="text-white">{item.nickname}</span>{" "}
+                      Nickname: <span className="text-white">{item.nickname}</span>
                     </p>
                     <p className="leading-[17px] text-[12px] text-grey">
                       Role: <span className="text-white">{item.role}</span>

@@ -34,6 +34,5 @@ export interface FileInputProps {
   label?: string;
   id: string;
   multiple?: boolean;
-  value?: string;
   accept: string;
 }
