@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import clsx from "clsx";
 import { Transition } from "@headlessui/react";
 import { SearchInputProps } from "./interfaces";
+import ButtonTemplate from "../ButtonTemplate";
 
 
 export const SearchInput: React.FC<SearchInputProps> = ({ label, placeholder, name, pageSearch }) => {
@@ -10,14 +11,14 @@ export const SearchInput: React.FC<SearchInputProps> = ({ label, placeholder, na
 
   const openToggler = (value: boolean) => setIsOpen(value);
 
-  const handleSearch = (val: string) => {
-    fetch(`http://admin-panel-backend/${pageSearch}/${val}`, { method: "GET" })
+  const handleSearch = (id: string) => {
+    fetch(`http://admin-panel-backend/${pageSearch}/${id}`, { method: "GET" })
       .then((d) => {
         if (d.ok) {
           return d.json();
         }
         return d.text().then(errorData => {
-          throw new Error(errorData || 'Произошла ошибка запроса');
+          throw new Error(errorData || "Произошла ошибка запроса");
         });
       })
       .then((d) => {
@@ -28,6 +29,24 @@ export const SearchInput: React.FC<SearchInputProps> = ({ label, placeholder, na
         console.log(reason);
       });
   };
+
+  const deleteHandle = (id: string) => {
+    // console.log(`http://admin-panel-backend/${pageSearch}/${id}`);
+    fetch(`http://admin-panel-backend/${pageSearch}/${id}`, { method: "DELETE" })
+      .then((d) => {
+        console.log(d);
+        // if (!d.ok) {
+        //   return d.text().then(errorData => {
+        //     throw new Error(errorData || "Произошла ошибка запроса");
+        //   });
+        // }
+        // console.log(d);
+      })
+      // .then((d) => {
+      //   console.log(d);
+      // })
+      .catch((reason) => console.log(reason));
+  }
 
   useEffect(() => {
     setIsOpen(searchResults.length > 0);
@@ -72,7 +91,9 @@ export const SearchInput: React.FC<SearchInputProps> = ({ label, placeholder, na
             <ul className="max-h-[319px] overflow-scroll pr-[10px] flex flex-col gap-[15px]">
               {searchResults && searchResults.map((item) => (
                 <li
-                  onClick={() => {
+                  className="relative pb-[10px] border-b-[1px] border-grey cursor-pointer"
+                  key={item.id}>
+                  <div className="flex flex-col gap-[5px]" onClick={() => {
                     openToggler(false);
 
                     for (const key in item) {
@@ -112,20 +133,35 @@ export const SearchInput: React.FC<SearchInputProps> = ({ label, placeholder, na
                         elementInDom.value = item[key];
                       }
                     }
-                  }}
-                  className="relative pb-[10px] border-b-[1px] border-grey cursor-pointer"
-                  key={item.id}>
-                  <div className="flex flex-col gap-[5px]">
+                  }}>
                     <p className="leading-[17px] text-[12px] text-grey">
                       ID: <span className="text-white">{item.id}</span>
                     </p>
                     <p className="leading-[17px] text-[14px] text-grey">
-                      Nickname: <span className="text-white">{item.nickname}</span>
+                      {function () {
+                        const keys = Object.keys(item);
+                        switch (true) {
+                          case keys.includes("nickname"): return "Nickname";
+                          case keys.includes("title"): return "Title";
+                          case keys.includes("release_name"): return "Name";
+                        }
+                      }()}: <span className="text-white">{item.nickname || item.title || item["release_name"]}</span>
                     </p>
                     <p className="leading-[17px] text-[12px] text-grey">
-                      Role: <span className="text-white">{item.role}</span>
+                      {function () {
+                        const keys = Object.keys(item);
+                        switch (true) {
+                          case keys.includes("role"): return "Role";
+                          case keys.includes("description"): return "Descr.";
+                          case keys.includes("music_type"): return "Type";
+                          case keys.includes("content"): return "Content";
+                        }
+                      }()}: <span className="text-white">{item.role || item.description || item["music_type"] || item.content}</span>
                     </p>
                   </div>
+                  <p onClick={() => deleteHandle(item.id)} className="delete hover:text-sub-primary-color transition duration-300 z-3 material-symbols-outlined absolute p-[8px] top-[0px] right-[0px]">
+                    delete
+                  </p>
                   {/* Add other details as needed */}
                 </li>
               ))}
