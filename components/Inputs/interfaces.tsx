@@ -10,6 +10,7 @@ export interface InputFieldProps {
   inputClassName?: string;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   name: string;
+  value?: string;
 }
 
 export interface SearchInputProps {
