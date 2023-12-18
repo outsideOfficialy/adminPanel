@@ -83,6 +83,7 @@ export const SearchInput: React.FC<SearchInputProps> = ({
             />
             {isOpen ? (
               <button
+                type="button"
                 className="material-symbols-outlined close absolute right-0 top-0 bottom-0 bg-main-primary text-white rounded-r-lg p-[8px] md:p-2.5 font-medium transition duration-300 ease-in-out hover:text-main-primary-color"
                 onClick={toggleDropdown}
               >
@@ -90,6 +91,7 @@ export const SearchInput: React.FC<SearchInputProps> = ({
               </button>
             ) : (
               <button
+                type="button"
                 className="material-symbols-outlined search absolute right-0 top-0 bottom-0 bg-main-primary text-white rounded-r-lg p-[8px] md:p-2.5 font-medium transition duration-300 ease-in-out hover:text-main-primary-color"
                 onClick={toggleDropdown}
               >
