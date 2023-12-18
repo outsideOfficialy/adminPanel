@@ -4,6 +4,8 @@ import PageLayout from "@/components/PageLayout";
 import { InputTypeText, SearchInput, FileInput, SongsInputs } from "@/components/Inputs";
 import { RadioGroup } from "@/components/RadioButtonGroup";
 import Dropdown from "@/components/Dropdown";
+import ModalTemplate from "@/components/ModalTemplate";
+import React from "react";
 
 import itunes from "../../src/icons/itunes.svg";
 import spotify from "../../src/icons/spotify.svg";
@@ -12,6 +14,7 @@ import youtubeMusic from "../../src/icons/youtubeMusic.svg";
 
 export default function Home() {
   const page = "music";
+  const [isOpened, setIsOpened] = React.useState(false);
 
   return (
     <PageLayout pageSubmit={page} title="Music">
@@ -68,6 +71,12 @@ export default function Home() {
         id="preview_picture"
         accept="image/webp, image/png, image/jpg, image/jpeg"
       />
+      <button type="button" onClick={() => {
+        setIsOpened(!isOpened);
+      }} className="w-[200px] h-[50px] bg-white text-black text-[20px] font-bold">Click</button>
+      <ModalTemplate closeBtn setIsOpened={setIsOpened} isOpened={isOpened}>
+        Some text of modal
+      </ModalTemplate>
     </PageLayout>
   );
 }
