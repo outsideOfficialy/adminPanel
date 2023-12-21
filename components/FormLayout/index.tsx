@@ -47,6 +47,7 @@ const FormLayout: React.FC<FormLayoutProps> = ({ children, pageSubmit }) => {
           .then((d) => {
             setSuccessSending(true);
             setModalOpen(false);
+            handleModalOpen(false);
             console.log(d);
           })
           .catch((reason) => {

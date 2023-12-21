@@ -20,7 +20,7 @@ const Slider = () => {
       <InputTypeText placeholder="Slider title...." label="Slider Title" name="title" />
       <InputTypeText placeholder="Slider link...." label="Slider Link*" name="subtitle" />
 
-      <FileInput
+      {/* <FileInput
         placeholder="Browse..."
         accept="image/webp, image/png, image/jpg, image/jpeg"
         name="preview_picture[]"
@@ -31,6 +31,21 @@ const Slider = () => {
         placeholder="Browse..."
         accept="image/webp, image/png, image/jpg, image/jpeg"
         name="preview_picture[]"
+        label="Slider picture desktop*"
+        id="slider-desktop-file-input"
+      /> */}
+
+      <FileInput
+        placeholder="Browse..."
+        accept="image/webp, image/png, image/jpg, image/jpeg"
+        name="preview_picture_mobile[]"
+        label="Slider picture mobile*"
+        id="slider-mobile-file-input"
+      />
+      <FileInput
+        placeholder="Browse..."
+        accept="image/webp, image/png, image/jpg, image/jpeg"
+        name="preview_picture_desktop[]"
         label="Slider picture desktop*"
         id="slider-desktop-file-input"
       />
