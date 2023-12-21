@@ -1,8 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import clsx from "clsx";
 import { Transition } from "@headlessui/react";
 import { SearchInputProps } from "./interfaces";
+import ModalTemplate from "../ModalTemplate";
 import ButtonTemplate from "../ButtonTemplate";
+
+let recordId: string;
 
 export const SearchInput: React.FC<SearchInputProps> = ({
   label,
@@ -10,8 +13,9 @@ export const SearchInput: React.FC<SearchInputProps> = ({
   name,
   pageSearch
 }) => {
-  const [isOpen, setIsOpen] = useState<boolean>(false);
-  const [searchResults, setSearchResults] = useState<any[]>([]);
+  const [isOpen, setIsOpen] = React.useState<boolean>(false);
+  const [searchResults, setSearchResults] = React.useState<any[]>([]);
+  const [showConfirmationModal, setShowConfirmationModal] = React.useState<boolean>(false);
 
   const openToggler = (value: boolean) => setIsOpen(value);
 
@@ -34,33 +38,16 @@ export const SearchInput: React.FC<SearchInputProps> = ({
       });
   };
 
-  const deleteHandle = (id: string) => {
-    // console.log(`http://admin-panel-backend/${pageSearch}/${id}`);
-    fetch(`http://admin-panel-backend/${pageSearch}/${id}`, { method: "DELETE" })
-      .then((d) => {
-        console.log(d);
-        // if (!d.ok) {
-        //   return d.text().then(errorData => {
-        //     throw new Error(errorData || "Произошла ошибка запроса");
-        //   });
-        // }
-        // console.log(d);
-      })
-      // .then((d) => {
-      //   console.log(d);
-      // })
-      .catch((reason) => console.log(reason));
-  };
-
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
   };
 
-  useEffect(() => {
+  React.useEffect(() => {
     setIsOpen(searchResults.length > 0);
   }, [searchResults]);
 
-  return (
+  return (<>
+    {showConfirmationModal && <CountDownModal pageSearch={pageSearch} setShowConfirmationModal={setShowConfirmationModal} showConfirmationModal={showConfirmationModal} />}
     <div className="w-full max-w-[450px] flex flex-col gap-[15px] md:gap-[10px]">
       {/* head */}
       {label && (
@@ -208,7 +195,11 @@ export const SearchInput: React.FC<SearchInputProps> = ({
                       </p>
                     </div>
                     <p
-                      onClick={() => deleteHandle(item.id)}
+                      onClick={() => {
+                        recordId = item.id;
+                        // deleteHandle(item.id)
+                        setShowConfirmationModal(true);
+                      }}
                       className="delete hover:text-sub-primary-color transition duration-300 z-3 material-symbols-outlined absolute p-[8px] top-[0px] right-[0px]"
                     >
                       delete
@@ -221,5 +212,82 @@ export const SearchInput: React.FC<SearchInputProps> = ({
         </Transition>
       </div>
     </div>
+  </>
   );
 };
+
+interface CountDownModalProps {
+  showConfirmationModal: boolean;
+  setShowConfirmationModal: (v: boolean) => void;
+  pageSearch: string;
+}
+
+const CountDownModal: React.FC<CountDownModalProps> = ({
+  showConfirmationModal,
+  setShowConfirmationModal,
+  pageSearch
+}) => {
+  const [timeLeft, setTimeLeft] = React.useState<number>(3000);
+
+  const deleteHandle = (id: string) => {
+
+    // тут я еще буду настраивать
+    // console.log(`http://admin-panel-backend/${pageSearch}/${id}`);
+    fetch(`http://admin-panel-backend/${pageSearch}/${recordId}`, { method: "DELETE" })
+      .then((d) => {
+        console.log(d);
+        // if (!d.ok) {
+        //   return d.text().then(errorData => {
+        //     throw new Error(errorData || "Произошла ошибка запроса");
+        //   });
+        // }
+        // console.log(d);
+      })
+      // .then((d) => {
+      //   console.log(d);
+      // })
+      .catch((reason) => console.log(reason));
+  };
+
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setTimeLeft(timeLeft - 1000);
+    }, 1000);
+
+    if (!timeLeft) clearInterval(intervalId);
+  }, [timeLeft]);
+
+  return <ModalTemplate closeBtn isOpened={showConfirmationModal} setIsOpened={setShowConfirmationModal}>
+    <div className="p-[20px] w-[360px]">
+      <div className="w-full max-w-[196px] flex flex-col items-center mx-auto text-center">
+        <h3 className="text-[20px] font-medium mb-[30px]">Сonfirmation deletion of news</h3>
+        <p className="text-[16px] mb-[50px]">Do you really want to delete post "{recordId}"?</p>
+
+        <ButtonTemplate
+          className="mb-[20px]"
+          onClick={(e) => {
+            setShowConfirmationModal(false);
+          }}
+          type="button"
+          smallSecondary
+        >
+          Close
+        </ButtonTemplate>
+        <ButtonTemplate
+          disabled={timeLeft !== 0}
+          onClick={(e) => {
+            //! Sending data to deletion
+          }}
+          type="button"
+          smallPrimary
+        >
+          {/* I'm fuckin' shure */}
+          Delete
+          <span></span>
+          {/* <div>Time left: {timeLeft / 1000}...</div> */}
+        </ButtonTemplate>
+      </div>
+    </div>
+  </ModalTemplate>;
+}

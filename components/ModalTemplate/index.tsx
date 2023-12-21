@@ -14,7 +14,7 @@ const ModalTemplate: React.FC<ModalTemplateProps> = ({
   isOpened,
   setIsOpened
 }) => {
-  return <div>
+  return <div className="fixed z-10">
     {/* shadow bg for confirmModal */}
     <div
       className={`${isOpened ? "block" : "hidden"
@@ -35,17 +35,16 @@ const ModalTemplate: React.FC<ModalTemplateProps> = ({
         <div className="relative z-[10]">
           <div
             className={
-              "w-[360px] md:w-[690px] flex flex-col justify-center items-center gap-[30px] md:gap-[50px] p-[15px] md:px-[65px] md:pt-[80px] md:pb-[50px] bg-black border border-primary-color"
+              "w-fit flex flex-col justify-center items-center gap-[30px] md:gap-[50px] bg-black border border-primary-color"
             }
           >
-            <div className="w-full flex justify-center">
-              {closeBtn && <button
-                type="button"
-                onClick={() => setIsOpened(false)}
-                className="close absolute top-[20px] right-[20px] w-[24px] h-[24px] hover:text-main-primary-color material-symbols-outlined">
-                close
-              </button>}
-            </div>
+            {closeBtn && <button
+              type="button"
+              onClick={() => setIsOpened(false)}
+              className="close absolute top-[20px] right-[20px] w-[24px] h-[24px] hover:text-main-primary-color material-symbols-outlined">
+              close
+            </button>}
+            {children}
           </div>
         </div>
       </Transition>
