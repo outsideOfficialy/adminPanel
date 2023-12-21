@@ -229,7 +229,7 @@ const CountDownModal: React.FC<CountDownModalProps> = ({
 }) => {
   const [timeLeft, setTimeLeft] = React.useState<number>(3000);
 
-  const deleteHandle = (id: string) => {
+  const deleteHandle = () => {
 
     // тут я еще буду настраивать
     // console.log(`http://admin-panel-backend/${pageSearch}/${id}`);
@@ -278,6 +278,7 @@ const CountDownModal: React.FC<CountDownModalProps> = ({
           disabled={timeLeft !== 0}
           onClick={(e) => {
             //! Sending data to deletion
+            deleteHandle();
           }}
           type="button"
           smallPrimary
