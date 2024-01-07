@@ -41,6 +41,7 @@ const SendFormBtn: React.FC<SendFormBtnProps> = ({ setModalOpen }) => {
       {isDatePickerVisible && (
         <DatePicker
           name="send_later"
+          dateFormat="dd/MM/yyyy"
           selected={selectedDate}
           onChange={(date: Date | null) => setSelectedDate(date)}
           placeholderText="Выберите дату"
