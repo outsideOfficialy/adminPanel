@@ -21,10 +21,6 @@ const SendFormBtn: React.FC<SendFormBtnProps> = ({ setModalOpen }) => {
     event.target.value = numericValue;
   };
 
-  const onSendClick = () => {
-    // Обработка события для кнопки "Send"
-  };
-
   const handleSendLaterClick = () => {
     // Если форма не заполнена, отображаем DatePicker
     if (!selectedDate) {
@@ -32,7 +28,6 @@ const SendFormBtn: React.FC<SendFormBtnProps> = ({ setModalOpen }) => {
     } else {
       // Если форма заполнена, открываем модальное окно и выполняем дополнительные действия
       setModalOpen(true);
-      onSendClick(); // Вызываем нужные дополнительные действия (если есть)
     }
   };
 
@@ -54,7 +49,6 @@ const SendFormBtn: React.FC<SendFormBtnProps> = ({ setModalOpen }) => {
           onClick={(e) => {
             e.preventDefault();
             setModalOpen(true);
-            onSendClick();
           }}
           type="submit"
           disabled={selectedDate ? true : false}
