@@ -129,7 +129,9 @@ const RenderConfirmBody: React.FC = React.memo(({ }) => {
         }
       });
     } else {
+      console.log(inputs);
       if (!inputs[0].name.includes("id")) {
+        
         if (inputs[0].name.includes("preview_picture")) {
           const fileInput = inputs[0] as HTMLInputElement;
 
@@ -140,7 +142,11 @@ const RenderConfirmBody: React.FC = React.memo(({ }) => {
               <ModalBodySlider files={fileInput.files} />
             </ModalListItem>
           );
-        } else {
+        }
+        else if (inputs[0].name === "send_later") {
+          console.log("Send later", inputs[0].value);
+        } 
+        else {
           createTextInputConfirm(inputs[0], label.textContent?.replaceAll("*", "") as string);
         }
       }
