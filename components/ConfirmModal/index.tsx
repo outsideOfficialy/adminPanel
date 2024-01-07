@@ -87,6 +87,7 @@ const RenderConfirmBody: React.FC = React.memo(({ }) => {
   allContainers.forEach((el, idx) => {
     const label = el.querySelector("label");
     if (!label) return;
+
     const inputs = el.querySelectorAll("input, textarea") as NodeListOf<HTMLInputElement | HTMLTextAreaElement>;
 
     if (inputs.length >= 2) {
@@ -129,9 +130,8 @@ const RenderConfirmBody: React.FC = React.memo(({ }) => {
         }
       });
     } else {
-      console.log(inputs);
       if (!inputs[0].name.includes("id")) {
-        
+
         if (inputs[0].name.includes("preview_picture")) {
           const fileInput = inputs[0] as HTMLInputElement;
 
@@ -144,8 +144,12 @@ const RenderConfirmBody: React.FC = React.memo(({ }) => {
           );
         }
         else if (inputs[0].name === "send_later") {
-          console.log("Send later", inputs[0].value);
-        } 
+          mapedEl.push(
+            <ModalListItem title={`${label.textContent?.replaceAll("*", "")}:`}>
+              {inputs[0].value}
+            </ModalListItem>
+          );
+        }
         else {
           createTextInputConfirm(inputs[0], label.textContent?.replaceAll("*", "") as string);
         }
