@@ -41,7 +41,7 @@ const SendFormBtn: React.FC<SendFormBtnProps> = ({ setModalOpen }) => {
       {isDatePickerVisible && (
         <div className="flex flex-col items-start gap-[15px] md:gap-[10px] w-full max-w-[450px]">
           <label className="text-white text-[20px] md:text-2xl font-normal leading-6 tracking-wider">
-            Send later date
+            Dispatch time
           </label>
           <DatePicker
             name="send_later"

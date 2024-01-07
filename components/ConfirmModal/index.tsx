@@ -144,11 +144,13 @@ const RenderConfirmBody: React.FC = React.memo(({ }) => {
           );
         }
         else if (inputs[0].name === "send_later") {
-          mapedEl.push(
-            <ModalListItem title={`${label.textContent?.replaceAll("*", "")}:`}>
-              {inputs[0].value}
-            </ModalListItem>
-          );
+          if (inputs[0].value.trim() !== "") {
+            mapedEl.push(
+              <ModalListItem title={`${label.textContent?.replaceAll("*", "")}:`}>
+                {inputs[0].value}
+              </ModalListItem>
+            );
+          }
         }
         else {
           createTextInputConfirm(inputs[0], label.textContent?.replaceAll("*", "") as string);
