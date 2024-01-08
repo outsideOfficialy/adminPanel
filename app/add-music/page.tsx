@@ -33,8 +33,7 @@ export default function Home() {
           }
         ]}
       />
-      {/* этот вопрос нужно будет решить, потому что из-за того что dropown физически при открытии
-        двигает контент, это выглядит очень ужасно */}
+
       <div className="flex flex-col gap-[15px] md:gap-[10px]">
         <label className="text-white text-[20px] md:text-2xl font-normal leading-6 tracking-wider">
           Release name*
