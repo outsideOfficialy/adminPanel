@@ -53,6 +53,14 @@ export default function Home() {
                 {
                   platformIcon: itunes,
                   platformName: "Apple music"
+                },
+                {
+                  platformIcon: soundcloud,
+                  platformName: "SoundCloud"
+                },
+                {
+                  platformIcon: youtubeMusic,
+                  platformName: "Youtube Music"
                 }
               ]}
               inputsName="social_media_links"
