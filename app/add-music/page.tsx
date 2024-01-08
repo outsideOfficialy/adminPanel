@@ -41,7 +41,7 @@ export default function Home() {
         </label>
 
         <div className="flex flex-col gap-[15px] md:block relative w-full max-w-[900px]">
-          <InputTypeText placeholder="Name" name="release_name" />
+          <InputTypeText placeholder="Name" name="release_name" required />
           <div className="w-full md:w-1/2 static md:absolute md:right-[-20px] md:top-0">
             <Dropdown
               headerText="Links"
@@ -68,13 +68,14 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <SongsInputs name="release_songs[]" label="Release song(s) *" />
+      <SongsInputs name="release_songs[]" label="Release song(s)*" />
       <FileInput
         placeholder="Browse..."
         name="preview_picture[]"
         label="Single\album preview*"
         id="preview_picture"
         accept="image/webp, image/png, image/jpg, image/jpeg"
+        required
       />
     </PageLayout>
   );

@@ -10,15 +10,10 @@ const Slider = () => {
 
   return (
     <PageLayout pageSubmit={page} title="Slider">
-      <SearchInput
-        pageSearch={page}
-        placeholder="ID slider..."
-        label="Slider search"
-        name="id"
-      />
+      <SearchInput pageSearch={page} placeholder="ID slider..." label="Slider search" name="id" />
 
       <InputTypeText placeholder="Slider title...." label="Slider Title" name="title" />
-      <InputTypeText placeholder="Slider link...." label="Slider Link*" name="subtitle" />
+      <InputTypeText placeholder="Slider link...." label="Slider Link*" name="subtitle" required />
 
       <FileInput
         placeholder="Browse..."
@@ -26,6 +21,7 @@ const Slider = () => {
         name="preview_picture[]"
         label="Slider picture mobile*"
         id="slider-mobile-file-input"
+        required
       />
       <FileInput
         placeholder="Browse..."
@@ -33,6 +29,7 @@ const Slider = () => {
         name="preview_picture[]"
         label="Slider picture desktop*"
         id="slider-desktop-file-input"
+        required
       />
     </PageLayout>
   );
