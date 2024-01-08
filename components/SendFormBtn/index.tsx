@@ -11,18 +11,12 @@ interface SendFormBtnProps {
 const SendFormBtn: React.FC<SendFormBtnProps> = ({ setModalOpen }) => {
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
   const [isDatePickerVisible, setDatePickerVisible] = useState(false);
+  const [isError, setIsError] = useState(false);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    // Получаем значение из поля ввода
     const enteredValue = event.target.value || "";
-    // Оставляем только числа, удаляя все остальные символы
     const numericValue = enteredValue.replace(/\D/g, "");
-    // Устанавливаем отфильтрованное значение обратно в поле ввода
     event.target.value = numericValue;
-  };
-
-  const onSendClick = () => {
-    // Обработка события для кнопки "Send"
   };
 
   const handleSendLaterClick = () => {
@@ -32,7 +26,28 @@ const SendFormBtn: React.FC<SendFormBtnProps> = ({ setModalOpen }) => {
     } else {
       // Если форма заполнена, открываем модальное окно и выполняем дополнительные действия
       setModalOpen(true);
-      onSendClick(); // Вызываем нужные дополнительные действия (если есть)
+    }
+  };
+
+  const handleSendClick = () => {
+    // Поиск всех input-ов с атрибутом required
+    const requiredInputs = document.querySelectorAll("input[required]");
+
+    // Проверка заполненности всех input-ов с атрибутом required
+    const isFormValid = Array.from(requiredInputs).every((input) => {
+      if (input instanceof HTMLInputElement) {
+        return input.value.trim() !== "";
+      }
+      return false;
+    });
+
+    // Если хотя бы одно поле не заполнено, устанавливаем ошибку
+    if (!isFormValid) {
+      setIsError(true);
+    } else {
+      // Если форма заполнена, сбрасываем ошибку, открываем модальное окно и выполняем дополнительные действия
+      setIsError(false);
+      setModalOpen(true);
     }
   };
 
@@ -59,8 +74,7 @@ const SendFormBtn: React.FC<SendFormBtnProps> = ({ setModalOpen }) => {
         <ButtonTemplate
           onClick={(e) => {
             e.preventDefault();
-            setModalOpen(true);
-            onSendClick();
+            handleSendClick();
           }}
           type="submit"
           disabled={selectedDate ? true : false}
@@ -80,6 +94,9 @@ const SendFormBtn: React.FC<SendFormBtnProps> = ({ setModalOpen }) => {
           Send later
         </ButtonTemplate>
       </div>
+      {isError && (
+        <p className="text-red-500">Please fill in all required fields before sending.</p>
+      )}
     </div>
   );
 };
