@@ -8,7 +8,8 @@ export const InputTypeNum: React.FC<InputFieldProps> = ({
   name,
   inputClassName,
   onChange,
-  value
+  value,
+  required
 }) => {
   return (
     <InputWrapper label={label} className={inputClassName}>
@@ -17,6 +18,7 @@ export const InputTypeNum: React.FC<InputFieldProps> = ({
         type="number"
         placeholder={placeholder}
         name={name}
+        {...(required ? { required: true } : {})}
         className="inputNum bg-black border rounded-lg border-white text-white p-[8px] md:p-2.5 max-w-[450px] w-full text-[14px] md:text-base font-normal md:font-medium leading-normal tracking-wider transition duration-300 ease-in-out placeholder-grey focus:border-main-primary-color focus:ring-0 focus:outline-none "
       />
     </InputWrapper>
