@@ -16,10 +16,20 @@ export default function Home() {
   return (
     <PageLayout pageSubmit={page} title="Members">
       <SearchInput pageSearch={page} placeholder="Member ID..." label="Member search" name="id" />
-      <InputTypeText placeholder="Member nickname" label="Member Nickname*" name="nickname" />
-      <InputTypeData placeholder="Member birthday..." label="Member birthday*" name="birthdate" />
-      <InputTypeText placeholder="Member role..." label="Member role*" name="role" />
-      <InputTypeText placeholder="About member..." label="About member*" name="about" />
+      <InputTypeText
+        placeholder="Member nickname"
+        label="Member Nickname*"
+        name="nickname"
+        required
+      />
+      <InputTypeData
+        placeholder="Member birthday..."
+        label="Member birthday*"
+        name="birthdate"
+        required
+      />
+      <InputTypeText placeholder="Member role..." label="Member role*" name="role" required />
+      <InputTypeText placeholder="About member..." label="About member*" name="about" required />
 
       <Dropdown
         headerText="Links"
@@ -42,6 +52,7 @@ export default function Home() {
         name="preview_picture[]"
         label="Member photo picture*"
         id="member-file-input"
+        required
       />
     </PageLayout>
   );

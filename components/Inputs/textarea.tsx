@@ -1,8 +1,12 @@
 import { TextAreaFieldProps } from "./interfaces";
 
-
-export const TextArea: React.FC<TextAreaFieldProps> = ({ label, placeholder, name,
-  value }) => {
+export const TextArea: React.FC<TextAreaFieldProps> = ({
+  label,
+  placeholder,
+  name,
+  value,
+  required
+}) => {
   return (
     <div className="flex flex-col items-start gap-[10px] w-full">
       {label && (

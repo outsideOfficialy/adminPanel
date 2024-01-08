@@ -2,6 +2,8 @@ import { InputWrapperProps } from "./interfaces";
 import clsx from "clsx";
 
 export const InputWrapper: React.FC<InputWrapperProps> = ({ label, className, children }) => {
+  const hasAsterisk = label && label.includes("*");
+
   return (
     <div
       className={clsx(
@@ -11,7 +13,14 @@ export const InputWrapper: React.FC<InputWrapperProps> = ({ label, className, ch
     >
       {label && (
         <label className="text-white text-[20px] md:text-2xl font-normal leading-6 tracking-wider">
-          {label}
+          {hasAsterisk ? (
+            <>
+              {label.replace("*", "")}
+              <span className="text-main-primary-color">*</span>
+            </>
+          ) : (
+            label
+          )}
         </label>
       )}
       {children}

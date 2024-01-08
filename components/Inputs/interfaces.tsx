@@ -11,6 +11,7 @@ export interface InputFieldProps {
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   name: string;
   value?: string;
+  required?: boolean;
 }
 
 export interface SearchInputProps {
@@ -26,6 +27,7 @@ export interface TextAreaFieldProps {
   placeholder: string;
   name: string;
   value?: string;
+  required?: boolean;
 }
 
 export interface FileInputProps {
@@ -35,4 +37,5 @@ export interface FileInputProps {
   id: string;
   multiple?: boolean;
   accept: string;
+  required?: boolean;
 }
