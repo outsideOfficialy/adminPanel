@@ -44,15 +44,16 @@ const SendFormBtn: React.FC<SendFormBtnProps> = ({ setModalOpen }) => {
           <label className="text-white text-[20px] md:text-2xl font-normal leading-6 tracking-wider">
             Dispatch time
           </label>
-        <DatePicker
-          name="send_later"
-          dateFormat="dd/MM/yyyy"
-          selected={selectedDate}
-          onChange={(date: Date | null) => setSelectedDate(date)}
-          placeholderText="Select data"
-          onChangeRaw={handleInputChange}
-          className="bg-black border rounded-lg border-white text-white p-2.5 w-full text-[14px] md:text-base font-normal md:font-medium leading-normal tracking-wider transition duration-300 ease-in-out placeholder-grey focus:border-main-primary-color focus:ring-0 focus:outline-none"
-        />
+          <DatePicker
+            name="send_later"
+            dateFormat="dd/MM/yyyy"
+            selected={selectedDate}
+            onChange={(date: Date | null) => setSelectedDate(date)}
+            placeholderText="Select data"
+            onChangeRaw={handleInputChange}
+            className="bg-black border rounded-lg border-white text-white p-2.5 w-full text-[14px] md:text-base font-normal md:font-medium leading-normal tracking-wider transition duration-300 ease-in-out placeholder-grey focus:border-main-primary-color focus:ring-0 focus:outline-none"
+          />
+        </div>
       )}
       <div className="flex w-full gap-[30px]">
         <ButtonTemplate
@@ -79,8 +80,7 @@ const SendFormBtn: React.FC<SendFormBtnProps> = ({ setModalOpen }) => {
           Send later
         </ButtonTemplate>
       </div>
-    </div>
-  );
+    </div>);
 };
 
 export default SendFormBtn;
