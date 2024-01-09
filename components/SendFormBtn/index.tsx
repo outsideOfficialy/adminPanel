@@ -63,7 +63,7 @@ const SendFormBtn: React.FC<SendFormBtnProps> = ({ setModalOpen }) => {
             dateFormat="dd/MM/yyyy"
             selected={selectedDate}
             onChange={(date: Date | null) => setSelectedDate(date)}
-            placeholderText="Выберите дату"
+            placeholderText="Select data"
             onChangeRaw={handleInputChange}
             className="bg-black border rounded-lg border-white text-white p-2.5 w-full text-[14px] md:text-base font-normal md:font-medium leading-normal tracking-wider transition duration-300 ease-in-out placeholder-grey focus:border-main-primary-color focus:ring-0 focus:outline-none"
           />

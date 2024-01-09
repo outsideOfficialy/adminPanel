@@ -12,7 +12,7 @@ const Slider = () => {
     <PageLayout pageSubmit={page} title="Slider">
       <SearchInput pageSearch={page} placeholder="ID slider..." label="Slider search" name="id" />
 
-      <InputTypeText placeholder="Slider title...." label="Slider Title" name="title" />
+      <InputTypeText placeholder="Slider title...." label="Slider Title*" name="title" required />
       <InputTypeText placeholder="Slider link...." label="Slider Link*" name="subtitle" required />
 
       <FileInput

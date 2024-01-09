@@ -36,7 +36,7 @@ export default function Home() {
 
       <div className="flex flex-col gap-[15px] md:gap-[10px]">
         <label className="text-white text-[20px] md:text-2xl font-normal leading-6 tracking-wider">
-          Release name*
+          Release name<span className="text-main-primary-color">*</span>
         </label>
 
         <div className="flex flex-col gap-[15px] md:block relative w-full max-w-[900px]">
