@@ -5,10 +5,7 @@ import { InputTypeText, SearchInput, FileInput, SongsInputs } from "@/components
 import { RadioGroup } from "@/components/RadioButtonGroup";
 import Dropdown from "@/components/Dropdown";
 
-import itunes from "../../src/icons/itunes.svg";
-import spotify from "../../src/icons/spotify.svg";
-import soundcloud from "../../src/icons/soundcloud.svg";
-import youtubeMusic from "../../src/icons/youtubeMusic.svg";
+import musicIcons from "../../utils/icons/musicIcons";
 
 export default function Home() {
   const page = "music";
@@ -44,24 +41,7 @@ export default function Home() {
           <div className="w-full md:w-1/2 static md:absolute md:right-[-20px] md:top-0">
             <Dropdown
               headerText="Links"
-              links={[
-                {
-                  platformIcon: spotify,
-                  platformName: "Spotify"
-                },
-                {
-                  platformIcon: itunes,
-                  platformName: "Apple music"
-                },
-                {
-                  platformIcon: soundcloud,
-                  platformName: "SoundCloud"
-                },
-                {
-                  platformIcon: youtubeMusic,
-                  platformName: "Youtube Music"
-                }
-              ]}
+              links={musicIcons}
               inputsName="social_media_links"
             />
           </div>

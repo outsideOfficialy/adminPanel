@@ -5,10 +5,12 @@ import { SearchInput, InputTypeText, FileInput, InputTypeData } from "@/componen
 import PageLayout from "@/components/PageLayout";
 import Dropdown from "@/components/Dropdown";
 
-import itunes from "../../src/icons/itunes.svg";
-import spotify from "../../src/icons/spotify.svg";
-import soundcloud from "../../src/icons/soundcloud.svg";
-import youtubeMusic from "../../src/icons/youtubeMusic.svg";
+import membersIcons from "../../utils/icons/membersIcons";
+
+// import itunes from "../../src/icons/itunes.svg";
+// import spotify from "../../src/icons/spotify.svg";
+// import soundcloud from "../../src/icons/soundcloud.svg";
+// import youtubeMusic from "../../src/icons/youtubeMusic.svg";
 
 export default function Home() {
   const page = "members";
@@ -34,16 +36,7 @@ export default function Home() {
       <Dropdown
         headerText="Links"
         label="Social media links"
-        links={[
-          {
-            platformIcon: spotify,
-            platformName: "Spotify"
-          },
-          {
-            platformIcon: itunes,
-            platformName: "Apple music"
-          }
-        ]}
+        links={membersIcons}
         inputsName="social_media_links"
       />
       <FileInput

@@ -2,16 +2,14 @@ import clsx from "clsx";
 import React from "react";
 import Image from "next/image";
 import { StaticImport } from "next/dist/shared/lib/get-img-props";
-import { Popover, Transition } from "@headlessui/react";
 
 interface DropdownProps {
   headerText: string;
   inputsName: string;
   label?: string;
   links: {
-    platformName: string;
-    platformIcon: string | StaticImport;
-  }[];
+    [key: string]: string | StaticImport;
+  };
 }
 
 const Dropdown: React.FC<DropdownProps> = ({ headerText, inputsName, links, label }) => {
@@ -59,16 +57,16 @@ const Dropdown: React.FC<DropdownProps> = ({ headerText, inputsName, links, labe
         <div
           className="dropdown-body border-[1px] border-main-primary-color border-t-0 rounded-b-[5px] origin-top p-[15px] flex flex-col gap-[21px]"
         >
-          {links.map((el, idx) => {
+          {Object.keys(links).map((key, idx) => {
             return (
-              <div key={el.platformName + idx}>
-                <h4 className="text-[14px] md:text-[16px] mb-[4px] md:mb-0 text-left">{el.platformName}</h4>
+              <div key={idx}>
+                <h4 className="text-[14px] md:text-[16px] mb-[4px] md:mb-0 text-left">{key.charAt(0).toUpperCase() + key.slice(1)}</h4>
                 <div className="flex justify-between items-center gap-[10px] md:gap-0 px-[5px]">
-                  <Image className="w-[28px] h-[28px] md:w-[32px] md:h-[32px]" src={el.platformIcon} alt="logo" />
+                  <Image className="w-[28px] h-[28px] md:w-[32px] md:h-[32px]" src={links[key]}alt="logo" />
 
                   <input
                     type="hidden"
-                    value={el.platformName.toLowerCase().replaceAll(" ", "_")}
+                    value={key.toLowerCase().replaceAll(" ", "_")}
                     name={`${inputsName}[${idx}][platform]`}
                   />
 
