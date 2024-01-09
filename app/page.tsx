@@ -15,10 +15,10 @@ export default function Home() {
 
   return (
     <PageTemplate title="Login" className="max-w-[443px] pt-[50px]">
-      <InputTypeText label="User-name*" placeholder="User-name..." name="user-name" />
+      <InputTypeText label="User-name*" placeholder="User-name..." name="user-name" required />
 
       {showPassword && (
-        <InputTypeText label="Password*" placeholder="Password..." name="password" />
+        <InputTypeText label="Password*" placeholder="Password..." name="password" required />
       )}
 
       <ButtonTemplate

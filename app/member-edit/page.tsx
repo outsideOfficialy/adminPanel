@@ -5,10 +5,12 @@ import { SearchInput, InputTypeText, FileInput, InputTypeData } from "@/componen
 import PageLayout from "@/components/PageLayout";
 import Dropdown from "@/components/Dropdown";
 
-import itunes from "../../src/icons/itunes.svg";
-import spotify from "../../src/icons/spotify.svg";
-import soundcloud from "../../src/icons/soundcloud.svg";
-import youtubeMusic from "../../src/icons/youtubeMusic.svg";
+import membersIcons from "../../utils/icons/membersIcons";
+
+// import itunes from "../../src/icons/itunes.svg";
+// import spotify from "../../src/icons/spotify.svg";
+// import soundcloud from "../../src/icons/soundcloud.svg";
+// import youtubeMusic from "../../src/icons/youtubeMusic.svg";
 
 export default function Home() {
   const page = "members";
@@ -16,24 +18,25 @@ export default function Home() {
   return (
     <PageLayout pageSubmit={page} title="Members">
       <SearchInput pageSearch={page} placeholder="Member ID..." label="Member search" name="id" />
-      <InputTypeText placeholder="Member nickname" label="Member Nickname*" name="nickname" />
-      <InputTypeData placeholder="Member birthday..." label="Member birthday*" name="birthdate" />
-      <InputTypeText placeholder="Member role..." label="Member role*" name="role" />
-      <InputTypeText placeholder="About member..." label="About member*" name="about" />
+      <InputTypeText
+        placeholder="Member nickname"
+        label="Member Nickname*"
+        name="nickname"
+        required
+      />
+      <InputTypeData
+        placeholder="Member birthday..."
+        label="Member birthday*"
+        name="birthdate"
+        required
+      />
+      <InputTypeText placeholder="Member role..." label="Member role*" name="role" required />
+      <InputTypeText placeholder="About member..." label="About member*" name="about" required />
 
       <Dropdown
         headerText="Links"
         label="Social media links"
-        links={[
-          {
-            platformIcon: spotify,
-            platformName: "Spotify"
-          },
-          {
-            platformIcon: itunes,
-            platformName: "Apple music"
-          }
-        ]}
+        links={membersIcons}
         inputsName="social_media_links"
       />
       <FileInput
@@ -42,6 +45,7 @@ export default function Home() {
         name="preview_picture[]"
         label="Member photo picture*"
         id="member-file-input"
+        required
       />
     </PageLayout>
   );

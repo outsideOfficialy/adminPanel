@@ -283,10 +283,8 @@ const CountDownModal: React.FC<CountDownModalProps> = ({
           type="button"
           smallPrimary
         >
-          {/* I'm fuckin' shure */}
           Delete
-          <span></span>
-          {/* <div>Time left: {timeLeft / 1000}...</div> */}
+          {timeLeft / 1000 ? <span > {timeLeft / 1000}...</span> : ""}
         </ButtonTemplate>
       </div>
     </div>

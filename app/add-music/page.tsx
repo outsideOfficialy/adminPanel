@@ -7,10 +7,7 @@ import Dropdown from "@/components/Dropdown";
 import ModalTemplate from "@/components/ModalTemplate";
 import React from "react";
 
-import itunes from "../../src/icons/itunes.svg";
-import spotify from "../../src/icons/spotify.svg";
-import soundcloud from "../../src/icons/soundcloud.svg";
-import youtubeMusic from "../../src/icons/youtubeMusic.svg";
+import musicIcons from "../../utils/icons/musicIcons";
 
 export default function Home() {
   const page = "music";
@@ -35,40 +32,31 @@ export default function Home() {
           }
         ]}
       />
-      {/* этот вопрос нужно будет решить, потому что из-за того что dropown физически при открытии
-        двигает контент, это выглядит очень ужасно */}
+
       <div className="flex flex-col gap-[15px] md:gap-[10px]">
         <label className="text-white text-[20px] md:text-2xl font-normal leading-6 tracking-wider">
-          Release name*
+          Release name<span className="text-main-primary-color">*</span>
         </label>
 
         <div className="flex flex-col gap-[15px] md:block relative w-full max-w-[900px]">
-          <InputTypeText placeholder="Name" name="release_name" />
+          <InputTypeText placeholder="Name" name="release_name" required />
           <div className="w-full md:w-1/2 static md:absolute md:right-[-20px] md:top-0">
             <Dropdown
               headerText="Links"
-              links={[
-                {
-                  platformIcon: spotify,
-                  platformName: "Spotify"
-                },
-                {
-                  platformIcon: itunes,
-                  platformName: "Apple music"
-                }
-              ]}
+              links={musicIcons}
               inputsName="social_media_links"
             />
           </div>
         </div>
       </div>
-      <SongsInputs name="release_songs[]" label="Release song(s) *" />
+      <SongsInputs name="release_songs[]" label="Release song(s)*" />
       <FileInput
         placeholder="Browse..."
         name="preview_picture[]"
         label="Single\album preview*"
         id="preview_picture"
         accept="image/webp, image/png, image/jpg, image/jpeg"
+        required
       />
     </PageLayout>
   );

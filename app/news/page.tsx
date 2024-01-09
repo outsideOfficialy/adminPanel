@@ -18,7 +18,7 @@ const News = () => {
     <PageLayout pageSubmit={page} title="News">
       <SearchInput pageSearch={page} placeholder="ID news..." label="News id" name="id" />
 
-      <InputTypeText placeholder="Title text..." label="Title*" name="title" />
+      <InputTypeText placeholder="Title text..." label="Title*" name="title" required />
       <InputTypeText placeholder="Subtitle text..." label="Subtitle" name="subtitle" />
 
       <TextArea label="News content" placeholder="News text..." name="content" />
@@ -29,6 +29,7 @@ const News = () => {
         name="preview_picture[]"
         label="News preview picture*"
         id="news-file-input"
+        required
       />
     </PageLayout>
   );

@@ -1,26 +1,11 @@
-import React, { useEffect } from "react";
+import React from "react";
 import ButtonTemplate from "../ButtonTemplate";
 import Image from "next/image";
 import { Transition } from "@headlessui/react";
 import Loader from "../Loader";
 
-import apple_music from "../../src/icons/itunes.svg";
-import spotify from "../../src/icons/spotify.svg";
-import soundcloud from "../../src/icons/soundcloud.svg";
-import youtubeMusic from "../../src/icons/youtubeMusic.svg";
-
-const icons: {
-  [key: string]: any;
-  apple_music: any;
-  spotify: any;
-  soundcloud: any;
-  youtubeMusic: any;
-} = {
-  apple_music,
-  spotify,
-  soundcloud,
-  youtubeMusic
-};
+import musicIcons from "../../utils/icons/musicIcons";
+import membersIcons from "../../utils/icons/membersIcons";
 
 interface ConfirmModalProps {
   isOpened: boolean;
@@ -69,7 +54,7 @@ const RenderConfirmBody: React.FC = React.memo(({ }) => {
         <Image
           title={currentLink === "" ? "No link" : currentLink}
           className="platform-img cursor-pointer"
-          src={icons[input.value]}
+          src={musicIcons[input.value.replaceAll("_", " ")] ? musicIcons[input.value.replaceAll("_", " ")] : membersIcons[input.value.replaceAll("_", " ")]}
           alt={input.value}
         />
       );
@@ -87,6 +72,7 @@ const RenderConfirmBody: React.FC = React.memo(({ }) => {
   allContainers.forEach((el, idx) => {
     const label = el.querySelector("label");
     if (!label) return;
+
     const inputs = el.querySelectorAll("input, textarea") as NodeListOf<HTMLInputElement | HTMLTextAreaElement>;
 
     if (inputs.length >= 2) {
@@ -130,6 +116,7 @@ const RenderConfirmBody: React.FC = React.memo(({ }) => {
       });
     } else {
       if (!inputs[0].name.includes("id")) {
+
         if (inputs[0].name.includes("preview_picture")) {
           const fileInput = inputs[0] as HTMLInputElement;
 
@@ -140,7 +127,17 @@ const RenderConfirmBody: React.FC = React.memo(({ }) => {
               <ModalBodySlider files={fileInput.files} />
             </ModalListItem>
           );
-        } else {
+        }
+        else if (inputs[0].name === "send_later") {
+          if (inputs[0].value.trim() !== "") {
+            mapedEl.push(
+              <ModalListItem title={`${label.textContent?.replaceAll("*", "")}:`}>
+                {inputs[0].value}
+              </ModalListItem>
+            );
+          }
+        }
+        else {
           createTextInputConfirm(inputs[0], label.textContent?.replaceAll("*", "") as string);
         }
       }
