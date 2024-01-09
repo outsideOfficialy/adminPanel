@@ -130,7 +130,8 @@ export const SearchInput: React.FC<SearchInputProps> = ({
                           if (!elementInDom) continue;
 
                           if (key === "preview_picture") {
-                            // console.log(item[key]);
+                            const prevPicInput = (document.querySelector("input[name='preview_picture[]']") as HTMLInputElement);
+                            prevPicInput.required = false;
                           } else if (key === "social_media_links") {
                             const socialLinks = JSON.parse(item[key]);
 
