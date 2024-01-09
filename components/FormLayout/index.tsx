@@ -32,7 +32,8 @@ const FormLayout: React.FC<FormLayoutProps> = ({ children, pageSubmit }) => {
         const formData = new FormData(formElem);
 
         setSuccessSending(undefined);
-        fetch(`http://admin-panel-backend/${pageSubmit}`, {
+        const id = (document.querySelector("input[name='id']") as HTMLInputElement).value.trim();
+        fetch(`http://admin-panel-backend/${pageSubmit}${id === "" ? "" : `/${id}`}`, {
           method: "POST",
           body: formData
         })
