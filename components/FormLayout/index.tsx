@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import ConfirmModal from "../ConfirmModal";
 import SendFormBtn from "../SendFormBtn";
 
@@ -18,10 +18,13 @@ const FormLayout: React.FC<FormLayoutProps> = ({ children, pageSubmit }) => {
     setModalOpen(value);
   }
 
+  useEffect(() => {
+    successSending ? handleModalOpen(false) : null;
+  }, [successSending]);
+
   return (
     <form
       className="flex flex-col gap-[30px] md:gap-[45px] max-w-[920px]"
-      action={"http://admin-panel-backend"}
       encType="multipart/form-data"
       method="POST"
       onSubmit={(e) => {
