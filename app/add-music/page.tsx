@@ -33,15 +33,14 @@ export default function Home() {
           }
         ]}
       />
-      {/* этот вопрос нужно будет решить, потому что из-за того что dropown физически при открытии
-        двигает контент, это выглядит очень ужасно */}
+
       <div className="flex flex-col gap-[15px] md:gap-[10px]">
         <label className="text-white text-[20px] md:text-2xl font-normal leading-6 tracking-wider">
-          Release name*
+          Release name<span className="text-main-primary-color">*</span>
         </label>
 
         <div className="flex flex-col gap-[15px] md:block relative w-full max-w-[900px]">
-          <InputTypeText placeholder="Name" name="release_name" />
+          <InputTypeText placeholder="Name" name="release_name" required />
           <div className="w-full md:w-1/2 static md:absolute md:right-[-20px] md:top-0">
             <Dropdown
               headerText="Links"
@@ -53,6 +52,14 @@ export default function Home() {
                 {
                   platformIcon: itunes,
                   platformName: "Apple music"
+                },
+                {
+                  platformIcon: soundcloud,
+                  platformName: "SoundCloud"
+                },
+                {
+                  platformIcon: youtubeMusic,
+                  platformName: "Youtube Music"
                 }
               ]}
               inputsName="social_media_links"
@@ -60,13 +67,14 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <SongsInputs name="release_songs[]" label="Release song(s) *" />
+      <SongsInputs name="release_songs[]" label="Release song(s)*" />
       <FileInput
         placeholder="Browse..."
         name="preview_picture[]"
         label="Single\album preview*"
         id="preview_picture"
         accept="image/webp, image/png, image/jpg, image/jpeg"
+        required
       />
     </PageLayout>
   );
