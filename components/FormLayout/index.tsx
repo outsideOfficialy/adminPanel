@@ -9,6 +9,7 @@ interface FormLayoutProps {
 
 const FormLayout: React.FC<FormLayoutProps> = ({ children, pageSubmit }) => {
   const [isModalOpen, setModalOpen] = React.useState(false);
+  // undefined - отправляется, false - неуспешная отправка, true - успешная отправка
   const [successSending, setSuccessSending] = React.useState<undefined | boolean>(undefined);
   const [isSending, setIsSending] = React.useState(false);
 
