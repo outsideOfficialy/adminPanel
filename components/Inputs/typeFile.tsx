@@ -1,7 +1,6 @@
 import { FileInputProps } from "./interfaces";
 import React, { useEffect } from "react";
 import { InputWrapper } from "./inputWrapper";
-// import ButtonTemplate from "../ButtonTemplate";
 import ImgInputDisplay from "../ImgInputDisplay";
 
 export const FileInput: React.FC<FileInputProps> = ({
@@ -12,7 +11,7 @@ export const FileInput: React.FC<FileInputProps> = ({
   multiple = false,
   accept,
   required,
-  fileList,
+  fileList
 }) => {
   const [files, setFiles] = React.useState<null | FileList | { [key: string]: string }>(null);
   const serverRoot = "http://admin-panel-backend";
@@ -27,7 +26,7 @@ export const FileInput: React.FC<FileInputProps> = ({
     const nameOfField = name.replaceAll(/[\[\]]/g, "");
     if (!(files instanceof FileList) && (files[nameOfField] && files[nameOfField] !== "")) {
       const valOfField: string[] = JSON.parse(files[nameOfField]);
-      
+
       return <>
         {valOfField.map((el, idx) => {
           const temp = el.split("/");
@@ -64,7 +63,11 @@ export const FileInput: React.FC<FileInputProps> = ({
           type="file"
           className="hidden"
           id={id}
-          {...(required ? { required: true } : {})}
+          required={(function () {
+            if (required && (files instanceof FileList || !files)) return true;
+            return false;
+          })()}
+          // {...(required ? { required: true } : {})}
           onChange={(e) => {
             if (!e.target.files) return;
             setFiles(e.target.files);
