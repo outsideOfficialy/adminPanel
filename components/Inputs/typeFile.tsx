@@ -15,6 +15,7 @@ export const FileInput: React.FC<FileInputProps> = ({
   fileList,
 }) => {
   const [files, setFiles] = React.useState<null | FileList | { [key: string]: string }>(null);
+  const serverRoot = "http://admin-panel-backend";
 
   useEffect(() => {
     (fileList && fileList[name.replaceAll(/[\[\]]/g, "")] && fileList[name.replaceAll(/[\[\]]/g, "")] !== "") ? setFiles(fileList) : null;
@@ -23,15 +24,28 @@ export const FileInput: React.FC<FileInputProps> = ({
   function updateFileDisplay() {
     if (!files) return <span className="absolute translate w-max text-[14px] md:text-[16px] top-1/2 -translate-y-[calc(50%+7px)] left-full">Your files...</span>;
 
-    if (!(files instanceof FileList)) {
-      return <>Hi!</>;
+    const nameOfField = name.replaceAll(/[\[\]]/g, "");
+    if (!(files instanceof FileList) && (files[nameOfField] && files[nameOfField] !== "")) {
+      const valOfField: string[] = JSON.parse(files[nameOfField]);
+      
+      return <>
+        {valOfField.map((el, idx) => {
+          const temp = el.split("/");
+          const fileName = temp[temp.length - 1];
+          return <ImgInputDisplay key={idx} src={serverRoot + "/" + el} imgName={fileName} />
+        })}
+      </>;
     }
 
-    return <>
-      {Array.from(files).map((el, idx) => {
-        return <ImgInputDisplay key={idx} src={el} imgName={el.name} />
-      })}
-    </>;
+    if (files instanceof FileList) {
+      return <>
+        {Array.from(files).map((el, idx) => {
+          return <ImgInputDisplay key={idx} src={el} imgName={el.name} />
+        })}
+      </>;
+    }
+
+    return <>Error!</>
   }
 
   return (

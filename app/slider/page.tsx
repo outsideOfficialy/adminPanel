@@ -1,9 +1,9 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React from "react";
 import PageLayout from "@/components/PageLayout";
-
 import { InputTypeText, SearchInput, FileInput } from "@/components/Inputs";
+
 
 const Slider = () => {
   const page = "slider";
@@ -11,20 +11,16 @@ const Slider = () => {
     [key: string]: string
   }>({});
 
-  useEffect(() => {
-    console.log(fileList);
-  }, [fileList]);
+  const setFileListHandler = (el: { [key: string]: string }) => {
+    setFileList((prevFileList) => {
+      const keyOfEl = Object.keys(el)[0];
+      return { ...prevFileList, [keyOfEl]: el[keyOfEl] };
+    });
+  }
 
   return (
     <PageLayout pageSubmit={page} title="Slider">
-      <SearchInput setFileList={(el: { [key: string]: string }) => {
-        const keyOfEl = Object.keys(el)[0];
-        const files = { ...fileList, [keyOfEl]: el[keyOfEl] };
-
-
-        setFileList(files);
-        console.log(fileList);
-      }} pageSearch={page} placeholder="ID slider..." label="Slider search" name="id" />
+      <SearchInput setFileList={setFileListHandler} pageSearch={page} placeholder="ID slider..." label="Slider search" name="id" />
 
       <InputTypeText placeholder="Slider title...." label="Slider Title*" name="title" required />
       <InputTypeText placeholder="Slider link...." label="Slider Link*" name="link" required />

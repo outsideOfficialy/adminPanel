@@ -14,10 +14,20 @@ import membersIcons from "../../utils/icons/membersIcons";
 
 export default function Home() {
   const page = "members";
+  const [fileList, setFileList] = React.useState<{
+    [key: string]: string
+  }>({});
+
+  const setFileListHandler = (el: { [key: string]: string }) => {
+    setFileList((prevFileList) => {
+      const keyOfEl = Object.keys(el)[0];
+      return { ...prevFileList, [keyOfEl]: el[keyOfEl] };
+    });
+  }
 
   return (
     <PageLayout pageSubmit={page} title="Members">
-      <SearchInput pageSearch={page} placeholder="Member ID..." label="Member search" name="id" />
+      <SearchInput setFileList={setFileListHandler} pageSearch={page} placeholder="Member ID..." label="Member search" name="id" />
       <InputTypeText
         placeholder="Member nickname"
         label="Member Nickname*"
@@ -45,6 +55,7 @@ export default function Home() {
         name="preview_picture[]"
         label="Member photo picture*"
         id="member-file-input"
+        fileList={fileList}
         required
       />
     </PageLayout>
