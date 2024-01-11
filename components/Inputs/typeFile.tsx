@@ -67,7 +67,6 @@ export const FileInput: React.FC<FileInputProps> = ({
             if (required && (files instanceof FileList || !files)) return true;
             return false;
           })()}
-          // {...(required ? { required: true } : {})}
           onChange={(e) => {
             if (!e.target.files) return;
             setFiles(e.target.files);

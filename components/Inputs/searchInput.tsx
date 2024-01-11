@@ -135,19 +135,6 @@ export const SearchInput: React.FC<SearchInputProps> = ({
                             setFileList({
                               [key]: item[key]
                             });
-                            
-                            
-                            // const allImgs = JSON.parse(item[key]);
-                            // const allElements: React.ReactElement[] = [];
-                            // const fileInputParent = (document.querySelector("input[name^='preview_picture']") as HTMLInputElement).parentElement?.querySelector(".selected-imgs-container");
-
-                            // if (fileInputParent) {
-                            //   for (const path of allImgs) {
-                            //     const separatedPath = path.split("/");
-                            //     allElements.push(<ImgInputDisplay src={serverRoot + "/" + path} imgName={separatedPath[separatedPath.length - 1]} />);
-                            //   }
-                            //   ReactDOM.render(allElements, fileInputParent);
-                            // }
 
                           } else if (key === "social_media_links") {
                             const socialLinks = JSON.parse(item[key]);
