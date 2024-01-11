@@ -14,36 +14,24 @@ export const FileInput: React.FC<FileInputProps> = ({
   required,
   fileList,
 }) => {
-  const [files, setFiles] = React.useState<null | FileList>(null);
+  const [files, setFiles] = React.useState<null | FileList | { [key: string]: string }>(null);
 
-  // useEffect(() => {
-  //   updateFileDisplay();
-  // }, [fileList]);
+  useEffect(() => {
+    (fileList && fileList[name.replaceAll(/[\[\]]/g, "")] && fileList[name.replaceAll(/[\[\]]/g, "")] !== "") ? setFiles(fileList) : null;
+  }, [fileList]);
 
   function updateFileDisplay() {
-    const fileListVal = fileList ? fileList[name.replaceAll(/[\[\]]/g, "")] : null;
+    if (!files) return <span className="absolute translate w-max text-[14px] md:text-[16px] top-1/2 -translate-y-[calc(50%+7px)] left-full">Your files...</span>;
 
-    if (!files && (!fileListVal || fileListVal === "")) return <span className="absolute translate w-max text-[14px] md:text-[16px] top-1/2 -translate-y-[calc(50%+7px)] left-full">Your files...</span>;
-
-
-    if (fileListVal && fileListVal !== "") {
-      // setFiles(null);
+    if (!(files instanceof FileList)) {
       return <>Hi!</>;
     }
 
-    if (files) {
-      fileList ? fileList[name.replaceAll(/[\[\]]/g, "")] = "" : null;
-
-      // setFiles(null);
-      return <>
-        {Array.from(files).map((el, idx) => {
-          return <ImgInputDisplay key={idx} src={el} imgName={el.name} />
-        })}
-      </>;
-    }
-    
-
-    return <>Error!</>
+    return <>
+      {Array.from(files).map((el, idx) => {
+        return <ImgInputDisplay key={idx} src={el} imgName={el.name} />
+      })}
+    </>;
   }
 
   return (

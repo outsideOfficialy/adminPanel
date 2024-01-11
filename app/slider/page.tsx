@@ -11,17 +11,21 @@ const Slider = () => {
     [key: string]: string
   }>({});
 
-  // incoming - true - значит данные пришли с бд, false - загружены вручную, undefined - ничего
+  useEffect(() => {
+    console.log(fileList);
+  }, [fileList]);
 
   return (
     <PageLayout pageSubmit={page} title="Slider">
-      <SearchInput setFileList={(el: {[key: string] : string}) => {
+      <SearchInput setFileList={(el: { [key: string]: string }) => {
         const keyOfEl = Object.keys(el)[0];
-        const files = {...fileList, [keyOfEl]: el[keyOfEl]};
-        
+        const files = { ...fileList, [keyOfEl]: el[keyOfEl] };
+
+
         setFileList(files);
+        console.log(fileList);
       }} pageSearch={page} placeholder="ID slider..." label="Slider search" name="id" />
-      
+
       <InputTypeText placeholder="Slider title...." label="Slider Title*" name="title" required />
       <InputTypeText placeholder="Slider link...." label="Slider Link*" name="link" required />
 
