@@ -19,6 +19,7 @@ export interface SearchInputProps {
   placeholder: string;
   name: string;
   pageSearch: string;
+  setFileList: (el: {[key: string]: string}) => void;
   // onSearch: (e: React.MouseEvent<HTMLButtonElement>) => void; // Функция обработчика поиска
 }
 
@@ -38,4 +39,8 @@ export interface FileInputProps {
   multiple?: boolean;
   accept: string;
   required?: boolean;
+  fileList?: {
+    [key: string]: string;
+  }; 
+  // filesSrc?: string[];
 }
