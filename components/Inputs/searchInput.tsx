@@ -131,7 +131,11 @@ export const SearchInput: React.FC<SearchInputProps> = ({
                           if (!elementInDom) continue;
 
                           if (key.includes("preview_picture")) {
-                            
+                            const allFilesInput:NodeListOf<HTMLInputElement> = document.querySelectorAll("input[type='file']");
+                            if (allFilesInput.length) {
+                              allFilesInput.forEach((el, idx) => el.value = "");
+                            }
+
                             setFileList({
                               [key]: item[key]
                             });
