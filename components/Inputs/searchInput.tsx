@@ -139,7 +139,6 @@ export const SearchInput: React.FC<SearchInputProps> = ({
                             setFileList({
                               [key]: item[key]
                             });
-
                           } else if (key === "social_media_links") {
                             const socialLinks = JSON.parse(item[key]);
 
