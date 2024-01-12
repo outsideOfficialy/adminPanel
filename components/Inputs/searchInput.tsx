@@ -2,16 +2,17 @@ import React, { useState, useEffect } from "react";
 import clsx from "clsx";
 import { Transition } from "@headlessui/react";
 import { SearchInputProps } from "./interfaces";
-import ButtonTemplate from "../ButtonTemplate";
 
 export const SearchInput: React.FC<SearchInputProps> = ({
   label,
   placeholder,
   name,
-  pageSearch
+  pageSearch,
+  setFileList,
 }) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [searchResults, setSearchResults] = useState<any[]>([]);
+  const serverRoot = "http://admin-panel-backend";
 
   const openToggler = (value: boolean) => setIsOpen(value);
 
@@ -36,7 +37,7 @@ export const SearchInput: React.FC<SearchInputProps> = ({
 
   const deleteHandle = (id: string) => {
     // console.log(`http://admin-panel-backend/${pageSearch}/${id}`);
-    fetch(`http://admin-panel-backend/${pageSearch}/${id}`, { method: "DELETE" })
+    fetch(`${serverRoot}/${pageSearch}/${id}`, { method: "DELETE" })
       .then((d) => {
         console.log(d);
         // if (!d.ok) {
@@ -129,8 +130,15 @@ export const SearchInput: React.FC<SearchInputProps> = ({
                             | HTMLTextAreaElement;
                           if (!elementInDom) continue;
 
-                          if (key === "preview_picture") {
-                            // console.log(item[key]);
+                          if (key.includes("preview_picture")) {
+                            const allFilesInput:NodeListOf<HTMLInputElement> = document.querySelectorAll("input[type='file']");
+                            if (allFilesInput.length) {
+                              allFilesInput.forEach((el, idx) => el.value = "");
+                            }
+
+                            setFileList({
+                              [key]: item[key]
+                            });
                           } else if (key === "social_media_links") {
                             const socialLinks = JSON.parse(item[key]);
 
