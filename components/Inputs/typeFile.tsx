@@ -5,6 +5,10 @@ import React, { useEffect } from "react";
 import { InputWrapper } from "./inputWrapper";
 import ImgInputDisplay from "../ImgInputDisplay";
 
+interface fileListProps {
+  [key: string]: string
+}
+
 export const FileInput: React.FC<FileInputProps> = ({
   placeholder,
   name,
@@ -16,7 +20,7 @@ export const FileInput: React.FC<FileInputProps> = ({
   fileList
 }) => {
   // три вида переменной: налл, значит нету данных, FileList - файлы загружены через инпут, и объект с ключом в виде имени инпута и значением в ссылке на картинку
-  const [files, setFiles] = React.useState<null | FileList | { [key: string]: string }>(null);
+  const [files, setFiles] = React.useState<null | FileList | fileListProps>(null);
   const serverRoot = "http://admin-panel-backend";
 
   useEffect(() => {
@@ -29,8 +33,11 @@ export const FileInput: React.FC<FileInputProps> = ({
 
     const nameOfField = name.replaceAll(/[\[\]]/g, "");
     // если файлы были загружены через автозаполнение при searchInput
-    if (!(files instanceof FileList) && (files[nameOfField] && files[nameOfField] !== "")) {
-      const valOfField: string[] = JSON.parse(files[nameOfField]);
+
+
+
+    if (!(String(files).includes("FileList")) && ((files as fileListProps)[nameOfField] && (files as fileListProps)[nameOfField] !== "")) {
+      const valOfField: string[] = JSON.parse((files as fileListProps)[nameOfField]);
 
       return <>
         {valOfField.map((el, idx) => {
