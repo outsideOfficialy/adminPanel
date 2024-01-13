@@ -2,6 +2,7 @@ import { FileInputProps } from "./interfaces";
 import React, { useEffect } from "react";
 import { InputWrapper } from "./inputWrapper";
 import ImgInputDisplay from "../ImgInputDisplay";
+/// <reference lib="dom" />
 
 export const FileInput: React.FC<FileInputProps> = ({
   placeholder,
