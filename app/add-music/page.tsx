@@ -5,6 +5,9 @@ import { InputTypeText, SearchInput, FileInput, SongsInputs } from "@/components
 import { RadioGroup } from "@/components/RadioButtonGroup";
 import React from "react";
 import Dropdown from "@/components/Dropdown";
+import ModalTemplate from "@/components/ModalTemplate";
+import React from "react";
+
 import musicIcons from "../../utils/icons/musicIcons";
 
 export default function Home() {
