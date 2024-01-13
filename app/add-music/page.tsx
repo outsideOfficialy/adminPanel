@@ -3,6 +3,7 @@
 import PageLayout from "@/components/PageLayout";
 import { InputTypeText, SearchInput, FileInput, SongsInputs } from "@/components/Inputs";
 import { RadioGroup } from "@/components/RadioButtonGroup";
+import React from "react";
 import Dropdown from "@/components/Dropdown";
 import ModalTemplate from "@/components/ModalTemplate";
 import React from "react";
@@ -11,10 +12,20 @@ import musicIcons from "../../utils/icons/musicIcons";
 
 export default function Home() {
   const page = "music";
+  const [fileList, setFileList] = React.useState<{
+    [key: string]: string
+  }>({});
+
+  const setFileListHandler = (el: { [key: string]: string }) => {
+    setFileList((prevFileList) => {
+      const keyOfEl = Object.keys(el)[0];
+      return { ...prevFileList, [keyOfEl]: el[keyOfEl] };
+    });
+  }
 
   return (
     <PageLayout pageSubmit={page} title="Music">
-      <SearchInput pageSearch={page} placeholder="Search" label="Music id" name="id" />
+      <SearchInput setFileList={setFileListHandler} pageSearch={page} placeholder="Search" label="Music id" name="id" />
       <RadioGroup
         title="Release type"
         group={[
@@ -51,6 +62,7 @@ export default function Home() {
       </div>
       <SongsInputs name="release_songs[]" label="Release song(s)*" />
       <FileInput
+      fileList={fileList}
         placeholder="Browse..."
         name="preview_picture[]"
         label="Single\album preview*"

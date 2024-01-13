@@ -20,12 +20,31 @@ const SendFormBtn: React.FC<SendFormBtnProps> = ({ setModalOpen }) => {
   };
 
   const handleSendLaterClick = () => {
-    // Если форма не заполнена, отображаем DatePicker
-    if (!selectedDate) {
-      setDatePickerVisible(true);
+    // Поиск всех input-ов с атрибутом required
+    const requiredInputs = document.querySelectorAll("input[required]");
+
+    // Проверка заполненности всех input-ов с атрибутом required
+    const isFormValid = Array.from(requiredInputs).every((input) => {
+      if (input instanceof HTMLInputElement) {
+        return input.value.trim() !== "";
+      }
+      return false;
+    });
+
+    // Если хотя бы одно поле не заполнено, устанавливаем ошибку
+    if (!isFormValid) {
+      setIsError(true);
     } else {
-      // Если форма заполнена, открываем модальное окно и выполняем дополнительные действия
-      setModalOpen(true);
+      // Если все обязательные поля заполнены, сбрасываем ошибку и выполняем код
+      setIsError(false);
+
+      // Дополнительная проверка на наличие выбранной даты
+      if (!selectedDate) {
+        setDatePickerVisible(true);
+      } else {
+        // Если форма заполнена, открываем модальное окно и выполняем дополнительные действия
+        setModalOpen(true);
+      }
     }
   };
 
@@ -70,6 +89,10 @@ const SendFormBtn: React.FC<SendFormBtnProps> = ({ setModalOpen }) => {
         </div>
       )}
 
+      {isError && (
+        <p className="text-red-500">Please fill in all required fields before sending.</p>
+      )}
+
       <div className="flex w-full gap-[30px]">
         <ButtonTemplate
           onClick={(e) => {
@@ -94,9 +117,6 @@ const SendFormBtn: React.FC<SendFormBtnProps> = ({ setModalOpen }) => {
           Send later
         </ButtonTemplate>
       </div>
-      {isError && (
-        <p className="text-red-500">Please fill in all required fields before sending.</p>
-      )}
     </div>
   );
 };

@@ -7,11 +7,21 @@ import { InputTypeText, SearchInput, FileInput, TextArea, InputTypeNum } from "@
 
 export default function Home() {
   const page = "merch";
+  const [fileList, setFileList] = React.useState<{
+    [key: string]: string
+  }>({});
+
+  const setFileListHandler = (el: { [key: string]: string }) => {
+    setFileList((prevFileList) => {
+      const keyOfEl = Object.keys(el)[0];
+      return { ...prevFileList, [keyOfEl]: el[keyOfEl] };
+    });
+  }
   // const [inpuptsData, setInputsData] = React.useState<MerchProps | null>(null);
 
   return (
     <PageLayout pageSubmit={page} title="Merch">
-      <SearchInput pageSearch={page} placeholder="ID merch...." label="ID Merch" name="id" />
+      <SearchInput setFileList={setFileListHandler} pageSearch={page} placeholder="ID merch...." label="ID Merch" name="id" />
 
       <FileInput
         placeholder="Browse..."
@@ -19,6 +29,7 @@ export default function Home() {
         name="preview_picture[]"
         label="Merch preview picture(s)*"
         id="merch-file-input"
+        fileList={fileList}
         multiple
         required
       />

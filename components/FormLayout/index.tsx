@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import ConfirmModal from "../ConfirmModal";
 import SendFormBtn from "../SendFormBtn";
 
@@ -9,6 +9,7 @@ interface FormLayoutProps {
 
 const FormLayout: React.FC<FormLayoutProps> = ({ children, pageSubmit }) => {
   const [isModalOpen, setModalOpen] = React.useState(false);
+  // undefined - отправляется, false - неуспешная отправка, true - успешная отправка
   const [successSending, setSuccessSending] = React.useState<undefined | boolean>(undefined);
   const [isSending, setIsSending] = React.useState(false);
 
@@ -18,10 +19,15 @@ const FormLayout: React.FC<FormLayoutProps> = ({ children, pageSubmit }) => {
     setModalOpen(value);
   }
 
+  useEffect(() => {
+    // тут вызовем сначала при успешной отправке модалку об успешном отправлении, а потом перезагрузим страницу
+    // в серчИнпуте я делаю инпут с файлом не обязательным, чтобы валидация проходила, и чтобы не думать когда делать его снова required я перезагружаю страницу
+    successSending ? window.location.reload() : null;
+  }, [successSending]);
+
   return (
     <form
       className="flex flex-col gap-[30px] md:gap-[45px] max-w-[920px]"
-      action={"http://admin-panel-backend"}
       encType="multipart/form-data"
       method="POST"
       onSubmit={(e) => {
@@ -32,7 +38,8 @@ const FormLayout: React.FC<FormLayoutProps> = ({ children, pageSubmit }) => {
         const formData = new FormData(formElem);
 
         setSuccessSending(undefined);
-        fetch(`http://admin-panel-backend/${pageSubmit}`, {
+        const id = (document.querySelector("input[name='id']") as HTMLInputElement).value.trim();
+        fetch(`http://admin-panel-backend/${pageSubmit}${id === "" ? "" : `/${id}`}`, {
           method: "POST",
           body: formData
         })

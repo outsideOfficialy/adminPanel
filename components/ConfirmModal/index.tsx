@@ -22,7 +22,7 @@ interface ModalListItemProps {
 }
 
 interface ModalBodySliderProps {
-  files: FileList;
+  files: FileList | string[];
 }
 
 const RenderConfirmBody: React.FC = React.memo(({ }) => {
@@ -119,14 +119,30 @@ const RenderConfirmBody: React.FC = React.memo(({ }) => {
 
         if (inputs[0].name.includes("preview_picture")) {
           const fileInput = inputs[0] as HTMLInputElement;
+          
+          if (!fileInput.files?.length) {
+            const imgsContainer = fileInput.nextElementSibling;
 
-          if (!fileInput.files) return;
+            if (!imgsContainer) return;
 
-          mapedEl.push(
-            <ModalListItem title={`${label.textContent?.replaceAll("*", "")}:`}>
-              <ModalBodySlider files={fileInput.files} />
-            </ModalListItem>
-          );
+            const allImgs = imgsContainer.querySelectorAll("img");
+            const allImgsSrc = Array.from(allImgs).map((el, idx) => el.src);
+
+            mapedEl.push(
+              <ModalListItem title={`${label.textContent?.replaceAll("*", "")}:`}>
+                <ModalBodySlider files={allImgsSrc} />
+              </ModalListItem>
+            );
+
+          }
+          else {
+            mapedEl.push(
+              <ModalListItem title={`${label.textContent?.replaceAll("*", "")}:`}>
+                <ModalBodySlider files={fileInput.files} />
+              </ModalListItem>
+            );
+          }
+
         }
         else if (inputs[0].name === "send_later") {
           if (inputs[0].value.trim() !== "") {
@@ -232,11 +248,9 @@ const ModalBodySlider: React.FC<ModalBodySliderProps> = ({
   files
 }) => {
   const [currentSlide, setCurrentSlide] = React.useState(0);
-
   const increaseSlide = () => {
     if (currentSlide + 1 >= files.length) setCurrentSlide(0);
     else setCurrentSlide(currentSlide + 1);
-
   };
   const decreaseSlide = () => {
     if (currentSlide - 1 < 0) setCurrentSlide(files.length - 1);
@@ -244,21 +258,26 @@ const ModalBodySlider: React.FC<ModalBodySliderProps> = ({
   };
 
   return <div className="relative w-full">
-
     {files.length > 1 ? <><div className="absolute h-full w-[10%] left-0 cursor-pointer" title="Flip the image" onClick={decreaseSlide}></div>
 
       <div className="absolute h-full w-[10%] right-0 cursor-pointer" title="Flip the image" onClick={increaseSlide}></div></> : null}
 
     {function () {
       const imgArray = [];
-      for (let i = 0; i < files.length; i++) imgArray.push(<img className="border-[1px] border-main-primary-color w-full h-auto" src={URL.createObjectURL(files[i])} alt="preview_image" />);
+      for (let i = 0; i < files.length; i++) imgArray.push(<img className="border-[1px] border-main-primary-color w-full h-auto" src={function() {
+        return Array.isArray(files) ? files[i] : URL.createObjectURL(files[i]);
+      }()} alt="preview_image" />);
       return <>{imgArray[currentSlide]}</>
     }()}
     {function () {
       if (files.length <= 1) return <></>;
 
       return <div className="absolute bottom-[20px] left-[20px] flex gap-[20px]">
-        {Array.from(files).map((el, idx) => {
+        {(function() {
+          if (files instanceof FileList) return Array.from(files);
+          else if (Array.isArray(files)) return files;
+          return [];
+        }()).map((el, idx) => {
           return <div className={`w-[20px] h-[20px] rounded-full border-[1px] border-white cursor-pointer ${idx === currentSlide ? "bg-white" : ""}`}
             onClick={() => setCurrentSlide(idx)}></div>;
         })}

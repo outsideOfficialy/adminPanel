@@ -11,11 +11,13 @@ export const SearchInput: React.FC<SearchInputProps> = ({
   label,
   placeholder,
   name,
-  pageSearch
+  pageSearch,
+  setFileList,
 }) => {
-  const [isOpen, setIsOpen] = React.useState<boolean>(false);
-  const [searchResults, setSearchResults] = React.useState<any[]>([]);
-  const [showConfirmationModal, setShowConfirmationModal] = React.useState<boolean>(false);
+  //const [showConfirmationModal, setShowConfirmationModal] = React.useState<boolean>(false);
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [searchResults, setSearchResults] = useState<any[]>([]);
+  const serverRoot = "http://admin-panel-backend";
 
   const openToggler = (value: boolean) => setIsOpen(value);
 
@@ -36,6 +38,25 @@ export const SearchInput: React.FC<SearchInputProps> = ({
       .catch((reason) => {
         console.log(reason);
       });
+  };
+
+
+  const deleteHandle = (id: string) => {
+    // console.log(`http://admin-panel-backend/${pageSearch}/${id}`);
+    fetch(`${serverRoot}/${pageSearch}/${id}`, { method: "DELETE" })
+      .then((d) => {
+        console.log(d);
+        // if (!d.ok) {
+        //   return d.text().then(errorData => {
+        //     throw new Error(errorData || "Произошла ошибка запроса");
+        //   });
+        // }
+        // console.log(d);
+      })
+      // .then((d) => {
+      //   console.log(d);
+      // })
+      .catch((reason) => console.log(reason));
   };
 
   const toggleDropdown = () => {
@@ -116,8 +137,15 @@ export const SearchInput: React.FC<SearchInputProps> = ({
                             | HTMLTextAreaElement;
                           if (!elementInDom) continue;
 
-                          if (key === "preview_picture") {
-                            // console.log(item[key]);
+                          if (key.includes("preview_picture")) {
+                            const allFilesInput:NodeListOf<HTMLInputElement> = document.querySelectorAll("input[type='file']");
+                            if (allFilesInput.length) {
+                              allFilesInput.forEach((el, idx) => el.value = "");
+                            }
+
+                            setFileList({
+                              [key]: item[key]
+                            });
                           } else if (key === "social_media_links") {
                             const socialLinks = JSON.parse(item[key]);
 
