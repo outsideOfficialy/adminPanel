@@ -6,12 +6,6 @@ import PageLayout from "@/components/PageLayout";
 import Dropdown from "@/components/Dropdown";
 
 import membersIcons from "../../utils/icons/membersIcons";
-/// <reference lib="dom" />
-
-// import itunes from "../../src/icons/itunes.svg";
-// import spotify from "../../src/icons/spotify.svg";
-// import soundcloud from "../../src/icons/soundcloud.svg";
-// import youtubeMusic from "../../src/icons/youtubeMusic.svg";
 
 export default function Home() {
   const page = "members";

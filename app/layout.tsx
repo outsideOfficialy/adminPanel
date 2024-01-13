@@ -5,6 +5,7 @@ export const metadata: Metadata = {
   title: "Outside admin panel",
   description: "This is content-managing system for outside website"
 };
+/// <reference lib="dom" />
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (

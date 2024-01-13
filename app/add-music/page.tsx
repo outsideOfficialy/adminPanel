@@ -6,7 +6,6 @@ import { RadioGroup } from "@/components/RadioButtonGroup";
 import React from "react";
 import Dropdown from "@/components/Dropdown";
 import musicIcons from "../../utils/icons/musicIcons";
-/// <reference lib="dom" />
 
 export default function Home() {
   const page = "music";
