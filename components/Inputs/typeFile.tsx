@@ -49,7 +49,7 @@ export const FileInput: React.FC<FileInputProps> = ({
     }
 
     // если файлы были загружены через инпут
-    if (files instanceof FileList) {
+    if (String(files).includes("FileList")) {
       return <>
         {Array.from(files).map((el, idx) => {
           return <ImgInputDisplay key={idx} src={el} imgName={el.name} />

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import clsx from "clsx";
 import { Transition } from "@headlessui/react";
 import { SearchInputProps } from "./interfaces";
@@ -14,7 +14,7 @@ export const SearchInput: React.FC<SearchInputProps> = ({
   pageSearch,
   setFileList,
 }) => {
-  //const [showConfirmationModal, setShowConfirmationModal] = React.useState<boolean>(false);
+  const [showConfirmationModal, setShowConfirmationModal] = React.useState<boolean>(false);
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [searchResults, setSearchResults] = useState<any[]>([]);
   const serverRoot = "http://admin-panel-backend";
