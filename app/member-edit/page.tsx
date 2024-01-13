@@ -6,6 +6,7 @@ import PageLayout from "@/components/PageLayout";
 import Dropdown from "@/components/Dropdown";
 
 import membersIcons from "../../utils/icons/membersIcons";
+/// <reference lib="dom" />
 
 // import itunes from "../../src/icons/itunes.svg";
 // import spotify from "../../src/icons/spotify.svg";

@@ -2,8 +2,8 @@
 
 import React from "react";
 import PageLayout from "@/components/PageLayout";
-
 import { InputTypeText, SearchInput, FileInput, TextArea } from "@/components/Inputs";
+/// <reference lib="dom" />
 
 const News = () => {
   const page = "news";

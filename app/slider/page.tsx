@@ -3,6 +3,7 @@
 import React from "react";
 import PageLayout from "@/components/PageLayout";
 import { InputTypeText, SearchInput, FileInput } from "@/components/Inputs";
+/// <reference lib="dom" />
 
 
 const Slider = () => {

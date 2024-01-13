@@ -14,6 +14,7 @@ export const FileInput: React.FC<FileInputProps> = ({
   required,
   fileList
 }) => {
+  // три вида переменной: налл, значит нету данных, FileList - файлы загружены через инпут, и объект с ключом в виде имени инпута и значением в ссылке на картинку
   const [files, setFiles] = React.useState<null | FileList | { [key: string]: string }>(null);
   const serverRoot = "http://admin-panel-backend";
 
@@ -22,9 +23,11 @@ export const FileInput: React.FC<FileInputProps> = ({
   }, [fileList]);
 
   function updateFileDisplay() {
+    // если переменная files в принципе не определена, значит отобразить надпись( то есть когда не было загрузки файлов )
     if (!files) return <span className="absolute translate w-max text-[14px] md:text-[16px] top-1/2 -translate-y-[calc(50%+7px)] left-full">Your files...</span>;
 
     const nameOfField = name.replaceAll(/[\[\]]/g, "");
+    // если файлы были загружены через автозаполнение при searchInput
     if (!(files instanceof FileList) && (files[nameOfField] && files[nameOfField] !== "")) {
       const valOfField: string[] = JSON.parse(files[nameOfField]);
 
@@ -37,6 +40,7 @@ export const FileInput: React.FC<FileInputProps> = ({
       </>;
     }
 
+    // если файлы были загружены через инпут
     if (files instanceof FileList) {
       return <>
         {Array.from(files).map((el, idx) => {

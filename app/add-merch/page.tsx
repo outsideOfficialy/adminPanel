@@ -4,6 +4,7 @@ import React from "react";
 import PageLayout from "@/components/PageLayout";
 
 import { InputTypeText, SearchInput, FileInput, TextArea, InputTypeNum } from "@/components/Inputs";
+/// <reference lib="dom" />
 
 export default function Home() {
   const page = "merch";
