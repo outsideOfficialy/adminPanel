@@ -41,11 +41,11 @@ export const FileInput: React.FC<FileInputProps> = ({
     const nameOfField = name.replaceAll(/[\[\]]/g, "");
 
     if (
-      !String(files).includes("FileList") &&
-      (files as fileListProps)[nameOfField] &&
-      (files as fileListProps)[nameOfField] !== ""
+      !(files instanceof FileList) &&
+      files[nameOfField] &&
+      files[nameOfField] !== ""
     ) {
-      const valOfField: string[] = JSON.parse((files as fileListProps)[nameOfField]);
+      const valOfField: string[] = JSON.parse(files[nameOfField]);
 
       return (
         <>
@@ -58,10 +58,10 @@ export const FileInput: React.FC<FileInputProps> = ({
       );
     }
 
-    if (String(files).includes("FileList")) {
+    if (files instanceof FileList) {
       return (
         <>
-          {Array.from(files as FileList).map((el, idx) => {
+          {Array.from(files).map((el, idx) => {
             return <ImgInputDisplay key={idx} src={el} imgName={el.name} />;
           })}
         </>
