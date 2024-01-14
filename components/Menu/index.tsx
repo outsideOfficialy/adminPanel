@@ -3,8 +3,8 @@ import Link from "next/link";
 
 interface MenuProps {
   list: {
-    "link": string;
-    "textContent": string;
+    link: string;
+    textContent: string;
   }[];
 }
 
@@ -19,7 +19,7 @@ const Menu: React.FC<MenuProps> = ({ list }) => {
     <div className="relative">
       <button
         onClick={handleMenuOpen}
-        className="absolute top-0 left-0 menu material-symbols-outlined"
+        className="absolute top-[0] md:top-[8px] left-[3px] md:left-[15px] menu material-symbols-outlined"
       >
         menu
       </button>
