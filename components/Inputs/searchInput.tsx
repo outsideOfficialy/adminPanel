@@ -13,6 +13,7 @@ export const SearchInput: React.FC<SearchInputProps> = ({
   name,
   pageSearch,
   setFileList,
+  setSongsList
 }) => {
   const [showConfirmationModal, setShowConfirmationModal] = React.useState<boolean>(false);
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -137,8 +138,8 @@ export const SearchInput: React.FC<SearchInputProps> = ({
                             | HTMLTextAreaElement;
                           if (!elementInDom) continue;
 
-                          if (key.includes("preview_picture")) {
-                            const allFilesInput:NodeListOf<HTMLInputElement> = document.querySelectorAll("input[type='file']");
+                          if (key.includes("preview_picture") && setFileList) {
+                            const allFilesInput: NodeListOf<HTMLInputElement> = document.querySelectorAll("input[type='file']");
                             if (allFilesInput.length) {
                               allFilesInput.forEach((el, idx) => el.value = "");
                             }
@@ -147,6 +148,7 @@ export const SearchInput: React.FC<SearchInputProps> = ({
                               [key]: item[key]
                             });
                           } else if (key === "social_media_links") {
+                            // инпут с соц сетями
                             const socialLinks = JSON.parse(item[key]);
 
                             for (let i = 0; i < socialLinks.length; i++) {
@@ -156,27 +158,17 @@ export const SearchInput: React.FC<SearchInputProps> = ({
                               (linkInput.nextElementSibling as HTMLInputElement).value =
                                 socialLinks[i].link;
                             }
-                          } else if (key === "music_type") {
+                          }
+                          else if (key === "music_type") {
+                            // инпут радиокнопки
                             (elementInDom as HTMLInputElement).checked = true;
-                          } else if (
-                            key === "release_songs" &&
-                            JSON.parse(item[key]).length !== 1
-                          ) {
-                            const addBtn = elementInDom.closest("div")
-                              ?.nextElementSibling as HTMLButtonElement;
+                          }
+                          else if (key === "release_songs" && JSON.parse(item[key]).length !== 1 && setSongsList) {
+                            // инпут с релизами песен
                             const songsList = JSON.parse(item[key]);
-
-                            for (let i = 0; i < songsList.length; i++) addBtn.click();
-
-                            setTimeout(() => {
-                              const songInputs = document.querySelectorAll(
-                                `form [name^="release_songs[]"]`
-                              );
-                              for (let i = 0; i < songsList.length; i++) {
-                                (songInputs[i] as HTMLInputElement).value = songsList[i];
-                              }
-                            }, 10);
+                            setSongsList(songsList);
                           } else {
+                            // обычный инпут
                             elementInDom.value = item[key];
                           }
                         }

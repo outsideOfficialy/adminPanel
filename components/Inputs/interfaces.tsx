@@ -19,8 +19,8 @@ export interface SearchInputProps {
   placeholder: string;
   name: string;
   pageSearch: string;
-  setFileList: (el: {[key: string]: string}) => void;
-  // onSearch: (e: React.MouseEvent<HTMLButtonElement>) => void; // Функция обработчика поиска
+  setFileList?: (el: {[key: string]: string}) => void;
+  setSongsList?: (str: string[]) => void;
 }
 
 export interface TextAreaFieldProps {
