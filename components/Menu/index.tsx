@@ -19,7 +19,7 @@ const Menu: React.FC<MenuProps> = ({ list }) => {
     <div className="relative">
       <button
         onClick={handleMenuOpen}
-        className="absolute top-[0] md:top-[8px] left-[3px] md:left-[15px] menu material-symbols-outlined"
+        className="absolute top-[2px] md:top-[6px] left-[3px] md:left-[15px] menu material-symbols-rounded"
       >
         menu
       </button>

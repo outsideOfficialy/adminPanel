@@ -30,11 +30,10 @@
 
 .material-symbols-outlined.shield-person {
   font-size: 54px;
-  font-variation-settings: "FILL" 0, "wght" 500, "GRAD" 0, "opsz" 56;
+  font-variation-settings: "FILL" 0, "wght" 600, "GRAD" 0, "opsz" 56;
 }
 
-
-.material-symbols-outlined.menu {
+.material-symbols-rounded.menu {
   font-size: 32px;
   font-variation-settings: "FILL" 0, "wght" 500, "GRAD" 0, "opsz" 56;
 }
@@ -59,11 +58,11 @@
   height: 24px;
 }
 
-@media (max-width: 768px){
+@media (max-width: 768px) {
   .material-symbols-outlined.shield-person {
     font-size: 42px;
   }
-  .material-symbols-outlined.search{
+  .material-symbols-outlined.search {
     font-size: 16px;
   }
   .platform-img {
