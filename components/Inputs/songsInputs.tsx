@@ -6,7 +6,7 @@ import React, { useEffect } from "react";
 export const SongsInputs: React.FC<{ label: string; name: string; songs?: string[] }> = ({
   label,
   name,
-  songs = [""]
+  songs = []
 }) => {
   const [songsCount, setSongsCount] = React.useState<string[]>([""]);
 
@@ -23,7 +23,7 @@ export const SongsInputs: React.FC<{ label: string; name: string; songs?: string
   };
 
   useEffect(() => {
-    if (!songs.length && songs[0] === "") return;
+    if (!songs.length || songs[0] === "") return;
     setSongsCount(songs);
   }, [songs]);
 
