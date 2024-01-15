@@ -138,7 +138,7 @@ export const SearchInput: React.FC<SearchInputProps> = ({
                           if (!elementInDom) continue;
 
                           if (key.includes("preview_picture")) {
-                            const allFilesInput:NodeListOf<HTMLInputElement> = document.querySelectorAll("input[type='file']");
+                            const allFilesInput: NodeListOf<HTMLInputElement> = document.querySelectorAll("input[type='file']");
                             if (allFilesInput.length) {
                               allFilesInput.forEach((el, idx) => el.value = "");
                             }
@@ -214,11 +214,13 @@ export const SearchInput: React.FC<SearchInputProps> = ({
                               return "Type";
                             case keys.includes("content"):
                               return "Content";
+                            case keys.includes("link"):
+                              return "Link";
                           }
                         })()}
                         :{" "}
                         <span className="text-white">
-                          {item.role || item.description || item["music_type"] || item.content}
+                          {item.role || item.description || item["music_type"] || item.content || item.link}
                         </span>
                       </p>
                     </div>
