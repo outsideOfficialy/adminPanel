@@ -22,7 +22,7 @@ const FormLayout: React.FC<FormLayoutProps> = ({ children, pageSubmit }) => {
   useEffect(() => {
     // тут вызовем сначала при успешной отправке модалку об успешном отправлении, а потом перезагрузим страницу
     // в серчИнпуте я делаю инпут с файлом не обязательным, чтобы валидация проходила, и чтобы не думать когда делать его снова required я перезагружаю страницу
-    successSending ? window.location.reload() : null;
+    // successSending ? window.location.reload() : null;
   }, [successSending]);
 
   return (
