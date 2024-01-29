@@ -1,21 +1,11 @@
 "use client";
 
-import { useState } from "react";
 import PageTemplate from "@/components/PageTemplate";
 import ButtonTemplate from "@/components/ButtonTemplate";
-import { InputTypeText } from "@/components/Inputs";
 import { useSession, signOut, signIn } from "next-auth/react";
-// import Link from "next/link";
 
 export default function Home() {
-  // const [showPassword, setShowPassword] = useState(false);
   const session = useSession();
-
-  console.log(session);
-
-  // const handleLoginClick = () => {
-  //   setShowPassword(true);
-  // };
 
   if (session.status === "authenticated") window.location.href += "/news";
 

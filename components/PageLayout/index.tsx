@@ -13,9 +13,6 @@ interface PageLayoutProps {
 const PageLayout: React.FC<PageLayoutProps> = ({ children, title, pageSubmit }) => {
   const session = useSession();
 
-  console.log(session);
-
-
   if (session.status === "unauthenticated") {
     window.location.href = "/";
   }
