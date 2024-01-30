@@ -22,6 +22,7 @@ export const SearchInput: React.FC<SearchInputProps> = ({
   const openToggler = (value: boolean) => setIsOpen(value);
 
   const handleSearch = (id: string) => {
+
     fetch(`${SERVER_ROOT}/${pageSearch}/${id}`, { method: "GET" })
       .then((d) => {
         if (d.ok) {
