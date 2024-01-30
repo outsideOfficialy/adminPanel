@@ -3,6 +3,7 @@ import FormLayout from "../FormLayout";
 import Menu from "../Menu";
 import PageTemplate from "../PageTemplate";
 import ButtonTemplate from "../ButtonTemplate";
+import Loader from "../Loader";
 
 interface PageLayoutProps {
   children?: React.ReactNode[] | React.ReactNode;
@@ -19,9 +20,11 @@ const PageLayout: React.FC<PageLayoutProps> = ({ children, title, pageSubmit }) 
 
   return (
     <>
-      {session.status === "loading" || session.status === "unauthenticated"  ? <div>
-        Checking authorization...
-      </div> :
+      {session.status === "loading" || session.status === "unauthenticated" ? (
+        <div className="w-[100dvw] h-[100dvh] flex justify-center items-center">
+          <Loader open></Loader>
+        </div>
+      ) : (
         <>
           {/* here will be menu button calling */}
           <div className="absolute left-[10px] top-[15px] md:left-[40px] md:top-[40px]">
@@ -36,10 +39,15 @@ const PageLayout: React.FC<PageLayoutProps> = ({ children, title, pageSubmit }) 
             />
           </div>
           <div className="fixed right-[35px] top-[35px] flex items-center gap-[20px]">
-            <img className="rounded-full w-[32px]" src={session.data?.user?.image ? session.data.user.image : ""} alt="Logo"/>
+            <img
+              className="rounded-full w-[32px]"
+              src={session.data?.user?.image ? session.data.user.image : ""}
+              alt="Logo"
+            />
             <ButtonTemplate
               className="material-symbols-outlined shadow-none w-[32px] h-[32px]"
-              onClick={() => signOut({ callbackUrl: "/" })}>
+              onClick={() => signOut({ callbackUrl: "/" })}
+            >
               move_item
             </ButtonTemplate>
           </div>
@@ -48,7 +56,7 @@ const PageLayout: React.FC<PageLayoutProps> = ({ children, title, pageSubmit }) 
             <FormLayout pageSubmit={pageSubmit}>{children ? children : null}</FormLayout>
           </PageTemplate>
         </>
-      }
+      )}
     </>
   );
 };
