@@ -14,10 +14,8 @@ const PageTemplate: React.FC<PageTemplateProps> = ({ children, title, className 
         className
       )}
     >
-      <div className="flex justify-center gap-[15px] md:justify-start md:gap-[25px] items-center mb-50px">
-        <p className="font-delagothic text-[32px] md:text-[54px] pl-[0px] md:pl-[70px] 2xl:pl-[0px]">
-          OUTSIDE
-        </p>
+      <div className="flex flex-start ml-[40px] md:ml-[65px] 2xl:ml-[0] gap-[5px] md:justify-start md:gap-[25px] items-center mb-50px">
+        <p className="font-delagothic text-[32px] md:text-[54px]">OUTSIDE</p>
         <div className="material-symbols-outlined shield-person">shield_person</div>
       </div>
       <h2 className="text-[26px] md:text-[48px] font-medium">{title}</h2>
