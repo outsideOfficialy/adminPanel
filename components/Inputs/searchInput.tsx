@@ -145,9 +145,10 @@ export const SearchInput: React.FC<SearchInputProps> = ({
                               allFilesInput.forEach((el, idx) => el.value = "");
                             }
 
-                            setFileList({
-                              [key]: item[key]
-                            });
+                            if (setFileList)
+                              setFileList({
+                                [key]: item[key]
+                              });
                           } else if (key === "social_media_links") {
                             // инпут с соц сетями
                             const socialLinks = JSON.parse(item[key]);
