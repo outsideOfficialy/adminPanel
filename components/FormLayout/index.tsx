@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import ConfirmModal from "../ConfirmModal";
 import SendFormBtn from "../SendFormBtn";
+import { SERVER_ROOT } from "@/config/variables";
 
 interface FormLayoutProps {
   children?: React.ReactNode[] | React.ReactNode;
@@ -22,7 +23,7 @@ const FormLayout: React.FC<FormLayoutProps> = ({ children, pageSubmit }) => {
   useEffect(() => {
     // тут вызовем сначала при успешной отправке модалку об успешном отправлении, а потом перезагрузим страницу
     // в серчИнпуте я делаю инпут с файлом не обязательным, чтобы валидация проходила, и чтобы не думать когда делать его снова required я перезагружаю страницу
-    successSending ? window.location.reload() : null;
+    // successSending ? window.location.reload() : null;
   }, [successSending]);
 
   return (
@@ -39,7 +40,7 @@ const FormLayout: React.FC<FormLayoutProps> = ({ children, pageSubmit }) => {
 
         setSuccessSending(undefined);
         const id = (document.querySelector("input[name='id']") as HTMLInputElement).value.trim();
-        fetch(`http://admin-panel-backend/${pageSubmit}${id === "" ? "" : `/${id}`}`, {
+        fetch(`${SERVER_ROOT}/${pageSubmit}${id === "" ? "" : `/${id}`}`, {
           method: "POST",
           body: formData
         })
