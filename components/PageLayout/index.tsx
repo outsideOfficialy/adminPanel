@@ -35,12 +35,12 @@ const PageLayout: React.FC<PageLayoutProps> = ({ children, title, pageSubmit }) 
               ]}
             />
           </div>
-          <div className="fixed right-8 top-8">
-            <img className="rounded-full mb-[10px]" src={session.data?.user?.image ? session.data.user.image : ""} alt="Logo" />
+          <div className="fixed right-[35px] top-[35px] flex items-center gap-[20px]">
+            <img className="rounded-full w-[32px]" src={session.data?.user?.image ? session.data.user.image : ""} alt="Logo"/>
             <ButtonTemplate
-              smallSecondary
+              className="material-symbols-outlined shadow-none w-[32px] h-[32px]"
               onClick={() => signOut({ callbackUrl: "/" })}>
-              Signout
+              move_item
             </ButtonTemplate>
           </div>
 
