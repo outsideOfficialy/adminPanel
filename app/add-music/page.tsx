@@ -14,6 +14,7 @@ export default function Home() {
   const [fileList, setFileList] = React.useState<{
     [key: string]: string
   }>({});
+  const [songsList, setSongsList] = React.useState<string[]>([]);
 
   const setFileListHandler = (el: { [key: string]: string }) => {
     setFileList((prevFileList) => {
@@ -22,9 +23,10 @@ export default function Home() {
     });
   }
 
+
   return (
     <PageLayout pageSubmit={page} title="Music">
-      <SearchInput setFileList={setFileListHandler} pageSearch={page} placeholder="Search" label="Music id" name="id" />
+      <SearchInput setSongsList={(st) => setSongsList(st)} setFileList={setFileListHandler} pageSearch={page} placeholder="Search" label="Music id" name="id" />
       <RadioGroup
         title="Release type"
         group={[
@@ -59,7 +61,7 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <SongsInputs name="release_songs[]" label="Release song(s)*" />
+      <SongsInputs songs={songsList} name="release_songs[]" label="Release song(s)*" />
       <FileInput
       fileList={fileList}
         placeholder="Browse..."

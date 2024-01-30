@@ -13,28 +13,37 @@ interface DropdownProps {
 }
 
 const Dropdown: React.FC<DropdownProps> = ({ headerText, inputsName, links, label }) => {
-
   const [isOpen, setIsOpen] = React.useState<boolean>(false);
 
   return (
     <div className="flex flex-col gap-[10px]">
-      {label && <label className="text-[20px] md:text-2xl font-normal leading-6 tracking-wider">{label}</label>}
-      <div onClick={(e) => {
-        const curTarget = e.target as HTMLElement; // получаем какой элемент нажали
-        const dropdownHead = curTarget.closest(".dropdown-head") as HTMLDivElement;
-        const dropdownContainer = curTarget.closest(".dropdown-container") as HTMLDivElement;
-        const isBodyClicked = (curTarget.closest(".dropdown-body") as HTMLDivElement)?.classList.contains("dropdown-body");
+      {label && (
+        <label className="text-[20px] md:text-2xl font-normal leading-6 tracking-wider">
+          {label}
+        </label>
+      )}
+      <div
+        onClick={(e) => {
+          const curTarget = e.target as HTMLElement; // получаем какой элемент нажали
+          const dropdownHead = curTarget.closest(".dropdown-head") as HTMLDivElement;
+          const dropdownContainer = curTarget.closest(".dropdown-container") as HTMLDivElement;
+          const isBodyClicked = (
+            curTarget.closest(".dropdown-body") as HTMLDivElement
+          )?.classList.contains("dropdown-body");
 
-
-        if (isOpen && !isBodyClicked) {
-          dropdownContainer.style.maxHeight = window.getComputedStyle(dropdownHead).height;
-          setIsOpen(false);
-        }
-        else if (!isOpen) {
-          dropdownContainer.style.maxHeight = dropdownContainer.scrollHeight + 1 + "px";
-          setIsOpen(true);
-        }
-      }} className={clsx("dropdown-container transition-all ease-out duration-300 w-full max-w-[450px] cursor-default overflow-hidden", isOpen ? "" : "max-h-[43px] md:max-h-[47px]")}>
+          if (isOpen && !isBodyClicked) {
+            dropdownContainer.style.maxHeight = window.getComputedStyle(dropdownHead).height;
+            setIsOpen(false);
+          } else if (!isOpen) {
+            dropdownContainer.style.maxHeight = dropdownContainer.scrollHeight + 1 + "px";
+            setIsOpen(true);
+          }
+        }}
+        className={clsx(
+          "dropdown-container transition-all ease-out duration-300 w-full max-w-[450px] cursor-default overflow-hidden",
+          isOpen ? "" : "max-h-[43px] md:max-h-[47px]"
+        )}
+      >
         {/* header */}
         <div
           className={clsx(
@@ -54,15 +63,19 @@ const Dropdown: React.FC<DropdownProps> = ({ headerText, inputsName, links, labe
         </div>
 
         {/* body */}
-        <div
-          className="dropdown-body border-[1px] border-main-primary-color border-t-0 rounded-b-[5px] origin-top p-[15px] flex flex-col gap-[21px]"
-        >
+        <div className="dropdown-body border-[1px] border-main-primary-color border-t-0 rounded-b-[5px] origin-top p-[15px] flex flex-col gap-[21px]">
           {Object.keys(links).map((key, idx) => {
             return (
-              <div key={idx}>
-                <h4 className="text-[14px] md:text-[16px] mb-[4px] md:mb-0 text-left">{key.charAt(0).toUpperCase() + key.slice(1)}</h4>
+              <div className="flex flex-col gap-[10px]" key={idx}>
+                <h4 className="text-[14px] md:text-[16px] mb-[4px] md:mb-0 text-left">
+                  {key.charAt(0).toUpperCase() + key.slice(1)}
+                </h4>
                 <div className="flex justify-between items-center gap-[10px] md:gap-0 px-[5px]">
-                  <Image className="w-[28px] h-[28px] md:w-[32px] md:h-[32px]" src={links[key]}alt="logo" />
+                  <Image
+                    className="w-[28px] h-[28px] md:w-[32px] md:h-[32px]"
+                    src={links[key]}
+                    alt="logo"
+                  />
 
                   <input
                     type="hidden"

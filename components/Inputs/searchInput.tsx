@@ -4,6 +4,7 @@ import { Transition } from "@headlessui/react";
 import { SearchInputProps } from "./interfaces";
 import ModalTemplate from "../ModalTemplate";
 import ButtonTemplate from "../ButtonTemplate";
+import { SERVER_ROOT } from "@/config/variables";
 
 let recordId: string;
 
@@ -13,16 +14,17 @@ export const SearchInput: React.FC<SearchInputProps> = ({
   name,
   pageSearch,
   setFileList,
+  setSongsList
 }) => {
   const [showConfirmationModal, setShowConfirmationModal] = React.useState<boolean>(false);
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [searchResults, setSearchResults] = useState<any[]>([]);
-  const serverRoot = "http://admin-panel-backend";
 
   const openToggler = (value: boolean) => setIsOpen(value);
 
   const handleSearch = (id: string) => {
-    fetch(`http://admin-panel-backend/${pageSearch}/${id}`, { method: "GET" })
+
+    fetch(`${SERVER_ROOT}/${pageSearch}/${id}`, { method: "GET" })
       .then((d) => {
         if (d.ok) {
           return d.json();
@@ -43,7 +45,7 @@ export const SearchInput: React.FC<SearchInputProps> = ({
 
   const deleteHandle = (id: string) => {
     // console.log(`http://admin-panel-backend/${pageSearch}/${id}`);
-    fetch(`${serverRoot}/${pageSearch}/${id}`, { method: "DELETE" })
+    fetch(`${SERVER_ROOT}/${pageSearch}/${id}`, { method: "DELETE" })
       .then((d) => {
         console.log(d);
         // if (!d.ok) {
@@ -143,10 +145,12 @@ export const SearchInput: React.FC<SearchInputProps> = ({
                               allFilesInput.forEach((el, idx) => el.value = "");
                             }
 
-                            setFileList({
-                              [key]: item[key]
-                            });
+                            if (setFileList)
+                              setFileList({
+                                [key]: item[key]
+                              });
                           } else if (key === "social_media_links") {
+                            // инпут с соц сетями
                             const socialLinks = JSON.parse(item[key]);
 
                             for (let i = 0; i < socialLinks.length; i++) {
@@ -156,27 +160,17 @@ export const SearchInput: React.FC<SearchInputProps> = ({
                               (linkInput.nextElementSibling as HTMLInputElement).value =
                                 socialLinks[i].link;
                             }
-                          } else if (key === "music_type") {
+                          }
+                          else if (key === "music_type") {
+                            // инпут радиокнопки
                             (elementInDom as HTMLInputElement).checked = true;
-                          } else if (
-                            key === "release_songs" &&
-                            JSON.parse(item[key]).length !== 1
-                          ) {
-                            const addBtn = elementInDom.closest("div")
-                              ?.nextElementSibling as HTMLButtonElement;
+                          }
+                          else if (key === "release_songs" && JSON.parse(item[key]).length !== 1 && setSongsList) {
+                            // инпут с релизами песен
                             const songsList = JSON.parse(item[key]);
-
-                            for (let i = 0; i < songsList.length; i++) addBtn.click();
-
-                            setTimeout(() => {
-                              const songInputs = document.querySelectorAll(
-                                `form [name^="release_songs[]"]`
-                              );
-                              for (let i = 0; i < songsList.length; i++) {
-                                (songInputs[i] as HTMLInputElement).value = songsList[i];
-                              }
-                            }, 10);
+                            setSongsList(songsList);
                           } else {
+                            // обычный инпут
                             elementInDom.value = item[key];
                           }
                         }

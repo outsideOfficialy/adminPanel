@@ -1,9 +1,13 @@
 import { InputWrapper } from "./inputWrapper";
 import ButtonTemplate from "../ButtonTemplate";
-import React from "react";
+import React, { useEffect } from "react";
 
 
-export const SongsInputs: React.FC<{ label: string; name: string }> = ({ label, name }) => {
+export const SongsInputs: React.FC<{ label: string; name: string; songs?: string[] }> = ({
+  label,
+  name,
+  songs = []
+}) => {
   const [songsCount, setSongsCount] = React.useState<string[]>([""]);
 
   const increaseSongList = () => setSongsCount([...songsCount, ""]);
@@ -17,6 +21,11 @@ export const SongsInputs: React.FC<{ label: string; name: string }> = ({ label, 
     newInputs[idx] = e.target.value;
     setSongsCount(newInputs);
   };
+
+  useEffect(() => {
+    if (!songs.length || songs[0] === "") return;
+    setSongsCount(songs);
+  }, [songs]);
 
   return (
     <>
