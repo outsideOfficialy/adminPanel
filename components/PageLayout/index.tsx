@@ -20,7 +20,7 @@ const PageLayout: React.FC<PageLayoutProps> = ({ children, title, pageSubmit }) 
   return (
     <>
       {session.status === "loading" || session.status === "unauthenticated"  ? <div>
-        Loading...
+        Checking authorization...
       </div> :
         <>
           {/* here will be menu button calling */}
@@ -36,9 +36,9 @@ const PageLayout: React.FC<PageLayoutProps> = ({ children, title, pageSubmit }) 
             />
           </div>
           <div className="fixed right-8 top-8">
-            <img className="rounded-full" src={session.data?.user?.image ? session.data.user.image : ""} alt="Logo" />
+            <img className="rounded-full mb-[10px]" src={session.data?.user?.image ? session.data.user.image : ""} alt="Logo" />
             <ButtonTemplate
-              secondary
+              smallSecondary
               onClick={() => signOut({ callbackUrl: "/" })}>
               Signout
             </ButtonTemplate>
