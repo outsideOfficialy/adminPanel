@@ -4,6 +4,7 @@ import React, { useEffect, ChangeEvent } from "react";
 import { FileInputProps } from "./interfaces";
 import { InputWrapper } from "./inputWrapper";
 import ImgInputDisplay from "../ImgInputDisplay";
+import { SERVER_ROOT } from "@/config/variables";
 
 interface fileListProps {
   [key: string]: string;
@@ -20,7 +21,6 @@ export const FileInput: React.FC<FileInputProps> = ({
   fileList
 }) => {
   const [files, setFiles] = React.useState<null | FileList | fileListProps>(null);
-  const serverRoot = "http://admin-panel-backend";
 
   useEffect(() => {
     fileList &&
@@ -52,7 +52,7 @@ export const FileInput: React.FC<FileInputProps> = ({
           {valOfField.map((el, idx) => {
             const temp = el.split("/");
             const fileName = temp[temp.length - 1];
-            return <ImgInputDisplay key={idx} src={serverRoot + "/" + el} imgName={fileName} />;
+            return <ImgInputDisplay key={idx} src={SERVER_ROOT + "/" + el} imgName={fileName} />;
           })}
         </>
       );

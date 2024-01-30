@@ -4,6 +4,7 @@ import { Transition } from "@headlessui/react";
 import { SearchInputProps } from "./interfaces";
 import ModalTemplate from "../ModalTemplate";
 import ButtonTemplate from "../ButtonTemplate";
+import { SERVER_ROOT } from "@/config/variables";
 
 let recordId: string;
 
@@ -17,12 +18,11 @@ export const SearchInput: React.FC<SearchInputProps> = ({
   const [showConfirmationModal, setShowConfirmationModal] = React.useState<boolean>(false);
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [searchResults, setSearchResults] = useState<any[]>([]);
-  const serverRoot = "http://admin-panel-backend";
 
   const openToggler = (value: boolean) => setIsOpen(value);
 
   const handleSearch = (id: string) => {
-    fetch(`http://admin-panel-backend/${pageSearch}/${id}`, { method: "GET" })
+    fetch(`${SERVER_ROOT}/${pageSearch}/${id}`, { method: "GET" })
       .then((d) => {
         if (d.ok) {
           return d.json();
@@ -43,7 +43,7 @@ export const SearchInput: React.FC<SearchInputProps> = ({
 
   const deleteHandle = (id: string) => {
     // console.log(`http://admin-panel-backend/${pageSearch}/${id}`);
-    fetch(`${serverRoot}/${pageSearch}/${id}`, { method: "DELETE" })
+    fetch(`${SERVER_ROOT}/${pageSearch}/${id}`, { method: "DELETE" })
       .then((d) => {
         console.log(d);
         // if (!d.ok) {
