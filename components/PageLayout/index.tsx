@@ -38,7 +38,7 @@ const PageLayout: React.FC<PageLayoutProps> = ({ children, title, pageSubmit }) 
               ]}
             />
           </div>
-          <div className="fixed right-[35px] top-[35px] flex items-center gap-[20px]">
+          <div className="absolute md:right-[35px] md:top-[47px] 2xl:top-[35px] right-[10px] top-[15px] gap-[5px] flex items-center md:gap-[20px]">
             <img
               className="rounded-full w-[32px]"
               src={session.data?.user?.image ? session.data.user.image : ""}
