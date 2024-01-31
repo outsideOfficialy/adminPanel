@@ -11,27 +11,13 @@ export default function Home() {
 
   return (
     <PageTemplate title="Login" className="max-w-[443px] pt-[50px]">
-      {/* <InputTypeText label="User-name*" placeholder="User-name..." name="user-name" required /> */}
-
-      {/* {showPassword && (
-        <InputTypeText label="Password*" placeholder="Password..." name="password" required />
-      )} */}
-
       <ButtonTemplate
         primary
-        // onClick={showPassword ? () => (window.location.href += "/news") : handleLoginClick}
-        onClick={() => signIn()}
+        onClick={() => signIn('google', { prompt: 'select_account' })}
         className="max-w-none"
       >
-        Sign in
+        Sign in with google
       </ButtonTemplate>
-      {/* <ButtonTemplate
-        className="max-w-none"
-        primary
-        onClick={() => { signOut() }}
-      >
-        Sign out
-      </ButtonTemplate> */}
     </PageTemplate>
   );
 }
