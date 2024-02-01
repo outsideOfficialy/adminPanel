@@ -16,9 +16,9 @@ const FormLayout: React.FC<FormLayoutProps> = ({ children, pageSubmit }) => {
 
   const handleModalOpen = (value: boolean) => {
     // togle body scroll
-    value ? document.body.style.overflow = 'hidden' : document.body.style.overflow = 'auto';
+    value ? (document.body.style.overflow = "hidden") : (document.body.style.overflow = "auto");
     setModalOpen(value);
-  }
+  };
 
   useEffect(() => {
     // тут вызовем сначала при успешной отправке модалку об успешном отправлении, а потом перезагрузим страницу
@@ -46,8 +46,9 @@ const FormLayout: React.FC<FormLayoutProps> = ({ children, pageSubmit }) => {
         })
           .then((d) => {
             if (!d.ok) {
-              return d.text().then(errorData => {
-                throw new Error(errorData || 'Произошла ошибка запроса');
+              return d.text().then((errorData) => {
+                console.error("Ошибка сервера:", errorData);
+                throw new Error(errorData || "Произошла ошибка запроса");
               });
             }
             return d.text();
@@ -70,16 +71,23 @@ const FormLayout: React.FC<FormLayoutProps> = ({ children, pageSubmit }) => {
       <div>
         {/* shadow bg for confirmModal */}
         <div
-          className={`${isModalOpen ? "block" : "hidden"
-            } fixed top-0 left-0 w-full h-full bg-black bg-opacity-80 z-[7]`}
+          className={`${
+            isModalOpen ? "block" : "hidden"
+          } fixed top-0 left-0 w-full h-full bg-black bg-opacity-80 z-[7]`}
           onClick={() => {
             setIsSending(false);
-            handleModalOpen(false)
+            handleModalOpen(false);
           }}
         ></div>
 
         <div className="fixed top-1/2 left-1/2 z-[10] transform -translate-x-1/2 -translate-y-1/2">
-          <ConfirmModal isSending={isSending} setIsSending={setIsSending} successSending={successSending} isOpened={isModalOpen} onSetModal={handleModalOpen} />
+          <ConfirmModal
+            isSending={isSending}
+            setIsSending={setIsSending}
+            successSending={successSending}
+            isOpened={isModalOpen}
+            onSetModal={handleModalOpen}
+          />
         </div>
       </div>
     </form>
