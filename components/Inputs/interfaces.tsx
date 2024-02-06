@@ -8,7 +8,7 @@ export interface InputFieldProps {
   label?: string;
   placeholder: string;
   inputClassName?: string;
-  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  // onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void; // seems to no need of this
   name: string;
   value?: string;
   required?: boolean;
@@ -21,6 +21,7 @@ export interface SearchInputProps {
   pageSearch: string;
   setFileList?: (el: {[key: string]: string}) => void;
   setSongsList?: (str: string[]) => void;
+  setBDay?: (str: string) => void;
 }
 
 export interface TextAreaFieldProps {

@@ -14,7 +14,8 @@ export const SearchInput: React.FC<SearchInputProps> = ({
   name,
   pageSearch,
   setFileList,
-  setSongsList
+  setSongsList,
+  setBDay
 }) => {
   const [showConfirmationModal, setShowConfirmationModal] = React.useState<boolean>(false);
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -164,6 +165,9 @@ export const SearchInput: React.FC<SearchInputProps> = ({
                           else if (key === "music_type") {
                             // инпут радиокнопки
                             (elementInDom as HTMLInputElement).checked = true;
+                          }
+                          else if (key === "birthdate") {
+                            if (setBDay) setBDay(item[key]);
                           }
                           else if (key === "release_songs" && JSON.parse(item[key]).length !== 1 && setSongsList) {
                             // инпут с релизами песен

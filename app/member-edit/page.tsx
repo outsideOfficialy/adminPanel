@@ -12,6 +12,7 @@ export default function Home() {
   const [fileList, setFileList] = React.useState<{
     [key: string]: string
   }>({});
+  const [bDay, setBDay] = React.useState<string>();
 
   const setFileListHandler = (el: { [key: string]: string }) => {
     setFileList((prevFileList) => {
@@ -22,7 +23,7 @@ export default function Home() {
 
   return (
     <PageLayout pageSubmit={page} title="Members">
-      <SearchInput setFileList={setFileListHandler} pageSearch={page} placeholder="Member ID..." label="Member search" name="id" />
+      <SearchInput setBDay={(val) => setBDay(val)} setFileList={setFileListHandler} pageSearch={page} placeholder="Member ID..." label="Member search" name="id" />
       <InputTypeText
         placeholder="Member nickname"
         label="Member Nickname*"
@@ -34,6 +35,7 @@ export default function Home() {
         label="Member birthday*"
         name="birthdate"
         required
+        value={bDay ? bDay : undefined}
       />
       <InputTypeText placeholder="Member role..." label="Member role*" name="role" required />
       <InputTypeText placeholder="About member..." label="About member*" name="about" required />
