@@ -1,5 +1,0 @@
----
-deployment:
-  tasks:
-    - export DEPLOYPATH=/www.admin.outside-official.com
-    - command: "npm run start"
