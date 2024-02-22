@@ -28,7 +28,7 @@ const ButtonTemplate: React.FC<ButtonTemplateProps> = ({
 }) => {
   return (
     <button
-      disabled={disabled}
+      disabled={disabled ? disabled : false}
       className={clsx(
         "relative transition duration-300 rounded-[5px] w-full text-center shadow-[0px_0px_10px_0px_rgba(239,147,53,0.25)] hover:shadow-main-primary-color",
         {
