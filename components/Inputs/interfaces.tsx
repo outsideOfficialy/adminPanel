@@ -8,7 +8,7 @@ export interface InputFieldProps {
   label?: string;
   placeholder: string;
   inputClassName?: string;
-  // onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void; // seems to no need of this
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void; // seems to no need of this
   name: string;
   value?: string;
   required?: boolean;
