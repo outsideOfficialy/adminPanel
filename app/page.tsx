@@ -12,8 +12,7 @@ export default function Home() {
 
   React.useEffect(() => {
     if (session.status === "authenticated") {
-      window.location.href += "/news";
-      window.location.href.replaceAll("//", "/");
+      window.location.href = "/news";
     }
   }, [session.status]);
 
