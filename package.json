@@ -3,10 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "PORT=3001 next dev",
-    "build": "PORT=3001 next build",
+    "dev": "next dev",
+    "build": "next build",
     "start": "PORT=3001 next start",
-    "lint": "PORT=3001 next lint"
+    "lint": "next lint"
   },
   "dependencies": {
     "@headlessui/react": "^1.7.17",
