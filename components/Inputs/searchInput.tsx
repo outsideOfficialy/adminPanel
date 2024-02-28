@@ -43,25 +43,6 @@ export const SearchInput: React.FC<SearchInputProps> = ({
       });
   };
 
-
-  const deleteHandle = (id: string) => {
-    // console.log(`http://admin-panel-backend/${pageSearch}/${id}`);
-    fetch(`${SERVER_ROOT}/${pageSearch}/${id}`, { method: "DELETE" })
-      .then((d) => {
-        console.log(d);
-        // if (!d.ok) {
-        //   return d.text().then(errorData => {
-        //     throw new Error(errorData || "Произошла ошибка запроса");
-        //   });
-        // }
-        // console.log(d);
-      })
-      // .then((d) => {
-      //   console.log(d);
-      // })
-      .catch((reason) => console.log(reason));
-  };
-
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
   };
@@ -259,21 +240,19 @@ const CountDownModal: React.FC<CountDownModalProps> = ({
 
   const deleteHandle = () => {
 
-    // тут я еще буду настраивать
-    // console.log(`http://admin-panel-backend/${pageSearch}/${id}`);
-    fetch(`http://admin-panel-backend/${pageSearch}/${recordId}`, { method: "DELETE" })
+    fetch(`${SERVER_ROOT}/${pageSearch}/${recordId}`, { method: "DELETE" })
       .then((d) => {
         console.log(d);
-        // if (!d.ok) {
-        //   return d.text().then(errorData => {
-        //     throw new Error(errorData || "Произошла ошибка запроса");
-        //   });
-        // }
-        // console.log(d);
+        if (!d.ok) {
+          return d.text().then(errorData => {
+            throw new Error(errorData || "Произошла ошибка запроса");
+          });
+        }
+        console.log(d);
       })
-      // .then((d) => {
-      //   console.log(d);
-      // })
+      .then((d) => {
+        console.log(d);
+      })
       .catch((reason) => console.log(reason));
   };
 
