@@ -242,13 +242,13 @@ const CountDownModal: React.FC<CountDownModalProps> = ({
 
     fetch(`${SERVER_ROOT}/${pageSearch}/${recordId}`, { method: "DELETE" })
       .then((d) => {
-        console.log(d);
+        // console.log(d);
         if (!d.ok) {
           return d.text().then(errorData => {
             throw new Error(errorData || "Произошла ошибка запроса");
           });
         }
-        console.log(d);
+        return d.text();
       })
       .then((d) => {
         console.log(d);
