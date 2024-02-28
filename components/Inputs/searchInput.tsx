@@ -248,10 +248,10 @@ const CountDownModal: React.FC<CountDownModalProps> = ({
             throw new Error(errorData || "Произошла ошибка запроса");
           });
         }
-        return d.text();
+        return d;
       })
       .then((d) => {
-        console.log(d);
+        if (d.ok) window.location.reload();
       })
       .catch((reason) => console.log(reason));
   };
