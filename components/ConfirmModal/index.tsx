@@ -119,7 +119,7 @@ const RenderConfirmBody: React.FC = React.memo(({ }) => {
 
         if (inputs[0].name.includes("preview_picture")) {
           const fileInput = inputs[0] as HTMLInputElement;
-          
+
           if (!fileInput.files?.length) {
             const imgsContainer = fileInput.nextElementSibling;
 
@@ -226,6 +226,9 @@ const ConfirmModal: React.FC<ConfirmModalProps> = ({ isOpened, onSetModal, succe
               {/* Тут если отправка не удалась то вызвать модалку об неудачном отправлении */}
             </>}
             {successSending === true && <>
+              {(function () {
+                setTimeout(() => window.location.reload(), 1000);
+              })()}
               {/* Тут если отправка не удалась то вызвать модалку об успешном отправлении */}
             </>}
           </div>
@@ -264,7 +267,7 @@ const ModalBodySlider: React.FC<ModalBodySliderProps> = ({
 
     {function () {
       const imgArray = [];
-      for (let i = 0; i < files.length; i++) imgArray.push(<img className="border-[1px] border-main-primary-color w-full h-auto" src={function() {
+      for (let i = 0; i < files.length; i++) imgArray.push(<img className="border-[1px] border-main-primary-color w-full h-auto" src={function () {
         return Array.isArray(files) ? files[i] : URL.createObjectURL(files[i]);
       }()} alt="preview_image" />);
       return <>{imgArray[currentSlide]}</>
@@ -273,7 +276,7 @@ const ModalBodySlider: React.FC<ModalBodySliderProps> = ({
       if (files.length <= 1) return <></>;
 
       return <div className="absolute bottom-[20px] left-[20px] flex gap-[20px]">
-        {(function() {
+        {(function () {
           if (files instanceof FileList) return Array.from(files);
           else if (Array.isArray(files)) return files;
           return [];

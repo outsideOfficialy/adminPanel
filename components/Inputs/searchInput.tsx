@@ -5,6 +5,7 @@ import { SearchInputProps } from "./interfaces";
 import ModalTemplate from "../ModalTemplate";
 import ButtonTemplate from "../ButtonTemplate";
 import { SERVER_ROOT } from "@/config/variables";
+import Loader from "@/components/Loader";
 
 let recordId: string;
 
@@ -237,12 +238,12 @@ const CountDownModal: React.FC<CountDownModalProps> = ({
   pageSearch
 }) => {
   const [timeLeft, setTimeLeft] = React.useState<number>(3000);
+  const [loaderIsOpen, setLoaderOpen] = React.useState<boolean>(false);
 
   const deleteHandle = () => {
 
     fetch(`${SERVER_ROOT}/${pageSearch}/${recordId}`, { method: "DELETE" })
       .then((d) => {
-        // console.log(d);
         if (!d.ok) {
           return d.text().then(errorData => {
             throw new Error(errorData || "Произошла ошибка запроса");
@@ -271,28 +272,33 @@ const CountDownModal: React.FC<CountDownModalProps> = ({
         <h3 className="text-[20px] font-medium mb-[30px]">Сonfirmation deletion of news</h3>
         <p className="text-[16px] mb-[50px]">Do you really want to delete post "{recordId}"?</p>
 
-        <ButtonTemplate
-          className="mb-[20px]"
-          onClick={(e) => {
-            setShowConfirmationModal(false);
-          }}
-          type="button"
-          smallSecondary
-        >
-          Close
-        </ButtonTemplate>
-        <ButtonTemplate
-          disabled={timeLeft !== 0}
-          onClick={(e) => {
-            //! Sending data to deletion
-            deleteHandle();
-          }}
-          type="button"
-          smallPrimary
-        >
-          Delete
-          {timeLeft / 1000 ? <span > {timeLeft / 1000}...</span> : ""}
-        </ButtonTemplate>
+        {loaderIsOpen ?
+          <Loader open={loaderIsOpen} /> : <>
+            <ButtonTemplate
+              className="mb-[20px]"
+              onClick={(e) => {
+                setShowConfirmationModal(false);
+              }}
+              type="button"
+              smallSecondary
+            >
+              Close
+            </ButtonTemplate>
+            <ButtonTemplate
+              disabled={timeLeft !== 0}
+              onClick={(e) => {
+                //! Sending data to deletion
+                deleteHandle();
+                setLoaderOpen(true);
+              }}
+              type="button"
+              smallPrimary
+            >
+              Delete
+              {timeLeft / 1000 ? <span > {timeLeft / 1000}...</span> : ""}
+            </ButtonTemplate>
+          </>
+        }
       </div>
     </div>
   </ModalTemplate>;
