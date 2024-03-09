@@ -151,7 +151,7 @@ export const SearchInput: React.FC<SearchInputProps> = ({
                           else if (key === "birthdate") {
                             if (setBDay) setBDay(item[key]);
                           }
-                          else if (key === "release_songs" && JSON.parse(item[key]).length !== 1 && setSongsList) {
+                          else if (key === "release_songs" && setSongsList) {
                             // инпут с релизами песен
                             const songsList = JSON.parse(item[key]);
                             setSongsList(songsList);

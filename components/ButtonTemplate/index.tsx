@@ -21,7 +21,7 @@ const ButtonTemplate: React.FC<ButtonTemplateProps> = ({
   primary,
   secondary,
   border,
-  disabled,
+  disabled = false,
   smallSecondary,
   smallPrimary,
   className
